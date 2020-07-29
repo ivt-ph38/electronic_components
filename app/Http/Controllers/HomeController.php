@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+    	$menus = Category::where('parent_id', '=', 0)->get();
+        $allMenus = Category::pluck('name','id')->all();
+        return view('home',compact('menus','allMenus'));
     }
 }
