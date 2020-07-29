@@ -11,30 +11,4 @@
 |
 */
 
-
-Route::get('/', 'HomeController@index')->name('welcome');
-
-/* -------------------------------------------------------------------------- */
-
-Route::prefix('admin')->group(function ()
-{
-	Route::get('/product', 'ProductController@index')->name('admin.products.index');
-
-	Route::get('/product/create', 'ProductController@create')->name('admin.products.create');
-
-	Route::post('/product', 'ProductController@store')->name('admin.products.store');
-
-	Route::get('/product/edit/{id}', 'ProductController@edit')->name('admin.products.edit');
-
-	Route::put('/product/{id}', 'ProductController@update')->name('admin.products.update');
-
-	Route::get('copy/product/{id}','ProductController@copy')->name('admin.products.copy');
-
-	Route::put('copy/product/{id}', 'ProductController@clone')->name('admin.products.clone');
-
-	Route::patch('copy/product/{id}', 'ProductController@clone')->name('admin.products.clone');
-
-	Route::delete('/product/{id}', 'ProductController@destroy')->name('admin.products.delete');
-
-});
-
+Route::get('/', 'HomeController@index');
