@@ -11,6 +11,7 @@
 |
 */
 
+<<<<<<< HEAD
 
 Route::get('/', 'HomeController@index')->name('welcome');
 
@@ -38,3 +39,8 @@ Route::prefix('admin')->group(function ()
 
 });
 
+=======
+Route::get('/', function () {
+    return view('welcome');
+});
+>>>>>>> parent of 1eb87ef... create home page
