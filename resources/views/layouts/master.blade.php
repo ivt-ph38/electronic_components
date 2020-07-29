@@ -52,6 +52,6 @@
     <script src="{{ URL::asset('js/jquery.scrollUp.min.js') }}"></script>
     <script src="{{ URL::asset('js/price-range.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ URL::asset('js/main.js"></script>
+    <script src="{{ URL::asset('js/main.js') }}"></script>
 </body>
 </html>
