@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
-use App\Category;
-use App\Http\Requests\ProductCreateRequest;
-use App\Http\Requests\ProductUpdateRequest;
-
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -18,9 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $categories = Category::get();
-        return view('admin.products.index', compact('products','categories'));
+        //
     }
 
     /**
@@ -30,8 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        return view('admin.products.create', compact('categories'));
+        //
     }
 
     /**
@@ -40,23 +33,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductCreateRequest $request)
+    public function store(Request $request)
     {
-        $product = new Product;
-
-        $product->name  =   $request->name;
-        $product->slug  =   $request->slug;
-        $product->description   =   $request->description;
-        $product->detail    =   $request->price;
-        $product->price     =   preg_replace('/\D/', '', $request->price);
-        $product->quantity  =   $request->quantity;
-        $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
-        $product->image     =   $request->image;
-        $product->category_id   =   $request->category_id;
-        $product->save();
-
-        return redirect(route('admin.products.index'))->with('success', 'Sản phẩm đã được lưu.');
+        //
     }
 
     /**
@@ -76,11 +55,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        $product = Product::find($id);
-        $categories = Category::get();
-        return view('admin.products.edit',compact('product','categories'));
+        //
     }
 
     /**
@@ -90,23 +67,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductUpdateRequest $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $product = Product::find($id);
-        
-        $product->name  =   $request->name;
-        $product->slug  =   $request->slug;
-        $product->description   =   $request->description;
-        $product->detail    =   $request->price;
-        $product->price     =   preg_replace('/\D/', '', $request->price);
-        $product->quantity  =   $request->quantity;
-        $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
-        $product->image     =   $request->image;
-        $product->category_id   =   $request->category_id;
-        $product->save();
-
-        return redirect(route('admin.products.index'))->with('success', 'Sản phẩm cập nhật thành công.');
+        //
     }
 
     /**
@@ -115,40 +78,8 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-
-    public function copy($id)
+    public function destroy(Product $product)
     {
-        $product = Product::find($id);
-        $categories = Category::get();
-        return view('admin.products.copy',compact('product','categories'));
-    }
-
-    public function clone(ProductUpdateRequest $request)
-    {
-    
-        $product = new Product;
-
-        $product->name  =   $request->name;
-        $product->slug  =   $request->slug;
-        $product->description   =   $request->description;
-        $product->detail    =   $request->price;
-        $product->price     =   preg_replace('/\D/', '', $request->price);
-        $product->quantity  =   $request->quantity;
-        $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
-        $product->image     =   $request->image;
-        $product->category_id   =   $request->category_id;
-        $product->save();
-
-        return redirect(route('admin.products.index'))->with('success', 'Sao chép sản phẩm thành công.');
-    }
-    
-
-    public function destroy($id)
-    {
-        $product = Product::find($id);
-        $product->delete();
-        return redirect(route('admin.products.index'))->with('success', 'Xóa sản phẩm thành công');
-
+        //
     }
 }
