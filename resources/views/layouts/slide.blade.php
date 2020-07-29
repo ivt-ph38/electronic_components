@@ -12,7 +12,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="col-sm-12">
-                                    <img src="images/banner.png" class="img-responsive" alt="" />
+                                    <img src="{{ URL::asset('images/banner.png') }}" class="img-responsive" alt="" />
                                 </div>
                             </div>
                             <div class="item">
