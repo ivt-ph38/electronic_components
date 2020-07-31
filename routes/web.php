@@ -28,5 +28,12 @@ Route::prefix('admin')->group(function ()
 	Route::patch('copy/product/{id}', 'ProductController@clone')->name('admin.products.clone');
 	Route::delete('/product/{id}', 'ProductController@destroy')->name('admin.products.delete');
 
+	Route::get('/blogs', 'BlogController@index')->name('admin.blogs.index');
+	Route::get('/blogs/create', 'BlogController@create')->name('admin.blogs.create');
+	Route::post('/blogs', 'BlogController@store')->name('admin.blogs.store');
+	Route::get('/blogs/edit/{id}', 'BlogController@edit')->name('admin.blogs.edit');
+	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
+	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
+
 });
 

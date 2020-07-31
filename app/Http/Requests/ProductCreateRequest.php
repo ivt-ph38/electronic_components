@@ -33,7 +33,7 @@ class ProductCreateRequest extends FormRequest
         'discount' => 'integer|max:100',
         'quantity' => 'required',
         'image' => 'required',
-        'category_id' => 'integer'
+        'category_id' => 'required'
         ];
     }
 
@@ -52,7 +52,7 @@ class ProductCreateRequest extends FormRequest
         'quantity.required' => 'Vui lòng nhập số lượng sản phẩm',
         'detail.required' => 'Vui lòng nhập nội dung.',
         'image.required' => 'Vui lòng chọn hình đại diện.',
-        'category_id.integer' => 'Danh mục sản phẩm chỉ được điền số.'
+        'category_id.integer' => 'Vui lòng chọn danh mục'
         ];
     }
 }

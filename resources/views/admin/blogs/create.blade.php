@@ -6,24 +6,23 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
-<form action="{{ route('admin.products.clone',$product->id) }}" method="POST" role="form">
+<form action="{{ route('admin.products.store') }}" method="POST" role="form">
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card-body border-top border-primary">
-		@method('PATCH')	
 		@csrf		
 			<div class="form-group">
 				<label for="">{{ __('Tên Sản Phẩm') }}</label>
-				<input type="text" name="name" value="{{ $product->name }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="name" value="{{ old('title') }}" class="form-control" id="" placeholder="Input field">
 			</div>
 			<div class="form-group">
 				<label for="">{{ __('Tiêu Đề Trang') }}</label>
-				<input type="text" name="slug" value="{{ $product->slug }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="slug" value="{{ old('slug') }}" class="form-control" id="" placeholder="Input field">
 			</div>			
 			<div class="form-group">
 				<label for="">{{ __('Mô tả') }}</label>
-				<input type="text" name="description" value="{{ $product->description }}" class="form-control" id="" placeholder="Input field">
-			</div>		
+				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Input field">
+			</div>			
 			<div class="form-group">
 				<label for="">{{ __('Hình đại diện') }}</label>
 				  <div class="custom-file">
@@ -37,22 +36,22 @@
 				  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
 				</script>	
-			</div>							
+			</div>								
 		</div>
 	</div>
 	<div class="col-lg-6">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="">{{ __('Giá Sản Phẩm') }}</label>
-				<input type="price" name="price" value="{{ $product->price }}" class="form-control" id="price" placeholder="Input field">
-			</div>		
+				<input type="price" name="price" value="{{ old('price') }}" class="form-control" id="price" placeholder="Input field">
+			</div>			
 			<div class="form-group">
 				<label for="">{{ __('Giảm Giá') }}</label>
-				<input type="text" name="discount" value="{{ $product->discount }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="discount" value="{{ old('discount') }}" class="form-control" id="" placeholder="Input field">
 			</div>		
 			<div class="form-group">
 				<label for="">{{ __('Số lượng') }}</label>
-				<input type="text" name="quantity" value="{{ $product->quantity }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control" id="" placeholder="Input field">
 			</div>						
 			<div class="form-group">
 				<label for="">{{ __('Danh Mục') }}</label>
@@ -66,7 +65,7 @@
 			<div class="form-group">
 				<input type="hidden" name="status" value="0">
 				<input type="checkbox" name="status" value="1">
-				<label for="status" name="status">{{ __('Còn hàng ') }}</label>
+				<label for="">{{ __('Còn hàng ') }}</label>
 			</div>			
 		</div>		
 	</div>
@@ -74,13 +73,12 @@
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<input class="form-control summernote" name="detail" value="{{ $product->detail }}"></input>
-					</div>				
+						<textarea class="form-control summernote" name="detail" value="{{ old('detail') }}"></textarea>
+					</div>
+			<button type="submit" class="btn btn-primary">Đồng ý</button>							
 			</div>
 	</div>
-<div class="col-lg-12">	
-<button type="submit" class="btn btn-primary">Đồng ý</button>
-</div>	
+	
 </div>
 </form>
 <script type="text/javascript">
