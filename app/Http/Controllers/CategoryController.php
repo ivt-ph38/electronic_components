@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\CategoryCreateRequest;
+use Helper;
+use Illuminate\Support\Collection;
 
 
 class CategoryController extends Controller
@@ -62,9 +64,13 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $categories = Category::where('parent_id', '=', 0)->get();
+/*        $categories = new Collection;
+        $categories = $all_categories->diff(Helper::getCategories($category, $categories));   */
+        return view('admin.categories.edit', compact('categories', 'category'));
     }
 
     /**
@@ -74,9 +80,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryCreateRequest $request)
     {
-        //
+        $category = Category::findOrFail($request->id);
+        $data = $request->except(['_method','_token']);
+        $category->update($data);
+        return redirect(route('admin.categories.index'))->with('success', 'Cập nhật danh mục thành công.');
     }
 
     /**
