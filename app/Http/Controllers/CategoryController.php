@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryCreateRequest;
+
 
 class CategoryController extends Controller
 {
@@ -25,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::where('parent_id', '=', 0)->get();
+        return view('admin.categories.create', compact('categories'));
     }
 
     /**
@@ -34,9 +37,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
-        //
+        $request->request->add(['slug' => str_slug($request->name)]);
+        $data = $request->except('_token');
+        Category::create($data);
+        return redirect(route('admin.categories.index'))->with('success', 'Danh mục đã được lưu.');
     }
 
     /**
