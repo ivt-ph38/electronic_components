@@ -33,7 +33,7 @@ $(document).ready(function(){
     window.onscroll = function() {myFunction()};
 
     var navbar = document.getElementsByClassName("header-middle")[0];
-    var sticky = navbar.offsetTop;
+    var sticky = navbar.offsetTop+15;
 
     function myFunction() {
     	if (window.pageYOffset >= sticky) {
