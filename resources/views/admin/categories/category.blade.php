@@ -16,10 +16,12 @@
 
 							{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $category->id, 'onclick' => "return confirm('$messagedel')"]) }}
 		 					--}}				
-		 					<form action="{{ route('admin.categories.delete', [$category->id]) }}" method="POST" role="form">	
+
+		 					<form action="{{ route('admin.categories.delete', [$category->id]) }}" method="POST" role="form">			
 		 						@method('DELETE')
-			 					@csrf
-			 					<button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa danh mục: {{$category->name}}')"><i class="fad fa-trash">Xoá</i></button>
+		 					 @csrf
+		 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa '.$category->name)">Xoá</i></button>
+
 							</form>
 						</td>
 					</tr>

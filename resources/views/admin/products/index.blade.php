@@ -135,17 +135,16 @@
 
 					<a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="far fa-edit">Chỉnh Sửa</i></a>
 
-					{{-- @php
-
-					$messagedel = 'Bạn muốn xóa sản phẩm '.$product->name;
-
-					@endphp --}}
+					
+				
 
 					{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }}
 
- --}}			<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">							@method('DELETE')
+ --}}			<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">										@method('DELETE')
  					 @csrf
  					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa '.$product->name)">Xoá</i></button>
+			{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }} --}}
+ 	
 				</form>
 					
 					<a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Nhân Bản Sản Phẩm') }}"><i class="far fa-clone">Copy</i></a>

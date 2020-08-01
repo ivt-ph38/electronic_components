@@ -29,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
+
+        $categories = Category::where('parent_id', '=', 0)->get();
         return view('admin.products.create', compact('categories'));
     }
 
@@ -78,7 +79,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::get();
+        $categories = Category::where('parent_id', '=', 0)->get();
         return view('admin.products.edit',compact('product','categories'));
     }
 

@@ -50,12 +50,18 @@
 			<div class="form-group">
 				<label for="">{{ __('Danh Mục') }}</label>
 				<select name="category_id" id="input" class="form-control">
+
 					<option>{{ __('-- Danh Mục --') }}</option>
 					@foreach($categories as $category)
 					<option name="category_id" value="{{ $category->id }}">{{ $category->name }}</option>
 					@endforeach
 				</select>
 			</div>			
+
+					@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => 0, 'diff' => null])
+				</select>
+			</div>				
+
 			<div class="form-group">
 				<input type="hidden" name="status" value="0">
 				<input type="checkbox" name="status" value="1">

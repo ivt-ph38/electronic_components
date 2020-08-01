@@ -2,6 +2,7 @@
 @section('content')
 <section class="content-header mb-3">
 	<h1>
+
 		<i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}
 	</h1>
 </section>
@@ -14,6 +15,20 @@
 			<div class="form-group">
 				<label for="">{{ __('Tên Sản Phẩm') }}</label>
 				<input type="text" name="name" value="{{ old('title') }}" class="form-control" id="" placeholder="Input field">
+
+		<i class="fas fa-plus-circle"></i> {{ __('Thêm Tin Tức') }}
+	</h1>
+</section>
+@include('layouts.admin.validation')
+<form action="{{ route('admin.blogs.store') }}" method="POST" role="form">
+<div class="row">
+	<div class="col-lg-12">
+		<div class="card-body border-top border-primary">
+		@csrf		
+			<div class="form-group">
+				<label for="">{{ __('Tên Tin Tức') }}</label>
+				<input type="text" name="title" value="{{ old('title') }}" class="form-control" id="" placeholder="Input field">
+
 			</div>
 			<div class="form-group">
 				<label for="">{{ __('Tiêu Đề Trang') }}</label>
@@ -39,6 +54,7 @@
 			</div>								
 		</div>
 	</div>
+<<<<<<< HEAD
 	<div class="col-lg-6">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
@@ -69,11 +85,17 @@
 			</div>			
 		</div>		
 	</div>
+=======
+>>>>>>> a3764a6... create blog
 	<div class="col-lg-12">
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
+<<<<<<< HEAD
 						<textarea class="form-control summernote" name="detail" value="{{ old('detail') }}"></textarea>
+=======
+						<textarea class="form-control summernote" name="content" value="{{ old('content') }}"></textarea>
+>>>>>>> a3764a6... create blog
 					</div>
 			<button type="submit" class="btn btn-primary">Đồng ý</button>							
 			</div>

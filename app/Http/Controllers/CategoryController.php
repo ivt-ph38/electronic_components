@@ -68,6 +68,9 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $categories = Category::where('parent_id', '=', 0)->get();
+
+/*       $categories = new Collection;
+        $categories = $all_categories->diff(Helper::getCategories($category, $categories));   */
         return view('admin.categories.edit', compact('categories', 'category'));
     }
 
@@ -92,6 +95,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $category = Category::find($id);
@@ -100,7 +104,10 @@ class CategoryController extends Controller
         foreach ($categories as $category) {
             $category->products()->delete();
             $category->delete();
-        }
-        return redirect(route('admin.categories.index'))->with('success', 'Xóa danh mục thành công');
+        return redirect(route('admin.categories.index'))->with('success', 'Xóa danh mục thành công');    
     }
+
+
+}
+
 }
