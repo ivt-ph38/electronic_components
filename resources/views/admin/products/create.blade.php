@@ -56,10 +56,14 @@
 			<div class="form-group">
 				<label for="">{{ __('Danh Mục') }}</label>
 				<select name="category_id" id="input" class="form-control">
+
 					<option>{{ __('-- Danh Mục --') }}</option>
 					@foreach($categories as $category)
 					<option name="category_id" value="{{ $category->id }}">{{ $category->name }}</option>
 					@endforeach
+
+					@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => 0, 'diff' => null])
+
 				</select>
 			</div>			
 			<div class="form-group">

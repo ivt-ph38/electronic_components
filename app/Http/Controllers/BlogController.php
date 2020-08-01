@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Blog;
 use Illuminate\Http\Request;
 
+
+use App\Http\Requests\BlogCreateRequest;
+
+
 class BlogController extends Controller
 {
     /**
@@ -25,7 +29,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.blogs.create');
+
     }
 
     /**
@@ -34,9 +40,20 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+
+    public function store(BlogCreateRequest $request)
     {
-        //
+        $blog = new Blog;
+
+        $blog->title = $request->title;
+        $blog->slug = $request->slug;
+        $blog->description = $request->description;
+        $blog->image = $request->image;
+        $blog->content = $request->content;
+        $blog->save();
+
+        return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được lưu.');
     }
 
     /**

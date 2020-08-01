@@ -1,3 +1,4 @@
+  
 @extends('layouts.admin.admin')
 @section('content')
 <section class="content-header mb-3 border-bottom border-primary">
@@ -7,9 +8,7 @@
 </section>
 
 {{-- {{ Form::open(['route' => ['admin.categories.destroy'], 'method' => 'post']) }}
-
 <a class="btn btn-success" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
-
 {{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }} --}}
 <hr>
 <div class="table-responsive">
@@ -40,7 +39,6 @@
 <a class="btn btn-success" onclick="return confirm('Bạn có chắc muốn xóa '.$category->name)" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
 
 {{-- {{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }}
-
 {{ Form::close() }} --}}
 
 @endsection
