@@ -139,7 +139,8 @@ a#scrollUp i{
 .header-middle .container .row {
   margin-left: 0;
   margin-right: 0;
-  padding-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .header-middle .container .row .col-sm-4{
@@ -849,10 +850,10 @@ h2.title:before{
 h2.title {
   color: #04254e;
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   margin: 0 15px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   position: relative;
 }
 
@@ -895,6 +896,8 @@ h2.title {
 	font-size: 24px;
 	font-weight: 700;
 }
+
+
 .product-overlay h2{
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
@@ -902,12 +905,13 @@ h2.title {
 	font-weight: 700;
 }
 
-
 .productinfo p{
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   color: #696763;
+  height: 40px;
+  overflow: hidden;
 }
 
 .productinfo img{
@@ -1702,6 +1706,13 @@ h2.title {
   margin-right:0;
   margin-left:0;
   margin-top: 0;
+}
+
+h2.title a {
+  font-size: 14px;
+  float: right;
+  text-decoration: underline;
+  font-weight: 400;
 }
 
 .heading h3 {

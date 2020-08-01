@@ -2,8 +2,8 @@
                                 <div class="single-products">
                                         <div class="productinfo text-center">
                                             <a href="#"><img src="images/product01.jpg" alt="" /></a>
-                                            <p>Module kích hoạt replay bằng nút nhấn, cản biến JK06...</p>
-                                            <h5>57.000 đ</h5>
+                                            <p>{{$product->name}}</p>
+                                            <h5>{{number_format($product->price, 0, ',', ',')}} đ</h5>
                                         </div>
                                 </div>
                                 <div class="choose">

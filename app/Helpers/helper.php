@@ -19,4 +19,18 @@ class Helper
     	return $res;
     }
 
+    //Lấy tất cả các sản phẩm thuộc một danh mục
+    public static function getProductsByCategory(Category $category)
+    {
+        $products = new Collection;
+        $categories = new Collection;
+        $categories = Helper::getCategories($category, $categories);
+        foreach ($categories as $category_item) {
+            foreach ($category_item->products as $product) {
+                $products->push($product);
+            }
+        }
+        return $products;
+    }
+
 }
