@@ -74,12 +74,10 @@
 					<div class="form-group">
 						<label for="">Nội dung</label>
 						<input class="form-control summernote" name="detail" value="{{ $product->detail }}"></input>
-					</div>				
+					</div>
+					<button type="submit" class="btn btn-primary">Đồng ý</button>				
 			</div>
-	</div>
-<div class="col-lg-12">	
-<button type="submit" class="btn btn-primary">Đồng ý</button>
-</div>	
+	</div>	
 </div>
 </form>
 <script type="text/javascript">
