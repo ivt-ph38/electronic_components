@@ -104,10 +104,7 @@ class CategoryController extends Controller
         foreach ($categories as $category) {
             $category->products()->delete();
             $category->delete();
+        }
         return redirect(route('admin.categories.index'))->with('success', 'Xóa danh mục thành công');    
     }
-
-
-}
-
 }
