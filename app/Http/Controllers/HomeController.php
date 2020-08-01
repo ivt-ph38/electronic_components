@@ -20,12 +20,10 @@ class HomeController extends Controller
     	$menus = Category::where('parent_id', '=', 0)->get();
         $res = new Collection;
         foreach ($menus as $category) {
-
-            //lấy tất cả product
-            $products = Helper::getProductsByCategory($category);
-
-            $top_products = $products->sortByDesc('id')->take(8);
-            $category->setAttribute('top_products', $top_products);
+            $categories = new Collection;
+            $categories = Helper::getCategories($category, $categories)->pluck('id')->toArray();
+            $products = Product::whereIn('category_id', $categories)->orderBy('id', 'desc')->take(8)->get();
+            $category->setAttribute('top_products', $products);
             $res->push($category);   
         }
         return view('pages.home',compact('menus', 'res'));
