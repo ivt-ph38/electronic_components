@@ -28,4 +28,16 @@ class HomeController extends Controller
         }
         return view('pages.home',compact('menus', 'res'));
     }
+
+    public function listProductsByCategory($id)
+    {
+        $menus = Category::where('parent_id', '=', 0)->get();
+        $category = Category::findOrFail($id);
+        $categories = new Collection;
+        $categories = Helper::getCategories($category, $categories)->pluck('id')->toArray();
+        $products = Product::whereIn('category_id', $categories)->orderBy('id', 'desc')->get();
+        $breadcrumbs = Helper::breadcrumbs($category, "");
+        return view('pages.list_products_by_category',compact('menus', 'products', 'category', 'breadcrumbs'));
+    }
+
 }

@@ -35,7 +35,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .btn:hover, 
@@ -243,7 +243,7 @@ a#scrollUp i{
 
 .mainmenu ul li a {
 	color: #696763;
-	font-family: 'Roboto', sans-serif;
+	font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 	font-size: 17px;
 	font-weight: 300;
 	padding: 0;
@@ -659,9 +659,9 @@ ul.sub-menu {
 }
 .left-sidebar h2, .brands_products h2 {
   color: #04254e;
-  font-family: 'Roboto', sans-serif;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0 auto 10px;
   text-align: left;
   position: relative;
@@ -721,7 +721,7 @@ h2.title:before{
 
 .category-products .panel-default .panel-heading .panel-title a {
   color: #696763;
-  font-family: 'Roboto', sans-serif;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-size: 14px;
   text-decoration: none;
 }
@@ -747,6 +747,7 @@ h2.title:before{
 
 .panel-body ul{
   padding-left: 5px;
+  margin-bottom: 5px;
 }
 
 .panel-body ul li a, .panel-body .panel-title a{
@@ -849,9 +850,8 @@ h2.title:before{
 
 h2.title {
   color: #04254e;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 20px;
   margin: 0 15px;
   margin-bottom: 10px;
   position: relative;
@@ -2566,4 +2566,18 @@ h2.title a {
   border-radius: 20px;
   padding: 3px;
   font-size: 12px;
+}
+
+.breadcrumbs {
+  margin-left: 15px;
+}
+
+.breadcrumbs a{
+  color: #707070;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.panel-body {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
