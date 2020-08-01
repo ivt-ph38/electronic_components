@@ -22,11 +22,8 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->integer('status');
+            $table->integer('discount');
             $table->string('image', 255);
-            $table->string('image1', 255);
-            $table->string('image2', 255);
-            $table->string('image3', 255);
-            $table->string('image4', 255);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');

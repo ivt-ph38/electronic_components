@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use Illuminate\Http\Request;
-
-
 use App\Http\Requests\BlogCreateRequest;
 
 
@@ -73,9 +71,10 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
-        //
+        $blog = Blog::find($id);
+        return view('admin.blogs.edit',compact('blog'));
     }
 
     /**
@@ -85,9 +84,18 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(BlogCreateRequest $request, $id)
     {
-        //
+        $blog = Blog::find($id);
+
+        $blog->title = $request->title;
+        $blog->slug = $request->slug;
+        $blog->description = $request->description;
+        $blog->image = $request->image;
+        $blog->content = $request->content;
+        $blog->save();
+
+        return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được chỉnh sửa.');
     }
 
     /**
@@ -98,6 +106,8 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+         $blog = Blog::find($id);
+         $blog->delete();
+         return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được xóa.');
     }
 }
