@@ -1,7 +1,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="#"><img src="images/product01.jpg" alt="" /></a>
+                                            <a href="#"><img src="{{ URL::asset('images/product01.jpg') }}" alt="" /></a>
                                             <p>{{$product->name}}</p>
                                             <h5>{{number_format($product->price, 0, ',', ',')}} đ</h5>
                                         </div>

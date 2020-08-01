@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
-                    @include('layouts.slide')
-
+    				@include('layouts.slide')
                     @foreach ($res as $category)
 
 	                    <div class="features_items"><!--features_items-->

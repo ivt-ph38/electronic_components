@@ -18,4 +18,23 @@ class Helper
     	}
     	return $res;
     }
+
+    //tạo đường dẫn đến danh mục
+    public static function breadcrumbs(Category $category, String $res)
+    {
+        if ($res == "") {
+            $res = "/ " . $category->name . " " . $res;
+        }
+        else {
+            $res = "/ <a href='". url('/categories/'.$category->id.'/products') ."'>" . $category->name . "</a> " . $res;
+        }
+
+        if(!isset($category->parent)) {
+            $res = "<a href='". url('/') ."'>Trang chủ</a> " . $res;
+        }
+        else {
+            $res = Helper::breadcrumbs($category->parent, $res);
+        }
+        return $res;
+    }
 }

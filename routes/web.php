@@ -13,6 +13,7 @@
 
 
 Route::get('/', 'HomeController@index')->name('welcome');
+Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('admin.categories.products');
 
 /* -------------------------------------------------------------------------- */
 
