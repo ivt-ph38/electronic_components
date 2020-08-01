@@ -85,9 +85,9 @@
 
 					{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $blog->id, 'onclick' => "return confirm('$messagedel')"]) }}
 
- --}}			<form action="{{ route('admin.blogs.delete', [$blog->id]) }}" method="POST" role="form">							@method('DELETE')
+ --}}			<form action="{{ route('admin.blogs.delete', [$blog->id]) }}" method="POST" role="form">								  @method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa '.$blog->name)">Xoá</i></button>
+ 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa tin tức này.')">Xoá</i></button>
 				</form>
 
 				</td>
