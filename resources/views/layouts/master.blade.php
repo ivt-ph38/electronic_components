@@ -53,5 +53,6 @@
     <script src="{{ URL::asset('js/price-range.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
+    <script type="text/javascript">@yield('js')</script>  
 </body>
 </html>

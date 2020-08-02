@@ -29,15 +29,47 @@ class HomeController extends Controller
         return view('pages.home',compact('menus', 'res'));
     }
 
-    public function listProductsByCategory($id)
+    public function listProductsByCategory(Request $request)
     {
         $menus = Category::where('parent_id', '=', 0)->get();
-        $category = Category::findOrFail($id);
+        $category = Category::findOrFail($request->id);
         $categories = new Collection;
         $categories = Helper::getCategories($category, $categories)->pluck('id')->toArray();
-        $products = Product::whereIn('category_id', $categories)->orderBy('id', 'desc')->get();
+
+        $query = Product::whereIn('category_id', $categories);
+        $filter = [];
+
+        if ($request->orderby) {
+            if ($request->orderby == 'price-asc') {
+                $query->orderBy('price', 'asc');
+                $filter['orderby'] = 'price-asc';
+            }
+            elseif ($request->orderby == 'price-desc') {
+                $query->orderBy('price', 'desc');
+                $filter['orderby'] = 'price-desc';
+            }
+            else {
+                $query->orderBy('id', 'desc');
+            }
+        }
+        else {
+            $query->orderBy('id', 'desc');
+        }
+
+        if ($request->groupby) {
+            if ($request->groupby == 'on_sale') {
+                $query->where('discount', '<>' , null);
+                $filter['groupby'] = 'on_sale';
+            }
+            if ($request->groupby == 'available') {
+                $query->where('status', 1);
+                $filter['groupby'] = 'available';
+            }
+        }
+        //$products = $query->get();
+        $products = $query->paginate(4);
         $breadcrumbs = Helper::breadcrumbs($category, "");
-        return view('pages.list_products_by_category',compact('menus', 'products', 'category', 'breadcrumbs'));
+        return view('pages.list_products_by_category',compact('menus', 'products', 'category', 'breadcrumbs', 'filter'));
     }
 
 }

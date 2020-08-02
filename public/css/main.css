@@ -2581,3 +2581,20 @@ h2.title a {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.filter {
+  height: 35px;
+  background: #F0F0E9;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  line-height: 35px;
+  color: #707070;
+  font-size: 14px;
+  font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.filter select{
+  font-weight: 500;
+  width: 100px;
+}
