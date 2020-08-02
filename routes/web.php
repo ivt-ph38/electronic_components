@@ -13,7 +13,8 @@
 
 
 Route::get('/', 'HomeController@index')->name('welcome');
-Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('admin.categories.products');
+Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('categories.products');
+Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@listProductsByCategory')->name('categories.products.filter');
 
 /* -------------------------------------------------------------------------- */
 
