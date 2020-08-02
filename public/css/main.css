@@ -2598,3 +2598,18 @@ h2.title a {
   font-weight: 500;
   width: 100px;
 }
+
+.twitter-typeahead {
+  width: 100%;
+}
+
+.tt-menu {
+  width: 100%;
+  top: 50% !important;
+}
+
+.tt-menu img {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+}

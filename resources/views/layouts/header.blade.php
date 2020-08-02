@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="search_box">
-                            <input type="text" placeholder="Tìm kiếm sản phẩm trên HTSHOP..."/>
+                            <input id='search' name="search" type="text" placeholder="Tìm kiếm sản phẩm trên HTSHOP..."/>
                         </div>
                     </div> 
                     <div class="col-sm-3">

@@ -72,4 +72,9 @@ class HomeController extends Controller
         return view('pages.list_products_by_category',compact('menus', 'products', 'category', 'breadcrumbs', 'filter'));
     }
 
+    public function searchByName(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->key . '%')->get();
+        return response()->json($products); 
+    }
 }
