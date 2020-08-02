@@ -44,3 +44,8 @@ Route::prefix('admin')->group(function ()
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 });
+
+Route::prefix('api')->group(function ()
+{
+	Route::get('/products/search/{key}', 'HomeController@searchByName');
+});

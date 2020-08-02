@@ -53,6 +53,47 @@
     <script src="{{ URL::asset('js/price-range.js') }}"></script>
     <script src="{{ URL::asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
+    <script src="{{ URL::asset('js/typeahead.bundle.min.js') }}"></script>
     <script type="text/javascript">@yield('js')</script>  
+
+    <!--/Search-->
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            var engine = new Bloodhound({
+                remote: {
+                    url: "{{url('api/products/search')}}" + '/%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+                datumTokenizer: Bloodhound.tokenizers.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+
+            $("#search").typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, [
+                {
+                    source: engine.ttAdapter(),
+                    name: 'products',
+                    display: function(data) {
+                        return data;
+                    },
+                    limit: 8,
+                    templates: {
+                        empty: [
+                            '<div class="list-group search-results-dropdown"></div><a class="list-group-item tt-suggestion tt-selectable">Không tìm thấy sản phẩm</a>'
+                        ],
+                        header: [
+                            '<div class="list-group search-results-dropdown"></div>'
+                        ],
+                        suggestion: function (data) {
+                            return '<a href="/products/' + data.id + '" class="list-group-item"><img src="'+ data.image +'">&nbsp&nbsp' + data.name + '</a>';
+                        }
+                    }
+                } 
+            ]);
+        });
+    </script>
 </body>
 </html>
