@@ -7,6 +7,9 @@ use App\Product;
 use App\Category;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use Illuminate\Support\Collection;
+use Helper;
+
 
 
 class ProductController extends Controller
@@ -29,9 +32,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-
+        $images = \File::allFiles(public_path('images'));
         $categories = Category::where('parent_id', '=', 0)->get();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', compact('categories','images'));
     }
 
     /**
@@ -42,6 +45,8 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
+        
+
         $product = new Product;
 
         $product->name  =   $request->name;
@@ -65,9 +70,20 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::where('slug', $id)->first();
+        $menus = Category::where('parent_id', '=', 0)->get();
+        $res = new Collection;
+        // foreach ($menus as $category) {
+
+        //     //lấy tất cả product
+        //     // $products = Helper::getProductsByCategory($category);
+        //     // $top_products = $products->sortByDesc('id')->take(8);
+        //     // $category->setAttribute('top_products', $top_products);
+        //     // $res->push($category);   
+        // }
+         return view('home.products.show',compact('menus', 'res','product'));
     }
 
     /**

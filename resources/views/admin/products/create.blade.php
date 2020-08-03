@@ -6,7 +6,7 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
-<form action="{{ route('admin.products.store') }}" method="POST" role="form">
+<form action="{{ route('admin.products.store') }}" file="true" method="POST" role="form">
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card-body border-top border-primary">
@@ -22,11 +22,11 @@
 			<div class="form-group">
 				<label for="">{{ __('Mô tả') }}</label>
 				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Input field">
-			</div>			
-			<div class="form-group">
+			</div>						
+{{-- 			<div class="form-group">
 				<label for="">{{ __('Hình đại diện') }}</label>
 				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" id="customFile" name="image">
+				    <input type="file" class="custom-file-input" value="{{$image->getFilename()}}" id="customFile" name="image">
 				    <label class="custom-file-label" for="customFile">Choose file</label>
 				  </div>
 				<script>
@@ -36,7 +36,26 @@
 				  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 				});
 				</script>	
-			</div>								
+			</div> --}}
+				<div class="form-group">
+					<label for="">{{ __('Hình đại diện') }}</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModalava">Chọn Ảnh</button>
+						</div>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalava" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog mw-100 w-75" role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<iframe width="100%" height="550" frameborder="0" src="/filemanager/dialog.php?type=1&field_id=image-gallery&akey=xaqogz6cCYn8PS"> </iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>							
 		</div>
 	</div>
 	<div class="col-lg-6">
