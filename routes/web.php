@@ -42,3 +42,5 @@ Route::prefix('admin')->group(function ()
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 });
+
+Route::get('/product/{id}','ProductController@show',)->name('product.show');

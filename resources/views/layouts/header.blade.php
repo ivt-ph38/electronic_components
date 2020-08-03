@@ -3,7 +3,7 @@
                 <div class="row">
                     <div class="col-sm-1">
                         <div class="logo pull-left">
-                            <a href="index.html"><img id='logo' src="images/logo.png" alt="" /></a>
+                            <a href="{{ route('welcome') }}"><img src="images/logo.png" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="index.html">TRANG CHỦ</a></li>
+                                <li><a href="{{ route('welcome') }}">TRANG CHỦ</a></li>
                                 <li><a href="index.html">SẢN PHẨM</a></li>
                                 <li><a href="404.html">BLOG</a></li>
                                 <li><a href="contact-us.html">LIÊN HỆ</a></li>

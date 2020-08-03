@@ -12,7 +12,9 @@
     <link href="{{ URL::asset('css/price-range.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/carousel.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
