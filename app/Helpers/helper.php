@@ -19,18 +19,22 @@ class Helper
     	return $res;
     }
 
-    //Lấy tất cả các sản phẩm thuộc một danh mục
-    public static function getProductsByCategory(Category $category)
+    //tạo đường dẫn đến danh mục
+    public static function breadcrumbs(Category $category, String $res)
     {
-        $products = new Collection;
-        $categories = new Collection;
-        $categories = Helper::getCategories($category, $categories);
-        foreach ($categories as $category_item) {
-            foreach ($category_item->products as $product) {
-                $products->push($product);
-            }
+        if ($res == "") {
+            $res = "/ " . $category->name . " " . $res;
         }
-        return $products;
-    }
+        else {
+            $res = "/ <a href='". url('/categories/'.$category->id.'/products') ."'>" . $category->name . "</a> " . $res;
+        }
 
+        if(!isset($category->parent)) {
+            $res = "<a href='". url('/') ."'>Trang chủ</a> " . $res;
+        }
+        else {
+            $res = Helper::breadcrumbs($category->parent, $res);
+        }
+        return $res;
+    }
 }

@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'HomeController@index')->name('welcome');
+Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('categories.products');
+Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@listProductsByCategory')->name('categories.products.filter');
 
 /* -------------------------------------------------------------------------- */
 
@@ -43,4 +45,10 @@ Route::prefix('admin')->group(function ()
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 });
 
+
 Route::get('/product/{id}','ProductController@show',)->name('product.show');
+
+Route::prefix('api')->group(function ()
+{
+	Route::get('/products/search/{key}', 'HomeController@searchByName');
+});

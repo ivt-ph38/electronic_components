@@ -1,7 +1,9 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                         <div class="productinfo text-center">
+
                                             <a href="{{ route('product.show', [$product->slug])}}"><img src="{{ $product->image }}" alt="{{$product->name}}" /></a>
+
                                             <p>{{$product->name}}</p>
                                             <h5>
                                                 @if($product->price != 0)
