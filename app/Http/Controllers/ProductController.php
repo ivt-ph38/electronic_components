@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Helper;
 
 
+
 class ProductController extends Controller
 {
     /**
@@ -74,15 +75,14 @@ class ProductController extends Controller
         $product = Product::where('slug', $id)->first();
         $menus = Category::where('parent_id', '=', 0)->get();
         $res = new Collection;
-        foreach ($menus as $category) {
+        // foreach ($menus as $category) {
 
-            //lấy tất cả product
-            $products = Helper::getProductsByCategory($category);
-
-            $top_products = $products->sortByDesc('id')->take(8);
-            $category->setAttribute('top_products', $top_products);
-            $res->push($category);   
-        }
+        //     //lấy tất cả product
+        //     // $products = Helper::getProductsByCategory($category);
+        //     // $top_products = $products->sortByDesc('id')->take(8);
+        //     // $category->setAttribute('top_products', $top_products);
+        //     // $res->push($category);   
+        // }
          return view('home.products.show',compact('menus', 'res','product'));
     }
 
