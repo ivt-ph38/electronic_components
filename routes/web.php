@@ -45,6 +45,9 @@ Route::prefix('admin')->group(function ()
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 });
 
+
+Route::get('/product/{id}','ProductController@show',)->name('product.show');
+
 Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');

@@ -142,7 +142,7 @@
 
  --}}			<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">										@method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa '.$product->name)">Xoá</i></button>
+ 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa Sản phẩm')">Xoá</i></button>
 			{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }} --}}
  	
 				</form>
