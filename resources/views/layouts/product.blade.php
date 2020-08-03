@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="choose">
                                     <ul class="nav nav-pills nav-justified">
-                                        <li><a href="" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a></li>
+                                        <li><a href="{{url('/cart/add-to-cart/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a></li>
                                     </ul>
                                 </div>
                             </div>
