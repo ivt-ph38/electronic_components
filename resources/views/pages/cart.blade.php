@@ -99,11 +99,15 @@
 		   		}
 		   		if (total < 500000) {
 		    		$('#freeship').attr('class', 'fa fa-check hidden');
+		    		format_number = Intl.NumberFormat().format(500000-total);
+		    		help_text = 'Mua thêm ' + format_number.toString() + 'đ để được Freeship';
 		    	}
 		    	else {
 		    		$('#freeship').attr('class', 'fa fa-check');
+		    		help_text = 'Đơn hàng đã đủ điều kiện Freeship';
 		   		}
 		   		$('#progress-bar').attr('style', 'width: '+ (total / 500000 * 100) +'%');
+		   		$('#help-text').text(help_text);
 		   		
 	        },
 	        error: function (error) {
