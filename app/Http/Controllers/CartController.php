@@ -31,6 +31,7 @@ class CartController extends Controller
         $data['price'] = $product->price;
         $data['weight'] = "123";
         $data['option'] = ['image' => $product->image];
+        config( ['cart.tax' => 0] );
         Cart::add($data);  
         return redirect('/cart');
     }
@@ -49,7 +50,7 @@ class CartController extends Controller
         Cart::update($rowId, $qty);
         $item = Cart::get($rowId);
         $data['item'] = $item;
-        $data['total'] = Cart::total();
+        $data['total'] = Cart::total(0, 0, ',');
         $data['count'] = Cart::count();
         return response()->json($data, 200);
     }

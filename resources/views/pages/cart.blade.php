@@ -90,6 +90,21 @@
 		    	$('#item_total_price_'+data.item.rowId).html(data.item.qty*data.item.price);
 		    	$('#cart_total_price').html(data.total);
 		    	$('#cart_count').html(data.count);
+		    	total = parseInt(data.total.replace(',' , ''));
+		    	if (total < 300000) {
+		    		$('#freeship-in-city').attr('class', 'fa fa-check hidden');
+		    	}
+		    	else {
+		    		$('#freeship-in-city').attr('class', 'fa fa-check');
+		   		}
+		   		if (total < 500000) {
+		    		$('#freeship').attr('class', 'fa fa-check hidden');
+		    	}
+		    	else {
+		    		$('#freeship').attr('class', 'fa fa-check');
+		   		}
+		   		$('#progress-bar').attr('style', 'width: '+ (total / 500000 * 100) +'%');
+		   		
 	        },
 	        error: function (error) {
 		       	alert("Hệ thống đang bảo trì");

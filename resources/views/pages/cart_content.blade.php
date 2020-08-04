@@ -58,22 +58,31 @@
 									<div class="progress">
 							        	<div class="one primary-color"></div>
 							        	<div class="two primary-color">
-							        		<span class="fa fa-check"></span>
+							        		<span id="freeship-in-city" class="fa fa-check <?php if ((int)Cart::total(0, 0, '') < 300000) { echo 'hidden'; } ?> "></span>
 							        		<p class="text-right">Freeship TP.HCM</p>
 							        	</div>
 							        	<div class="three no-color">
-							        		<span class="fa fa-check"></span>
+							        		<span id="freeship" class="fa fa-check <?php if ((int)Cart::total(0, 0, '') < 500000) { echo 'hidden'; } ?>"></span>
 							        		<p class="text-right">Freeship</p>
 							        	</div>
-							  			<div class="progress-bar" style="width: 70%;"></div>
+							  			<div class="progress-bar" id="progress-bar" style="width: {{(int)Cart::total(0, 0, '')/500000*100}}%;"></div>
 									</div>
-									<p style="text-align: center;">Đơn hàng đã đủ điều kiện Freeship</p>
+									<?php 
+										if ((int)Cart::total(0, 0, '') < 500000) {
+											$help_text = 'Mua thêm ' . number_format(500000-(int)Cart::total(0, 0, ''), 0, ',', ',') . 'đ để được Freeship';
+										} else {
+											$help_text = 'Đơn hàng đã đủ điều kiện Freeship';
+										}
+									?>
+									<p style="text-align: center;">
+										{{$help_text}}
+									</p>
 								</td>
 							</tr>
 							<tr>
 								<td class="cart_total text-right" colspan="4">
 									<span class="cart_total_price ">Tạm tính:</span>
-									<span class="cart_total_price" id="cart_total_price">{{Cart::total()}}<u>đ</u></span>
+									<span class="cart_total_price" id="cart_total_price">{{Cart::total(0, 0, ',')}}<u>đ</u></span>
 								</td>
 								<td class="cart_total">
 									<a class="btn btn-danger" href="#"><b>ĐẶT HÀNG</b></a>
