@@ -17,7 +17,7 @@
 						@forelse (Cart::content() as $item)
 							<tr>
 								<td class="cart_product">
-									<a href=""><img width="50" src="{{ URL::asset('images/product01.jpg')}}" alt=""></a>
+									<a href=""><img style="width: 50px" src="{{ URL::asset('images/product01.jpg')}}" alt=""></a>
 								</td>
 								<td class="cart_description">
 									{{$item->name}}
@@ -27,17 +27,17 @@
 								</td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
-										<a class="cart_quantity_up" href=""> + 
+										<span class="cart_quantity_up"> + 
 											<input type="hidden" name="rowId" value="{{$item->rowId}}">
-										</a>
-										<input onchange="cart_quantity_update()" id="{{$item->rowId}}" style="width: 60px; text-align:center;" class="cart_quantity_input" type="number" min="1" name="quantity" value="{{$item->qty}}" autocomplete="on">
-										<a class="cart_quantity_down" href=""> - 
+										</span>
+										<input id="{{$item->rowId}}" style="width: 60px; text-align:center;" class="cart_quantity_input" type="text" min="1" name="quantity" value="{{$item->qty}}" autocomplete="on">
+										<span class="cart_quantity_down" href=""> - 
 											<input type="hidden" name="rowId" value="{{$item->rowId}}">
-										</a>
+										</span>
 									</div>
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price">{{number_format($item->qty*$item->price, 0, ',', ',')}}</p>
+									<p class="cart_total_price" id="item_total_price_{{$item->rowId}}">{{number_format($item->qty*$item->price, 0, ',', ',')}}</p>
 								</td>
 								<td class="cart_delete">
 									<span class="cart_quantity_delete remove"><i class="fa fa-times"></i>
@@ -52,10 +52,14 @@
 								</td>
 							</tr>
 						@endforelse
+						@if (count(Cart::content()))
+							<tr>
+								<td class="cart_total" colspan="4"><p class="cart_total_price text-right">Tổng:</p></td>
+								<td class="cart_total"><p class="cart_total_price" id="cart_total_price">{{Cart::total()}}</p></td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
-				@if (count(Cart::content()))
-				TỔn
-				@endif
+
 			</div>
 		</div>

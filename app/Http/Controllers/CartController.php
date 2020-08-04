@@ -42,9 +42,15 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+        Cart::update($rowId, $qty);
+        $item = Cart::get($rowId);
+        $data['item'] = $item;
+        $data['total'] = Cart::total();
+        return response()->json($data, 200);
     }
 
     public function remove(Request $request)

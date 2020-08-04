@@ -26,4 +26,73 @@
 		    }
 		});
 	});
+
+	$(document).on('click', '.cart_quantity_up', function() {
+		rowId = $(this)[0].children[0].value;
+		elm_qty = $(this)[0].parentElement.children[1];
+		qty = Number(elm_qty.value);
+		if (Number.isNaN(qty)) {
+			qty = 1;
+		}
+		qty += 1;
+		elm_qty.value = qty;
+		cart_quantity_update(rowId, qty);
+	});
+
+	$(document).on('click', '.cart_quantity_down', function() {
+		rowId = $(this)[0].children[0].value;
+		elm_qty = $(this)[0].parentElement.children[1];
+		qty = Number(elm_qty.value);
+		if (Number.isNaN(qty)) {
+			qty = 1;
+		}
+		if (qty > 1) {
+			qty -= 1;
+		}
+		elm_qty.value = qty;
+		cart_quantity_update(rowId, qty);
+	});
+
+	$(document).on('keyup', '.cart_quantity_input', function() {
+		rowId = $(this)[0].getAttribute('id');
+		qty = Number($(this)[0].value);
+		if (qty != '') {
+			if (Number.isNaN(qty) || qty < 1) {
+				qty = 1;
+			}
+			$(this)[0].value = qty;
+			cart_quantity_update(rowId, qty);
+		}
+	});
+
+	$(document).on('focusout', '.cart_quantity_input', function() {
+		rowId = $(this)[0].getAttribute('id');
+		qty = Number($(this)[0].value);
+		if (qty == '') {
+			qty = 1;
+			$(this)[0].value = qty;
+		}
+		cart_quantity_update(rowId, qty);
+	});
+
+	function cart_quantity_update (rowId, qty) {
+		$.ajax({
+	        url: 'api/cart/update-item',
+	        type: 'POST',
+		    data: {
+		    	'_token': $("input[name*='_token']").val(),
+		        'rowId': rowId,
+		        'qty' : qty,
+		   	},
+		    datatype: 'json',
+		    success: function (data) {
+		    	$('#item_total_price_'+data.item.rowId).html(data.item.qty*data.item.price);
+		    	$('#cart_total_price').html(data.total);
+	        },
+	        error: function (error) {
+		       	alert("Hệ thống đang bảo trì");
+		    }
+		});
+	}
+
 @endsection
