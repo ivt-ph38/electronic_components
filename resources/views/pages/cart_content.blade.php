@@ -74,7 +74,7 @@
 											$help_text = 'Đơn hàng đã đủ điều kiện Freeship';
 										}
 									?>
-									<p style="text-align: center;">
+									<p style="text-align: center;" id="help-text">
 										{{$help_text}}
 									</p>
 								</td>
