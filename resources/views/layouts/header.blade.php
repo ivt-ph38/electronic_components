@@ -14,7 +14,7 @@
                     <div class="col-sm-3">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> GIỎ HÀNG (13)</a></li>
+                                <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> GIỎ HÀNG (<span id="cart_count">{{Cart::count()}}</span>)</a></li>
                                 <li><a href="login.html"><i class="fa fa-lock"></i> TÀI KHOẢN</a></li>
                             </ul>
                         </div>

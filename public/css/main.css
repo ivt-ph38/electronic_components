@@ -2631,3 +2631,52 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.one, .two, .three{
+  position:absolute;
+  margin-top:-10px;
+  z-index:1;
+  height:23px;
+  width:23px;
+  border-radius:15px;
+  background: #1d8ae4;
+  border: 2px solid #ecf1f6;
+}
+.one{
+  left:5%;
+}
+.two{
+  left:60%;
+}
+.three{
+  left: 95%;
+}
+
+.progress {
+  height: 5px;
+  margin: 30px 30px 30px 30px;
+}
+
+.progress span{
+  color: #fff;
+  text-align: center;
+  line-height: 19px;
+  margin-left: 3px;
+}
+
+.progress p{
+  text-align: center;
+  width: 110px;
+  right: -240%;
+  top: -21px;
+  position: absolute;
+}
+
+.cart_info table {
+  margin-bottom: 0 !important;
+}
+
+#cart_total_price {
+  color: red !important;
+  font-weight: 500;
+}

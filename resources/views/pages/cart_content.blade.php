@@ -54,8 +54,30 @@
 						@endforelse
 						@if (count(Cart::content()))
 							<tr>
-								<td class="cart_total" colspan="4"><p class="cart_total_price text-right">Tổng:</p></td>
-								<td class="cart_total"><p class="cart_total_price" id="cart_total_price">{{Cart::total()}}</p></td>
+								<td colspan="6" class="progress-body">
+									<div class="progress">
+							        	<div class="one primary-color"></div>
+							        	<div class="two primary-color">
+							        		<span class="fa fa-check"></span>
+							        		<p class="text-right">Freeship TP.HCM</p>
+							        	</div>
+							        	<div class="three no-color">
+							        		<span class="fa fa-check"></span>
+							        		<p class="text-right">Freeship</p>
+							        	</div>
+							  			<div class="progress-bar" style="width: 70%;"></div>
+									</div>
+									<p style="text-align: center;">Đơn hàng đã đủ điều kiện Freeship</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="cart_total text-right" colspan="4">
+									<span class="cart_total_price ">Tạm tính:</span>
+									<span class="cart_total_price" id="cart_total_price">{{Cart::total()}}<u>đ</u></span>
+								</td>
+								<td class="cart_total">
+									<a class="btn btn-danger" href="#"><b>ĐẶT HÀNG</b></a>
+								</td>
 							</tr>
 						@endif
 					</tbody>
