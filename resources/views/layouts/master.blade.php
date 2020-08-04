@@ -36,7 +36,6 @@
                 <div class="col-sm-3">
                     @include('layouts.sidebar')
                 </div>
-                
                 <div class="col-sm-9 padding-right">
                     @yield('content')
                 </div>

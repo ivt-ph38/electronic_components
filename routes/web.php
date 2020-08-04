@@ -16,6 +16,11 @@ Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('categories.products');
 Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@listProductsByCategory')->name('categories.products.filter');
 
+//Shopping cart
+Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart/add-to-cart/{id}', 'CartController@addToCart')->name('addToCart');
+Route::post('api/cart/remove-item', 'CartController@remove');
+
 /* -------------------------------------------------------------------------- */
 
 Route::prefix('admin')->group(function ()
