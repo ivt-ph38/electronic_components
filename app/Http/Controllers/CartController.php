@@ -30,9 +30,10 @@ class CartController extends Controller
         $data['name'] = $product->name;
         $data['price'] = $product->price;
         $data['weight'] = "123";
-        $data['option'] = ['image' => $product->image];
+        $data['options'] = ['image' => $product->image, 'discout' => $product->discount];
         config( ['cart.tax' => 0] );
-        Cart::add($data);  
+        $item = Cart::add($data);
+        Cart::setDiscount($item->rowId, $product->discount);  
         return redirect('/cart');
     }
 
@@ -50,6 +51,7 @@ class CartController extends Controller
         Cart::update($rowId, $qty);
         $item = Cart::get($rowId);
         $data['item'] = $item;
+        $data['subTotal'] = number_format($item->total, 0, ',', ',');
         $data['total'] = Cart::total(0, 0, ',');
         $data['count'] = Cart::count();
         return response()->json($data, 200);
