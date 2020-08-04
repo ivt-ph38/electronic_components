@@ -39,7 +39,7 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{ route('welcome') }}">TRANG CHỦ</a></li>
                                 <li><a href="index.html">SẢN PHẨM</a></li>
-                                <li><a href="404.html">BLOG</a></li>
+                                <li><a href="{{ route('blog.show') }}">BLOG</a></li>
                                 <li><a href="contact-us.html">LIÊN HỆ</a></li>
                                 <li><a href="#"><i class="fa fa-phone"></i> +84965389902</a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i> linhkiendientu.th@gmail.com</a></li>
