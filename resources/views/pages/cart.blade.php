@@ -87,7 +87,7 @@
 		   	},
 		    datatype: 'json',
 		    success: function (data) {
-		    	$('#item_total_price_'+data.item.rowId).html(data.item.qty*data.item.price);
+		    	$('#item_total_price_'+data.item.rowId).html(data.subTotal);
 		    	$('#cart_total_price').html(data.total);
 		    	$('#cart_count').html(data.count);
 		    	total = parseInt(data.total.replace(',' , ''));

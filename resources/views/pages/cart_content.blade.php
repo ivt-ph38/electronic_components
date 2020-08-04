@@ -23,7 +23,18 @@
 									{{$item->name}}
 								</td>
 								<td class="cart_price">
+									<?php 
+										if ($item->discount != 0) {
+									?>
+										<h5><s>{{number_format($item->price, 0, ',', ',')}}</s> -{{$item->options->discout}}%</h5>
+										<p>{{number_format($item->price-$item->discount, 0, ',', ',')}}</p>
+									<?php
+										} else {
+									?>
 									<p>{{number_format($item->price, 0, ',', ',')}}</p>
+									<?php 
+										} 
+									?>
 								</td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
@@ -37,7 +48,7 @@
 									</div>
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price" id="item_total_price_{{$item->rowId}}">{{number_format($item->qty*$item->price, 0, ',', ',')}}</p>
+									<p class="cart_total_price" id="item_total_price_{{$item->rowId}}">{{number_format($item->total, 0, ',', ',')}}</p>
 								</td>
 								<td class="cart_delete">
 									<span class="cart_quantity_delete remove"><i class="fa fa-times"></i>
