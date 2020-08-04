@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Product;
+use App\Category;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogCreateRequest;
 
@@ -62,7 +65,19 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
+        
+        $menus = Category::where('parent_id', '=', 0)->get();
+        $res = new Collection;
+        $blogs = Blog::all();
+        return view('home.blogs.search',compact('menus', 'res','blogs'));
+    }
+
+    public function ShowBlogById($id)
+    {
+        $menus = Category::where('parent_id', '=', 0)->get();
+        $res = new Collection;
+        $blog = Blog::where('slug', $id)->first();    
+        return view('home.blogs.show',compact('menus', 'res','blog'));
     }
 
     /**
@@ -104,7 +119,7 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
          $blog = Blog::find($id);
          $blog->delete();

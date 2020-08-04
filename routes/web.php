@@ -48,6 +48,10 @@ Route::prefix('admin')->group(function ()
 
 Route::get('/product/{id}','ProductController@show',)->name('product.show');
 
+Route::get('/blogs','BlogController@show')->name('blog.show');
+
+Route::get('/blog/{id}','BlogController@ShowBlogById')->name('blog.show.by.id');
+
 Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');
