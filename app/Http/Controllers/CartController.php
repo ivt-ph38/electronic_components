@@ -50,6 +50,7 @@ class CartController extends Controller
         $item = Cart::get($rowId);
         $data['item'] = $item;
         $data['total'] = Cart::total();
+        $data['count'] = Cart::count();
         return response()->json($data, 200);
     }
 
@@ -57,7 +58,9 @@ class CartController extends Controller
     {
         $rowId = $request->rowId;
         Cart::remove($rowId);
-        return response()->json(['view' => view('pages.cart_content')->render()], 200);
+        $data['view'] = view('pages.cart_content')->render();
+        $data['count'] = Cart::count();
+        return response()->json($data, 200);
     }
 
     /**

@@ -20,6 +20,7 @@
 		    datatype: 'json',
 		    success: function (data) {
 	        	$("#cart_items").html(data.view);
+	        	$('#cart_count').html(data.count);
 	        },
 	        error: function (error) {
 		       	alert("Hệ thống đang bảo trì");
@@ -88,6 +89,7 @@
 		    success: function (data) {
 		    	$('#item_total_price_'+data.item.rowId).html(data.item.qty*data.item.price);
 		    	$('#cart_total_price').html(data.total);
+		    	$('#cart_count').html(data.count);
 	        },
 	        error: function (error) {
 		       	alert("Hệ thống đang bảo trì");
