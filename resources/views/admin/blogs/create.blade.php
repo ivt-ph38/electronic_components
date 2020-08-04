@@ -3,7 +3,7 @@
 <section class="content-header mb-3">
 	<h1>
 
-		<i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}
+		<i class="fas fa-plus-circle"></i> {{ __('Thêm Tin Tức') }}
 	</h1>
 </section>
 @include('layouts.admin.validation')
@@ -25,27 +25,32 @@
 				<label for="">{{ __('Mô tả') }}</label>
 				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Input field">
 			</div>			
-			<div class="form-group">
-				<label for="">{{ __('Hình đại diện') }}</label>
-				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" id="customFile" name="image">
-				    <label class="custom-file-label" for="customFile">Choose file</label>
-				  </div>
-				<script>
-				// Add the following code if you want the name of the file appear on select
-				$(".custom-file-input").on("change", function() {
-				  var fileName = $(this).val().split("\\").pop();
-				  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-				});
-				</script>	
-			</div>								
+				<div class="form-group">
+					<label for="">{{ __('Hình đại diện') }}</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModalava">Chọn Ảnh</button>
+						</div>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalava" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog mw-100 w-75" role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<iframe width="100%" height="550" frameborder="0" src="/filemanager/dialog.php?type=1&field_id=image-gallery&akey=xaqogz6cCYn8PS"> </iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>														
 		</div>
 	</div>
 	<div class="col-lg-12">
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<textarea class="form-control summernote" name="content" value="{{ old('content') }}"></textarea>
+						<textarea class="form-control summernote" name="content" value=""></textarea>
 					</div>
 			<button type="submit" class="btn btn-primary">Đồng ý</button>							
 			</div>

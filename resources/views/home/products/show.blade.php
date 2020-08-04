@@ -37,7 +37,7 @@
           <hr class="mt-0">
         </div>
         <div class="col-lg-12">
-          {{ $product->detail }}
+          {!! $product->detail !!}
           <hr class="mt-0 mb-0">
         </div>
       </div>

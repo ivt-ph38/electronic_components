@@ -1,3 +1,19 @@
 img {
 	width: 100%;
 }
+
+.card-blog {
+	margin-bottom: 20px;
+}
+
+.card {
+	width: 25rem;
+}
+
+.card-title b a {
+	color: #333;
+}
+
+.card-title b a:hover {
+	color: #FE980F;
+}
