@@ -1660,7 +1660,7 @@ h2.title {
   margin: 15px -70px 10px 25px;
 }
 
-.cart_quantity_button a {
+.cart_quantity_button span {
   background:#F0F0E9;
   color: #696763;
   display: inline-block;
@@ -1672,6 +1672,11 @@ h2.title {
   float: left;
 }
 
+.cart_quantity_button span:hover {
+  background: #FE980F;
+  color: #fff;
+  cursor: pointer;
+}
 
 .cart_quantity_input {
   color: #696763;
@@ -1698,7 +1703,8 @@ h2.title {
 }
 
 .cart_delete .remove:hover {
-  background:#FE980F
+  background:#FE980F;
+  cursor: pointer;
 }
 
 
@@ -2612,4 +2618,16 @@ h2.title a {
   width: 40px;
   height: 40px;
   border: 1px solid #ccc;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

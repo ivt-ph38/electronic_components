@@ -20,6 +20,7 @@ Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@list
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/add-to-cart/{id}', 'CartController@addToCart')->name('addToCart');
 Route::post('api/cart/remove-item', 'CartController@remove');
+Route::post('api/cart/update-item', 'CartController@update');
 
 /* -------------------------------------------------------------------------- */
 
@@ -51,7 +52,7 @@ Route::prefix('admin')->group(function ()
 });
 
 
-Route::get('/product/{id}','ProductController@show',)->name('product.show');
+Route::get('/product/{id}','ProductController@show')->name('product.show');
 
 Route::get('/blogs','BlogController@show')->name('blog.show');
 
