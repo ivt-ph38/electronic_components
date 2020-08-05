@@ -96,7 +96,7 @@
 									<span class="cart_total_price" id="cart_total_price">{{Cart::total(0, 0, ',')}}<u>đ</u></span>
 								</td>
 								<td class="cart_total">
-									<a class="btn btn-danger" href="#"><b>ĐẶT HÀNG</b></a>
+									<a class="btn btn-danger btn-block" style="border-radius: 0" href="{{url('/checkout')}}"><b>ĐẶT HÀNG</b></a>
 								</td>
 							</tr>
 						@endif
