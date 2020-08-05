@@ -22,6 +22,10 @@ Route::get('/cart/add-to-cart/{id}', 'CartController@addToCart')->name('addToCar
 Route::post('api/cart/remove-item', 'CartController@remove');
 Route::post('api/cart/update-item', 'CartController@update');
 
+//Checkout
+Route::get('/checkout', 'OrderController@index')->name('checkout');
+
+
 /* -------------------------------------------------------------------------- */
 
 Route::prefix('admin')->group(function ()
