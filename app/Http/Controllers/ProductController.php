@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\Productimage;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use Illuminate\Support\Collection;
@@ -60,6 +61,17 @@ class ProductController extends Controller
         $product->image     =   $request->image;
         $product->category_id   =   $request->category_id;
         $product->save();
+        // if ($request->has('image')) {
+        //     $listImage = $request->file('image');
+        //     $dataImage= [];
+        //     foreach ($listImage as $key => $item) {
+        //         $newName = md5(microtime(true)).$item->getClientOriginalName();
+        //         $item->move(public_path('images/products'), $newName);
+        //         $dataImage[$key]['path'] = '/images/products'.$newName;
+        //         $dataImage[$key]['product_id'] = $product->id;
+        //     }
+        //     Productimage::insert($dataImage);
+        // }
 
         return redirect(route('admin.products.index'))->with('success', 'Sản phẩm đã được lưu.');
     }
@@ -72,7 +84,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::where('slug', $id)->first();
+        $product = Product::where('id','=', $id)->first();
         $menus = Category::where('parent_id', '=', 0)->get();
         $res = new Collection;
         // foreach ($menus as $category) {

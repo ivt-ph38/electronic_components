@@ -29,6 +29,7 @@
 		<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('css/bootstrap.max.css')}}">
 		<link rel="stylesheet" href="{{asset('css/admin.css')}}">
+		<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 		<link rel="stylesheet" href="{{asset('summernote/summernote.min.css')}}">
 		<link rel="stylesheet" href="{{asset('css/fontawesome/css/fontawesome.min.css')}}">
 		<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}" ></script>

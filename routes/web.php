@@ -48,15 +48,14 @@ Route::prefix('admin')->group(function ()
 	Route::get('/blogs/edit/{id}', 'BlogController@edit')->name('admin.blogs.edit');
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
+
+	Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
 });
 
 
-Route::get('/product/{id}','ProductController@show',)->name('product.show');
-
+Route::get('/products/{id}','ProductController@show')->name('product.show');
 Route::get('/blogs','BlogController@show')->name('blog.show');
-
 Route::get('/blog/{id}','BlogController@ShowBlogById')->name('blog.show.by.id');
-
 Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');

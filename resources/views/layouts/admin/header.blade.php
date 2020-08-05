@@ -15,10 +15,10 @@
 				</span>
 			</li>
 			<li class="nav-item">
-				<a href="{{-- {{ route('admin.users.show', [Auth::user()->id]) }} --}}" class="nav-link"><i class="far fa-id-card"></i> {{ __('Thông Tin') }}</a>
+				<a href="{{-- {{ route('admin.users.show', [Auth::user()->id]) }} --}}" class="nav-link"><i class="fa fa-address-card-o" aria-hidden="true"></i> {{ __('Thông Tin') }}</a>
 			</li>
 			<li class="nav-item">
-				<a href="{{-- {{ route('logout') }} --}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> {{ __('Đăng Xuất') }}</a>
+				<a href="{{-- {{ route('logout') }} --}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ __('Đăng Xuất') }}</a>
 				<form id="logout-form" action="{{-- {{ route('logout') }} --}}" method="POST" style="display: none;">
 					@csrf
 				</form>
