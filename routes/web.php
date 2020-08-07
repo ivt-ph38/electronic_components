@@ -23,7 +23,9 @@ Route::post('api/cart/remove-item', 'CartController@remove');
 Route::post('api/cart/update-item', 'CartController@update');
 
 //Checkout
-Route::get('/checkout', 'OrderController@index')->name('checkout');
+Route::get('/checkout', 'OrderController@checkout_form')->name('checkout');
+Route::post('/checkout', 'OrderController@store');
+Route::get('/order/{code}', 'OrderController@show');
 
 
 /* -------------------------------------------------------------------------- */

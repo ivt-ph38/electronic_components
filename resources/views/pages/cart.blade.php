@@ -91,12 +91,6 @@
 		    	$('#cart_total_price').html(data.total);
 		    	$('#cart_count').html(data.count);
 		    	total = parseInt(data.total.replace(',' , ''));
-		    	if (total < 300000) {
-		    		$('#freeship-in-city').attr('class', 'fa fa-check hidden');
-		    	}
-		    	else {
-		    		$('#freeship-in-city').attr('class', 'fa fa-check');
-		   		}
 		   		if (total < 500000) {
 		    		$('#freeship').attr('class', 'fa fa-check hidden');
 		    		format_number = Intl.NumberFormat().format(500000-total);

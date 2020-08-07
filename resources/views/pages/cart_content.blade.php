@@ -26,7 +26,7 @@
 									<?php 
 										if ($item->discount != 0) {
 									?>
-										<h5><s>{{number_format($item->price, 0, ',', ',')}}</s> -{{$item->options->discout}}%</h5>
+										<h5><s>{{number_format($item->price, 0, ',', ',')}}</s> -{{$item->options->discount}}%</h5>
 										<p>{{number_format($item->price-$item->discount, 0, ',', ',')}}</p>
 									<?php
 										} else {
@@ -68,10 +68,6 @@
 								<td colspan="6" class="progress-body">
 									<div class="progress">
 							        	<div class="one primary-color"></div>
-							        	<div class="two primary-color">
-							        		<span id="freeship-in-city" class="fa fa-check <?php if ((int)Cart::total(0, 0, '') < 300000) { echo 'hidden'; } ?> "></span>
-							        		<p class="text-right">Freeship TP.HCM</p>
-							        	</div>
 							        	<div class="three no-color">
 							        		<span id="freeship" class="fa fa-check <?php if ((int)Cart::total(0, 0, '') < 500000) { echo 'hidden'; } ?>"></span>
 							        		<p class="text-right">Freeship</p>
@@ -91,7 +87,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="cart_total text-right" colspan="4">
+								<td class="cart_total text-right" colspan="5">
 									<span class="cart_total_price ">Tạm tính:</span>
 									<span class="cart_total_price" id="cart_total_price">{{Cart::total(0, 0, ',')}}<u>đ</u></span>
 								</td>
