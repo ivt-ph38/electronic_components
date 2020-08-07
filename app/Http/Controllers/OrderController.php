@@ -77,7 +77,7 @@ class OrderController extends Controller
      */
     public function show(Request $request)
     {
-        $order = Order::where('code', $request->code)->first();
+        $order = Order::where('code', $request->code)->firstOrFail();
         $menus = Category::where('parent_id', '=', 0)->get();
         return view('pages.show_order',compact('menus', 'order'));
     }
