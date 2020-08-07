@@ -30,7 +30,7 @@ class CartController extends Controller
         $data['name'] = $product->name;
         $data['price'] = $product->price;
         $data['weight'] = "123";
-        $data['options'] = ['image' => $product->image, 'discout' => $product->discount];
+        $data['options'] = ['image' => $product->image, 'discount' => $product->discount];
         config( ['cart.tax' => 0] );
         $item = Cart::add($data);
         Cart::setDiscount($item->rowId, $product->discount);  
