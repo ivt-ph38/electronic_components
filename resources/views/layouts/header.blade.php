@@ -41,8 +41,8 @@
                                 <li><a href="index.html">SẢN PHẨM</a></li>
                                 <li><a href="{{ route('blog.show') }}">BLOG</a></li>
                                 <li><a href="contact-us.html">LIÊN HỆ</a></li>
-                                <li><a href="#"><i class="fa fa-phone"></i> +84965389902</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> linhkiendientu.th@gmail.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> {{ $hotline }}</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> {{ $email }}</a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-youtube"></i></a></li>
 

@@ -6,7 +6,7 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
-<form action="{{ route('admin.products.store') }}" file="true" method="POST" role="form">
+<form action="{{ route('admin.products.store') }}" file="true" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card-body border-top border-primary">
@@ -40,21 +40,10 @@
 				<div class="form-group">
 					<label for="">{{ __('Hình đại diện') }}</label>
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image">
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModalava">Chọn Ảnh</button>
-						</div>
+						<input type="file" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image[]" multiple>
+						
 					</div>
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModalava" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog mw-100 w-75" role="document">
-							<div class="modal-content">
-								<div class="modal-body">
-									<iframe width="100%" height="550" frameborder="0" src="/filemanager/dialog.php?type=1&field_id=image-gallery&akey=xaqogz6cCYn8PS"> </iframe>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>							
 		</div>
 	</div>

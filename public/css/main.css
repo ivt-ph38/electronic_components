@@ -226,6 +226,7 @@ a#scrollUp i{
 .header-bottom {
   padding-bottom: 15px;
   padding-top: 15px;
+  background: #325c81;
 }
 
 .navbar-collapse.collapse{
@@ -242,7 +243,7 @@ a#scrollUp i{
 }
 
 .mainmenu ul li a {
-	color: #696763;
+	color: #fff;
 	font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 	font-size: 17px;
 	font-weight: 300;
@@ -681,7 +682,7 @@ ul.sub-menu {
 .left-sidebar h2:before{
 	content: " ";
 	position: absolute;
-	background: #fff;
+	background: transparent;
 	bottom: -6px;
 	width: 130px;
 	height: 30px;
@@ -703,7 +704,7 @@ h2.title:before{
 }
 
 .category-products .panel {
-	background-color: #FFFFFF;
+	background-color: transparent;
 	border: 0px;
 	border-radius: 0px;
 	box-shadow:none;
@@ -717,6 +718,10 @@ h2.title:before{
   padding: 5px 20px;
   padding-left: 0;
   padding-right: 0;
+}
+
+section {
+  padding: 20px 0px;
 }
 
 .category-products .panel-default .panel-heading .panel-title a {

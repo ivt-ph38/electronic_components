@@ -2,7 +2,7 @@
                                 <div class="single-products">
                                         <div class="productinfo text-center">
 
-                                            <a href="{{ route('product.show', [$product->slug])}}"><img src="{{ $product->image }}" alt="{{$product->name}}" /></a>
+                                            <a href="{{ route('product.show', [$product->id])}}"><img src="{{ $product->image }}" alt="{{$product->name}}" /></a>
 
                                             <p>{{$product->name}}</p>
                                             <h5>
@@ -13,6 +13,10 @@
                                                   @endphp
                                                   <h5 class="text-danger mb-0">{{ number_format($price, 0).' đ' }} - <s class="text-secondary">{{ number_format($product->price, 0).' đ' }}</s> ( -{{ $product->discount }} % )</h5>
                                                 @else
+                                                @php
+                                                  $price = $product->price - ($product->discount*(($product->price) / 100));
+                                                  @endphp
+                                                  <h5 class="text-danger mb-0">{{ number_format($price, 0).' đ' }}</h5>
                                                  @endif
                                                  @endif  
                                              </h5>

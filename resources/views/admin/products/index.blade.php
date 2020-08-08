@@ -7,7 +7,7 @@
 
 	<h1>
 
-		<i class="fas fa-list-alt"></i> {{ __('Danh Sách Sản Phẩm') }}
+		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Sản Phẩm') }}
 
 	</h1>
 
@@ -25,7 +25,7 @@
 
 <div class="table-responsive">
 	
-	<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}</a>	
+	<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Thêm Sản Phẩm') }}</a>	
 
 	<table class="table table-striped table-bordered mt-3" id="example">
 
@@ -133,7 +133,7 @@
 
 				<td class="actions">	
 
-					<a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="far fa-edit">Chỉnh Sửa</i></a>
+					<a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
 					
 				
@@ -142,12 +142,12 @@
 
  --}}			<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">										@method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa Sản phẩm')">Xoá</i></button>
+ 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa Sản phẩm')"></i></button>
 			{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }} --}}
  	
 				</form>
 					
-					<a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Nhân Bản Sản Phẩm') }}"><i class="far fa-clone">Copy</i></a>
+					<a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Nhân Bản Sản Phẩm') }}"><i class="fa fa-files-o" aria-hidden="true"></i></a>
 
 				</td>
 
@@ -197,7 +197,7 @@
 
 <hr>
 
-<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}</a>
+<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Thêm Sản Phẩm') }}</a>
 
 {{-- {{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }}
 

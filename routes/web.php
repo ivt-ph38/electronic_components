@@ -56,6 +56,7 @@ Route::prefix('admin')->group(function ()
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 
+
 	Route::get('/orders', 'OrderController@index')->name('admin.orders.index');
 	Route::get('/orders/status/{status}', 'OrderController@searchByStatus');
 	Route::get('/orders/search', 'OrderController@search');
@@ -65,13 +66,16 @@ Route::prefix('admin')->group(function ()
 	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete');
 });
 
+Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
+});
+
 
 Route::get('/product/{id}','ProductController@show')->name('product.show');
 
+
+Route::get('/products/{id}','ProductController@show')->name('product.show');
 Route::get('/blogs','BlogController@show')->name('blog.show');
-
 Route::get('/blog/{id}','BlogController@ShowBlogById')->name('blog.show.by.id');
-
 Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');
