@@ -55,6 +55,14 @@ Route::prefix('admin')->group(function ()
 	Route::get('/blogs/edit/{id}', 'BlogController@edit')->name('admin.blogs.edit');
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
+
+	Route::get('/orders', 'OrderController@index')->name('admin.orders.index');
+	Route::get('/orders/status/{status}', 'OrderController@searchByStatus');
+	Route::get('/orders/search', 'OrderController@search');
+	Route::get('/orders/edit/{id}', 'OrderController@edit')->name('admin.orders.edit');
+	Route::get('/orders/{id}', 'OrderController@show')->name('admin.orders.show');
+	Route::put('/orders/{id}', 'OrderController@update')->name('admin.orders.update');
+	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete');
 });
 
 

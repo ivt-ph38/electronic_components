@@ -11,6 +11,8 @@
 
 <div class="list-group offcanvas-collapse">
 
+	<a href="{{ route('admin.orders.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>{{ __(' Đơn hàng') }}</a>
+
 	<a href="{{ route('admin.products.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>{{ __(' Sản Phẩm') }}</a>
 
 	<a href="{{ route('admin.categories.index') }}" class="list-group-item list-group-item-action"><i class="fas fa-folder-open"></i>{{ __(' Danh mục') }}</a>

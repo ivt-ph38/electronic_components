@@ -15,6 +15,7 @@ session_start();
 
 class OrderController extends Controller
 {
+    const PAGE = 10;
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +23,35 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(self::PAGE);
+        return view('admin.orders.index',compact('orders'));
+    }
+
+    public function searchByStatus(Request $request)
+    {
+        $status = $request->status;
+        if ($status == 0) {
+            $orders = Order::paginate(self::PAGE);
+        } else {
+            $orders = Order::where('status', $status)->paginate(self::PAGE);
+        }
+        return view('admin.orders.index',compact('orders', 'status'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = Order::where('id', '<>', 0);
+        if ($request->name != '') { 
+            $query->where('name', 'like', '%'.$request->name.'%');
+        }
+        if ($request->phone != '') { 
+            $query->where('phone', 'like', '%'.$request->phone.'%');
+        }
+        if ($request->id != '') { 
+            $query->where('id', $request->id)->orWhere('code', $request->id);
+        }
+        $orders = $query->paginate(self::PAGE);
+        return view('admin.orders.index',compact('orders'));
     }
 
     public function checkout_form()
