@@ -19,7 +19,7 @@ class CartController extends Controller
     public function index()
     {
         $menus = Category::where('parent_id', '=', 0)->get();
-        return view('pages.cart',compact('cart', 'menus'));
+        return view('pages.cart',compact('menus'));
     }
 
     public function addToCart(Request $request)
