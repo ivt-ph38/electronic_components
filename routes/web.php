@@ -67,8 +67,6 @@ Route::prefix('admin')->group(function ()
 });
 
 Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
-});
-
 
 Route::get('/product/{id}','ProductController@show')->name('product.show');
 

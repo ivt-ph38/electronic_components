@@ -59,8 +59,8 @@
 				<th>{{$order->phone}}</th>
 				<th>{{number_format($order->total,0,"",",")}}</th>
 				<th>
-					<a class="btn"><span class="fa fa-eye"></span></a>
-					<a class="btn"><span class="fa fa-pencil"></span></a>
+					<a class="btn" href="{{url('/order/'.$order->code)}}"><span class="fa fa-eye"></span></a>
+					<a class="btn" href="{{url('/admin/orders/edit/'.$order->id)}}"><span class="fa fa-pencil"></span></a>
 					<a class="btn"><span class="fa fa-trash-o"></span></a>
 				</th>
 			</tr>
