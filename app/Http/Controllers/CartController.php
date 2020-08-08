@@ -30,8 +30,10 @@ class CartController extends Controller
         $data['name'] = $product->name;
         $data['price'] = $product->price;
         $data['weight'] = "123";
-        $data['option'] = ['image' => $product->image];
-        Cart::add($data);  
+        $data['options'] = ['image' => $product->image, 'discount' => $product->discount];
+        config( ['cart.tax' => 0] );
+        $item = Cart::add($data);
+        Cart::setDiscount($item->rowId, $product->discount);  
         return redirect('/cart');
     }
 
@@ -42,16 +44,26 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+        Cart::update($rowId, $qty);
+        $item = Cart::get($rowId);
+        $data['item'] = $item;
+        $data['subTotal'] = number_format($item->total, 0, ',', ',');
+        $data['total'] = Cart::total(0, 0, ',');
+        $data['count'] = Cart::count();
+        return response()->json($data, 200);
     }
 
     public function remove(Request $request)
     {
         $rowId = $request->rowId;
         Cart::remove($rowId);
-        return response()->json(['view' => view('pages.cart_content')->render()], 200);
+        $data['view'] = view('pages.cart_content')->render();
+        $data['count'] = Cart::count();
+        return response()->json($data, 200);
     }
 
     /**

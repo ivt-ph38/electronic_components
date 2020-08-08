@@ -20,6 +20,13 @@ Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@list
 Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/cart/add-to-cart/{id}', 'CartController@addToCart')->name('addToCart');
 Route::post('api/cart/remove-item', 'CartController@remove');
+Route::post('api/cart/update-item', 'CartController@update');
+
+//Checkout
+Route::get('/checkout', 'OrderController@checkout_form')->name('checkout');
+Route::post('/checkout', 'OrderController@store');
+Route::get('/order/{code}', 'OrderController@show');
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -49,8 +56,21 @@ Route::prefix('admin')->group(function ()
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 
-	Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
+
+	Route::get('/orders', 'OrderController@index')->name('admin.orders.index');
+	Route::get('/orders/status/{status}', 'OrderController@searchByStatus');
+	Route::get('/orders/search', 'OrderController@search');
+	Route::get('/orders/edit/{id}', 'OrderController@edit')->name('admin.orders.edit');
+	Route::get('/orders/{id}', 'OrderController@show')->name('admin.orders.show');
+	Route::put('/orders/{id}', 'OrderController@update')->name('admin.orders.update');
+	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete');
 });
+
+Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
+});
+
+
+Route::get('/product/{id}','ProductController@show')->name('product.show');
 
 
 Route::get('/products/{id}','ProductController@show')->name('product.show');

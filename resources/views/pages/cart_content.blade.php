@@ -17,27 +17,38 @@
 						@forelse (Cart::content() as $item)
 							<tr>
 								<td class="cart_product">
-									<a href=""><img width="50" src="{{ URL::asset('images/product01.jpg')}}" alt=""></a>
+									<a href=""><img style="width: 50px" src="{{ URL::asset('images/product01.jpg')}}" alt=""></a>
 								</td>
 								<td class="cart_description">
 									{{$item->name}}
 								</td>
 								<td class="cart_price">
+									<?php 
+										if ($item->discount != 0) {
+									?>
+										<h5><s>{{number_format($item->price, 0, ',', ',')}}</s> -{{$item->options->discount}}%</h5>
+										<p>{{number_format($item->price-$item->discount, 0, ',', ',')}}</p>
+									<?php
+										} else {
+									?>
 									<p>{{number_format($item->price, 0, ',', ',')}}</p>
+									<?php 
+										} 
+									?>
 								</td>
 								<td class="cart_quantity">
 									<div class="cart_quantity_button">
-										<a class="cart_quantity_up" href=""> + 
+										<span class="cart_quantity_up"> + 
 											<input type="hidden" name="rowId" value="{{$item->rowId}}">
-										</a>
-										<input onchange="cart_quantity_update()" id="{{$item->rowId}}" style="width: 60px; text-align:center;" class="cart_quantity_input" type="number" min="1" name="quantity" value="{{$item->qty}}" autocomplete="on">
-										<a class="cart_quantity_down" href=""> - 
+										</span>
+										<input id="{{$item->rowId}}" style="width: 60px; text-align:center;" class="cart_quantity_input" type="text" min="1" name="quantity" value="{{$item->qty}}" autocomplete="on">
+										<span class="cart_quantity_down" href=""> - 
 											<input type="hidden" name="rowId" value="{{$item->rowId}}">
-										</a>
+										</span>
 									</div>
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price">{{number_format($item->qty*$item->price, 0, ',', ',')}}</p>
+									<p class="cart_total_price" id="item_total_price_{{$item->rowId}}">{{number_format($item->total, 0, ',', ',')}}</p>
 								</td>
 								<td class="cart_delete">
 									<span class="cart_quantity_delete remove"><i class="fa fa-times"></i>
@@ -52,10 +63,41 @@
 								</td>
 							</tr>
 						@endforelse
+						@if (count(Cart::content()))
+							<tr>
+								<td colspan="6" class="progress-body">
+									<div class="progress">
+							        	<div class="one primary-color"></div>
+							        	<div class="three no-color">
+							        		<span id="freeship" class="fa fa-check <?php if ((int)Cart::total(0, 0, '') < 500000) { echo 'hidden'; } ?>"></span>
+							        		<p class="text-right">Freeship</p>
+							        	</div>
+							  			<div class="progress-bar" id="progress-bar" style="width: {{(int)Cart::total(0, 0, '')/500000*100}}%;"></div>
+									</div>
+									<?php 
+										if ((int)Cart::total(0, 0, '') < 500000) {
+											$help_text = 'Mua thêm ' . number_format(500000-(int)Cart::total(0, 0, ''), 0, ',', ',') . 'đ để được Freeship';
+										} else {
+											$help_text = 'Đơn hàng đã đủ điều kiện Freeship';
+										}
+									?>
+									<p style="text-align: center;" id="help-text">
+										{{$help_text}}
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td class="cart_total text-right" colspan="5">
+									<span class="cart_total_price ">Tạm tính:</span>
+									<span class="cart_total_price" id="cart_total_price">{{Cart::total(0, 0, ',')}}<u>đ</u></span>
+								</td>
+								<td class="cart_total">
+									<a class="btn btn-danger btn-block" style="border-radius: 0" href="{{url('/checkout')}}"><b>ĐẶT HÀNG</b></a>
+								</td>
+							</tr>
+						@endif
 					</tbody>
 				</table>
-				@if (count(Cart::content()))
-				TỔn
-				@endif
+
 			</div>
 		</div>

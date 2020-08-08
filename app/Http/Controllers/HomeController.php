@@ -10,6 +10,7 @@ use Helper;
 
 class HomeController extends Controller
 {
+    const PAGE = 5;
     /**
      * Display a listing of the resource.
      *
@@ -68,7 +69,7 @@ class HomeController extends Controller
             }
         }
         //$products = $query->get();
-        $products = $query->paginate(4);
+        $products = $query->paginate(self::PAGE);
         $breadcrumbs = Helper::breadcrumbs($category, "");
         return view('pages.list_products_by_category',compact('menus', 'products', 'category', 'breadcrumbs', 'filter'));
     }
