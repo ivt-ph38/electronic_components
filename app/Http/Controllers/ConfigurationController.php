@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ConfigurationUpdateRequest;
 use App\Configuration;
 
 class ConfigurationController extends Controller
