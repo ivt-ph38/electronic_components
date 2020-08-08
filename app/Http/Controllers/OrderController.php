@@ -117,9 +117,10 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Request $request)
     {
-        //
+        $order = Order::findOrFail($request->id);
+        return view('admin.orders.edit',compact('order'));
     }
 
     /**

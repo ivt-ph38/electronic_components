@@ -1,12 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.admin.admin')
 @section('content')
-<div class="features_items" style="padding: 50px"><!--features_items-->	
+<div class="features_items" style="padding: 15px"><!--features_items-->	
 	<h2 class="title text-left">Đơn hàng
 	<?php if (Session::has('success')) { ?>
 		<small class="text-success">({{Session::get('success')}})</small>
 	<?php } ?> 
 	</h2> 
-	<section id="cart_items" class="checkout-form" style="padding: 10px;">                
+	<section id="cart_items" class="checkout-form">                
 
 
 <div class="row">
@@ -20,39 +20,37 @@
 				<label for="">{{ __('Thời gian tạo') }}: <b>{{date_format($order->created_at, 'd/m/Y H:i:s')}}</b></label>
 			</div>
 			<div class="form-group">
-				<label for="">{{ __('Trạng thái') }}: 
-					@if ($order->status == 1)<span class="btn btn-success">Mới tạo</span>@endif
-					@if ($order->status == 2)<span class="btn btn-warning">Giao hàng</span>@endif
-					@if ($order->status == 3)<span class="btn btn-success">Đã giao</span>@endif
-					@if ($order->status == 4)<span class="btn btn-danger">Hủy</span>@endif
-				</label>
-			</div>		
-			<div class="form-group">
-				<label for="phone">{{ __('Số điện thoại') }}: <b>{{$order->phone}}</b></label>
-			</div>
-			<div class="form-group">
-				<label for="name">{{ __('Họ tên') }}:<b> {{$order->name}}</b></label>
-			</div>										
+				<form method="POST" action="">
+					@csrf
+					<label for="">{{ __('Trạng thái') }}:
+						<select name="status" id="status" class="btn btn-info">
+							<option value="1" class="btn btn-primary">Mới tạo</option>
+							<option value="2" class="btn btn-warning">Giao hàng</option>
+							<option value="3" class="btn btn-success">Đã giao</option>
+							<option value="4" class="btn btn-danger">Hủy</option>
+						</select>
+					</label>
+					<button type="sumit" class="btn btn-primary pull-right">Cập nhật</button>
+			</form>
+			</div>													
 		</div>
 	</div>
 	<div class="col-lg-6">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="email">{{ __('Email') }}:<b> {{$order->email}}</b></label>
-			</div>				
-		</div>		
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<div class="card-body border-top border-primary">
-		@csrf		
+			</div>
+			<div class="form-group">
+				<label for="phone">{{ __('Số điện thoại') }}: <b>{{$order->phone}}</b></label>
+			</div>
+			<div class="form-group">
+				<label for="name">{{ __('Họ tên') }}:<b> {{$order->name}}</b></label>
+			</div>		
 			<div class="form-group">
 				<label for="address">{{ __('Địa chỉ') }}:<b> {{$order->address}}</b></label>
-			</div>										
-		</div>
+			</div>					
+		</div>		
 	</div>
-	
 </div>
 
 <div class="">
@@ -102,7 +100,7 @@
 							<tr>
 								<td class="cart_total text-right" colspan="5">
 									<span class="cart_total_price ">Tổng tiền:</span>
-									<span class="cart_total_price" id="cart_total_price">{{$order->total}}<u>đ</u></span>
+									<span class="cart_total_price" id="cart_total_price">{{number_format($order->total, 0, '', ',')}}<u>đ</u></span>
 								</td>
 							</tr>
 					</tbody>
@@ -113,4 +111,14 @@
 
 	</section> <!--/#cart_items-->
 </div><!--features_items-->
+@endsection
+@section('js')
+	function get_color () {
+		var cl = $('select[name="status"] option:selected').attr('class');
+		$('select[name="status"]').attr('class', cl);
+	}
+	get_color();
+	$( "#status" ).change(function() {
+    	get_color();
+	});
 @endsection
