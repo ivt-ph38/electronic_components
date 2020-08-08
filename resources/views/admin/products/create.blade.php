@@ -38,10 +38,9 @@
 				</script>	
 			</div> --}}
 				<div class="form-group">
-					<label for="">{{ __('Hình đại diện') }}</label>
+					<label for="">{{ __('Hình ảnh chi tiết') }}</label>
 					<div class="input-group">
-						<input type="file" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image[]" multiple>
-						
+						<input type="file" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image" multiple>
 					</div>
 					<!-- Modal -->
 				</div>							
