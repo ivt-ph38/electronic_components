@@ -33,6 +33,7 @@
 		<link rel="stylesheet" href="{{asset('css/fontawesome/css/fontawesome.min.css')}}">
 		<script src="{{asset('js/jquery-3.3.1.slim.min.js')}}" ></script>
 		<script src="{{asset('summernote/summernote.min.js')}}" ></script>
+		<link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet">
 	</head>
 	<body>
 		@include('layouts.admin.header')
@@ -63,6 +64,9 @@
            });
 
        });
+		</script>
+		<script type="text/javascript">
+			@yield('js')
 		</script>
 	</body>
 </html>

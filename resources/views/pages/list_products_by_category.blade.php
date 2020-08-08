@@ -26,9 +26,9 @@
 	    <div class="col-sm-3">
 			@include('layouts.product', ['product' => $product])
 		</div>
-	@endforeach   
-	{{ $products->links() }}               
+	@endforeach                  
 	</div><!--features_items-->
+	<h4>{{ $products->links() }}</h4>
 
 @endsection
 
