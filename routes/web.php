@@ -45,6 +45,7 @@ Route::prefix('admin')->group(function ()
 	Route::put('copy/product/{id}', 'ProductController@clone')->name('admin.products.clone');
 	Route::patch('copy/product/{id}', 'ProductController@clone')->name('admin.products.clone');
 	Route::delete('/product/{id}', 'ProductController@destroy')->name('admin.products.delete');
+	Route::get('/product-images/delete/{id}', 'ProductController@destroy_image');
 
 	Route::get('/categories', 'CategoryController@index')->name('admin.categories.index');
 	Route::get('/categories/create', 'CategoryController@create')->name('admin.categories.create');

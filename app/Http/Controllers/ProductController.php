@@ -204,4 +204,13 @@ class ProductController extends Controller
         return redirect(route('admin.products.index'))->with('success', 'Xóa sản phẩm thành công');
 
     }
+
+    public function destroy_image($id)
+    {
+        $product_image = ProductImage::findOrFail($id);
+        $product_id = $product_image->product_id;
+        $product_image->delete();
+        return redirect(route('admin.products.edit', ['id' => $product_id]))->with('success', 'Xóa ảnh thành công');
+
+    }
 }
