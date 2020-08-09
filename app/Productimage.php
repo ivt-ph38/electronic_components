@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Product;
 
-class Productimage extends Model
+class ProductImage extends Model
 {
+	protected $table = 'product_images';
+
 	protected $fillable = [
     	'path', 'product_id'
     ];
