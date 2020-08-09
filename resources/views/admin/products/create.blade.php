@@ -13,7 +13,7 @@
 		@csrf		
 			<div class="form-group">
 				<label for="">{{ __('Tên Sản Phẩm') }}</label>
-				<input type="text" name="name" value="{{ old('name') }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="name" value="{{ old('name') }}" class="form-control" id="" placeholder="Nhập tên sản phẩm">
 			</div>
 			<div class="form-group">
 				<label for="">{{ __('Tiêu Đề Trang') }}</label>
@@ -22,28 +22,16 @@
 			<div class="form-group">
 				<label for="">{{ __('Mô tả') }}</label>
 				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Input field">
+			</div>
+			<div class="form-group">
+				<label for="">{{ __('Ảnh đại diện') }}</label>
+				<input type="file" name="image" value="" class="form-control">
+			</div>					
+			<div class="form-group">
+				<label for="">{{ __('Hình ảnh chi tiết') }}</label>
+				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">
+			</div>							
 			</div>						
-{{-- 			<div class="form-group">
-				<label for="">{{ __('Hình đại diện') }}</label>
-				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" value="{{$image->getFilename()}}" id="customFile" name="image">
-				    <label class="custom-file-label" for="customFile">Choose file</label>
-				  </div>
-				<script>
-				// Add the following code if you want the name of the file appear on select
-				$(".custom-file-input").on("change", function() {
-				  var fileName = $(this).val().split("\\").pop();
-				  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-				});
-				</script>	
-			</div> --}}
-				<div class="form-group">
-					<label for="">{{ __('Hình ảnh chi tiết') }}</label>
-					<div class="input-group">
-						<input type="file" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image" multiple>
-					</div>
-					<!-- Modal -->
-				</div>							
 		</div>
 	</div>
 	<div class="col-lg-6">
@@ -63,12 +51,6 @@
 			<div class="form-group">
 				<label for="">{{ __('Danh Mục') }}</label>
 				<select name="category_id" id="input" class="form-control">
-
-					<option>{{ __('-- Danh Mục --') }}</option>
-					@foreach($categories as $category)
-					<option name="category_id" value="{{ $category->id }}">{{ $category->name }}</option>
-					@endforeach
-
 					@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => 0, 'diff' => null])
 
 				</select>

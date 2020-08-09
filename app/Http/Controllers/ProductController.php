@@ -46,10 +46,7 @@ class ProductController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
-        
-
         $product = new Product;
-
         $product->name  =   $request->name;
         $product->slug  =   $request->slug;
         $product->description   =   $request->description;
@@ -58,18 +55,26 @@ class ProductController extends Controller
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
         $product->status    =   $request->status;
-        $product->image     =   '123';
         $product->category_id   =   $request->category_id;
-        $product->save();
         if ($request->has('image')) {
-            $listImage = $request->file('image');
-            foreach ($listImage as $item) {
+            $image = $request->file('image');
+            $newName = md5(microtime(true)).$image->getClientOriginalName();
+            $image->move(public_path('images/products/'), $newName);
+            $path = '/images/products/'.$newName;
+            $product->image = $path;
+        }
+        $product->save();
+        
+        if ($request->has('product_images')) {
+            $images = $request->file('product_images');
+            foreach ($images as $item) {
                 $newName = md5(microtime(true)).$item->getClientOriginalName();
                 $item->move(public_path('images/products/'), $newName);
-                $dataImage['slug'] = '/images/products/'.$newName;
-                $dataImage['product_id'] = $product->id;
-                dd($dataImage);
-                Productimage::insert($dataImage);
+                $path= '/images/products/'.$newName;
+                $image = Productimage::create([
+                    'path' => $path,
+                    'product_id' => $product->id,
+                ]);
             }
         }
 
