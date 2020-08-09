@@ -10,8 +10,7 @@ use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use Illuminate\Support\Collection;
 use Helper;
-
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -48,9 +47,9 @@ class ProductController extends Controller
     {
         $product = new Product;
         $product->name  =   $request->name;
-        $product->slug  =   str_slug($request->slug, "-");
+        $product->slug  =   str_slug($request->name, "-");
         $product->description   =   $request->description;
-        $product->detail    =   $request->price;
+        $product->detail    =   $request->detail;
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
@@ -71,7 +70,7 @@ class ProductController extends Controller
                 $newName = md5(microtime(true)).$item->getClientOriginalName();
                 $item->move(public_path('images/products/'), $newName);
                 $path= '/images/products/'.$newName;
-                $image = Productimage::create([
+                $image = ProductImage::create([
                     'path' => $path,
                     'product_id' => $product->id,
                 ]);
@@ -128,16 +127,37 @@ class ProductController extends Controller
         $product = Product::find($id);
         
         $product->name  =   $request->name;
-        $product->slug  =   $request->slug;
+        $product->slug  =   str_slug($request->name, "-");
         $product->description   =   $request->description;
-        $product->detail    =   $request->price;
+        $product->detail    =   $request->detail;
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
         $product->status    =   $request->status;
-        $product->image     =   $request->image;
         $product->category_id   =   $request->category_id;
+
+        if (!is_null($request->image)) {
+
+            $image = $request->file('image');
+            $newName = md5(microtime(true)).$image->getClientOriginalName();
+            $image->move(public_path('images/products/'), $newName);
+            $path = '/images/products/'.$newName;
+            $product->image = $path;
+        }
+
         $product->save();
+        if (!is_null($request->product_images[0])) {
+            $images = $request->file('product_images');
+            foreach ($images as $item) {
+                $newName = md5(microtime(true)).$item->getClientOriginalName();
+                $item->move(public_path('images/products/'), $newName);
+                $path= '/images/products/'.$newName;
+                $image = ProductImage::create([
+                    'path' => $path,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }        
 
         return redirect(route('admin.products.index'))->with('success', 'Sản phẩm cập nhật thành công.');
     }

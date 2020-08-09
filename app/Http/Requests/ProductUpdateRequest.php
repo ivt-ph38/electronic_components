@@ -25,14 +25,12 @@ class ProductUpdateRequest extends FormRequest
     {
          return [
         'name' => 'required|max:255',
-        'slug' => 'required|max:255',
         'description' => 'required|max:500',
         'detail' => 'required',
         'price' => 'required',
         'discount' => 'integer|max:100',
         'quantity' => 'required',
-        'image' => 'required',
-        'category_id' => 'required'
+        'category_id' => 'required|numeric|min:1'
         ];
     }
 
@@ -41,8 +39,6 @@ class ProductUpdateRequest extends FormRequest
        return [ 
         'name.required' => 'Vui lòng nhập tên sản phẩm',
         'name.max' => 'Tên sản phẩm không được dài quá 255 ký tự.',
-        'slug.required' => 'Vui lòng nhập đường dẫn',
-        'slug.max' => 'Tối đa 255 ký tự',
         'description.required' => 'Vui lòng nhập mô tả',
         'description.max' => 'Tối đa 500 ký tự',
         'price.required' => 'Vui lòng nhập giá sản phẩm',
@@ -50,7 +46,6 @@ class ProductUpdateRequest extends FormRequest
         'discount.max' => 'Giá giảm tối đa là 100%.',
         'quantity.required' => 'Vui lòng nhập số lượng sản phẩm',
         'detail.required' => 'Vui lòng nhập nội dung.',
-        'image.required' => 'Vui lòng chọn hình đại diện.',
         'category_id.integer' => 'Vui lòng chọn danh mục'
         ];
     }    
