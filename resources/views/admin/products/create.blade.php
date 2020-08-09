@@ -31,6 +31,7 @@
 				<label for="">{{ __('Hình ảnh chi tiết') }}</label>
 				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">
 			</div>							
+			</div>						
 		</div>
 	</div>
 	<div class="col-lg-6">

@@ -17,7 +17,7 @@
 					{{ $configuration->value }}
 				</td>
 				<td class="actions">
-					<a href="{{-- {{ route('admin.configurations.edit', [$configuration->id]) }} --}}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+					<a href="{{ route('admin.configurations.edit', [$configuration->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			@endforeach

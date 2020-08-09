@@ -56,7 +56,6 @@ class ProductController extends Controller
         $product->discount  =   $request->discount;
         $product->status    =   $request->status;
         $product->category_id   =   $request->category_id;
-
         if ($request->has('image')) {
             $image = $request->file('image');
             $newName = md5(microtime(true)).$image->getClientOriginalName();
@@ -64,9 +63,8 @@ class ProductController extends Controller
             $path = '/images/products/'.$newName;
             $product->image = $path;
         }
-
         $product->save();
-
+        
         if ($request->has('product_images')) {
             $images = $request->file('product_images');
             foreach ($images as $item) {

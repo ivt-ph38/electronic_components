@@ -27,6 +27,10 @@ Route::get('/checkout', 'OrderController@checkout_form')->name('checkout');
 Route::post('/checkout', 'OrderController@store');
 Route::get('/order/{code}', 'OrderController@show');
 
+//Contacts
+Route::get('/contacts','ContactController@create')->name('contacts.create');
+Route::post('/contacts','ContactController@store')->name('contacts.store');
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -56,6 +60,11 @@ Route::prefix('admin')->group(function ()
 	Route::put('/blogs/{id}', 'BlogController@update')->name('admin.blogs.update');
 	Route::delete('/blogs/{id}', 'BlogController@destroy')->name('admin.blogs.delete');
 
+	Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
+	Route::get('/configurations/edit/{id}','ConfigurationController@edit')->name('admin.configurations.edit');
+	Route::put('/configurations/{id}', 'ConfigurationController@update')->name('admin.configurations.update');
+
+	Route::get('/contacts','ContactController@index')->name('admin.contacts.index');
 
 	Route::get('/orders', 'OrderController@index')->name('admin.orders.index');
 	Route::get('/orders/status/{status}', 'OrderController@searchByStatus');
@@ -66,7 +75,6 @@ Route::prefix('admin')->group(function ()
 	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete');
 });
 
-Route::get('/configurations','ConfigurationController@index')->name('admin.configurations.index');
 
 Route::get('/product/{id}','ProductController@show')->name('product.show');
 
