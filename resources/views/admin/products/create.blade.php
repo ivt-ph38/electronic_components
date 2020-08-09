@@ -14,14 +14,10 @@
 			<div class="form-group">
 				<label for="">{{ __('Tên Sản Phẩm') }}</label>
 				<input type="text" name="name" value="{{ old('name') }}" class="form-control" id="" placeholder="Nhập tên sản phẩm">
-			</div>
-			<div class="form-group">
-				<label for="">{{ __('Tiêu Đề Trang') }}</label>
-				<input type="text" name="slug" value="{{ old('slug') }}" class="form-control" id="" placeholder="Input field">
-			</div>			
+			</div>	
 			<div class="form-group">
 				<label for="">{{ __('Mô tả') }}</label>
-				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="description" value="{{ old('description') }}" class="form-control" id="" placeholder="Nhập mô tả">
 			</div>
 			<div class="form-group">
 				<label for="">{{ __('Ảnh đại diện') }}</label>
@@ -37,15 +33,15 @@
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="">{{ __('Giá Sản Phẩm') }}</label>
-				<input type="price" name="price" value="{{ old('price') }}" class="form-control" id="price" placeholder="Input field">
+				<input type="price" name="price" value="{{ old('price') }}" class="form-control" id="price" placeholder="Nhập giá sản phẩm">
 			</div>			
 			<div class="form-group">
 				<label for="">{{ __('Giảm Giá') }}</label>
-				<input type="text" name="discount" value="{{ old('discount') }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="discount" value="{{ old('discount') }}" class="form-control" id="" placeholder="Nhập giảm giá">
 			</div>		
 			<div class="form-group">
 				<label for="">{{ __('Số lượng') }}</label>
-				<input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control" id="" placeholder="Input field">
+				<input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control" id="" placeholder="Nhập số lượng sản phẩm">
 			</div>						
 			<div class="form-group">
 				<label for="">{{ __('Danh Mục') }}</label>

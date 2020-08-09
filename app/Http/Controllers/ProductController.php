@@ -48,7 +48,7 @@ class ProductController extends Controller
     {
         $product = new Product;
         $product->name  =   $request->name;
-        $product->slug  =   $request->slug;
+        $product->slug  =   str_slug($request->slug, "-");
         $product->description   =   $request->description;
         $product->detail    =   $request->price;
         $product->price     =   preg_replace('/\D/', '', $request->price);
