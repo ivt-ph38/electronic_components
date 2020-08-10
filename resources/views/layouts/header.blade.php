@@ -38,14 +38,13 @@
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{ route('welcome') }}">TRANG CHỦ</a></li>
-                                <li><a href="index.html">SẢN PHẨM</a></li>
+                                <li><a href="{{ route('all.product') }}">SẢN PHẨM</a></li>
                                 <li><a href="{{ route('blog.show') }}">BLOG</a></li>
                                 <li><a href="{{ route('contacts.create') }}">LIÊN HỆ</a></li>
                                 <li><a href="#"><i class="fa fa-phone"></i> {{ $hotline }}</a></li>
                                 <li><a href="#"><i class="fa fa-envelope"></i> {{ $email }}</a></li>
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-
                             </ul>
                         </div>
                     </div>

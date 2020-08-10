@@ -91,6 +91,7 @@ class ProductController extends Controller
         $product = Product::where('id','=', $id)->first();
         $menus = Category::where('parent_id', '=', 0)->get();
         $res = new Collection;
+        $relateds = Product::where('slug', '!=', $product->slug)->where('category_id', '=', $product->category_id)->orderBy('id', 'DESC')->limit(8)->get();
         // foreach ($menus as $category) {
 
         //     //lấy tất cả product
@@ -99,7 +100,16 @@ class ProductController extends Controller
         //     // $category->setAttribute('top_products', $top_products);
         //     // $res->push($category);   
         // }
-         return view('home.products.show',compact('menus', 'res','product'));
+         return view('home.products.show',compact('menus', 'res','product','relateds'));
+    }
+
+    public function AllProduct()
+    {
+        $menus = Category::where('parent_id', '=', 0)->get();
+        $res = new Collection;
+        $products = Product::all();
+        $products = Product::paginate(12);
+        return view('home.products.all',compact('products','menus', 'res'));
     }
 
     /**
@@ -192,6 +202,29 @@ class ProductController extends Controller
         $product->image     =   $request->image;
         $product->category_id   =   $request->category_id;
         $product->save();
+
+        if (!is_null($request->image)) {
+
+            $image = $request->file('image');
+            $newName = md5(microtime(true)).$image->getClientOriginalName();
+            $image->move(public_path('images/products/'), $newName);
+            $path = '/images/products/'.$newName;
+            $product->image = $path;
+        }
+
+        $product->save();
+        if (!is_null($request->product_images[0])) {
+            $images = $request->file('product_images');
+            foreach ($images as $item) {
+                $newName = md5(microtime(true)).$item->getClientOriginalName();
+                $item->move(public_path('images/products/'), $newName);
+                $path= '/images/products/'.$newName;
+                $image = ProductImage::create([
+                    'path' => $path,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }            
 
         return redirect(route('admin.products.index'))->with('success', 'Sao chép sản phẩm thành công.');
     }

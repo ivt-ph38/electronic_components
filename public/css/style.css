@@ -17,3 +17,13 @@ img {
 .card-title b a:hover {
 	color: #FE980F;
 }
+
+.product-carousel > .carousel-indicators li {
+    height: auto;
+    width: 20%;
+    border: 1px solid #ccc;
+    padding: .25rem;
+}
+
+.divider {border: 1px solid #ccc;}
+img {width:100%;}

@@ -12,9 +12,11 @@
 */
 
 
-Route::get('/', 'HomeController@index')->name('welcome');
+Route::get('/','HomeController@index')->name('welcome');
 Route::get('/categories/{id}/products', 'HomeController@listProductsByCategory')->name('categories.products');
 Route::get('/categories/{id}/products/{groupby}/{orderby}', 'HomeController@listProductsByCategory')->name('categories.products.filter');
+
+Route::get('/products','ProductController@AllProduct')->name('all.product');
 
 //Shopping cart
 Route::get('/cart', 'CartController@index')->name('cart');
