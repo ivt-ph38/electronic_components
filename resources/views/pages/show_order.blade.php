@@ -78,7 +78,7 @@
 									{{$item->product->name}}
 								</td>
 								<td class="cart_price text-center">
-									{{$item->price}}
+									{{number_format($item->price, 0, '', ',')}}
 									<?php 
 											if ($item->discount != null) {
 												echo '(-'.$item->discount.'%)';
@@ -102,7 +102,7 @@
 							<tr>
 								<td class="cart_total text-right" colspan="5">
 									<span class="cart_total_price ">Tổng tiền:</span>
-									<span class="cart_total_price" id="cart_total_price">{{$order->total}}<u>đ</u></span>
+									<span class="cart_total_price" id="cart_total_price">{{number_format($order->total, 0, '', ',')}}<u>đ</u></span>
 								</td>
 							</tr>
 					</tbody>

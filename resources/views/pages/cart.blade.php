@@ -90,7 +90,7 @@
 		    	$('#item_total_price_'+data.item.rowId).html(data.subTotal);
 		    	$('#cart_total_price').html(data.total);
 		    	$('#cart_count').html(data.count);
-		    	total = parseInt(data.total.replace(',' , ''));
+		    	total = parseInt(data.total.replace(/,/g , ''));
 		   		if (total < 500000) {
 		    		$('#freeship').attr('class', 'fa fa-check hidden');
 		    		format_number = Intl.NumberFormat().format(500000-total);
