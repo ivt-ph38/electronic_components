@@ -28,7 +28,6 @@ class HomeController extends Controller
             $res->push($category);   
         }
         return view('pages.home',compact('menus', 'res'));
-        return view('home.products.show',compact('menus', 'res'));
     }
 
     public function listProductsByCategory(Request $request)
