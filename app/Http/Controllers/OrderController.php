@@ -10,6 +10,7 @@ use App\Http\Requests\OrderCreateRequest;
 use Session;
 use Cart;
 use Illuminate\Support\Str;
+use Mail;
 
 session_start();
 
@@ -93,8 +94,16 @@ class OrderController extends Controller
             $detail = OrderDetail::create($data);
         }
         Cart::destroy();
+    
+            $email = $order->email;
+            
+        Mail::send('admin.orders.send_mail', compact('order'), function($message) use($order){
+            $message->to( $order->email, 'THSHOP')->subject('THSHOP phản hồi: Đặt hàng thành công');
+        });
+
+
         $menus = Category::where('parent_id', '=', 0)->get();
-        $request->session()->flash('success', 'Đặt hàng thành công');
+        $request->session()->flash('success', 'Đặt hàng thành công! Vui lòng kiểm tra email!');
         return redirect(url('/order/'.$order->code)); 
     }
 
