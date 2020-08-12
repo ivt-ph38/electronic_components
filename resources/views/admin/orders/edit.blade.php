@@ -7,7 +7,15 @@
 	<?php } ?> 
 	</h2> 
 	<section id="cart_items" class="checkout-form">                
+    <!-- Hiển thị thông báo -->
+<div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
 
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+</div> <!-- end .flash-message -->
 
 <div class="row">
 	<div class="col-lg-6">
@@ -20,14 +28,15 @@
 				<label for="">{{ __('Thời gian tạo') }}: <b>{{date_format($order->created_at, 'd/m/Y H:i:s')}}</b></label>
 			</div>
 			<div class="form-group">
-				<form method="POST" action="">
+				<form method="POST" action="{{url('admin/orders/'.$order->id)}}">
+					@method('PUT')
 					@csrf
 					<label for="">{{ __('Trạng thái') }}:
 						<select name="status" id="status" class="btn btn-info">
-							<option value="1" class="btn btn-primary">Mới tạo</option>
-							<option value="2" class="btn btn-warning">Giao hàng</option>
-							<option value="3" class="btn btn-success">Đã giao</option>
-							<option value="4" class="btn btn-danger">Hủy</option>
+							<option value="1" @if ($order->status ==1) selected="selected" @endif class="btn btn-primary">Mới tạo</option>
+							<option value="2" @if ($order->status ==2) selected="selected" @endif class="btn btn-warning">Giao hàng</option>
+							<option value="3" @if ($order->status ==3) selected="selected" @endif class="btn btn-success">Đã giao</option>
+							<option value="4" @if ($order->status ==4) selected="selected" @endif class="btn btn-danger">Hủy</option>
 						</select>
 					</label>
 					<button type="sumit" class="btn btn-primary pull-right">Cập nhật</button>
