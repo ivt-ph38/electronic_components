@@ -76,6 +76,13 @@ Route::prefix('admin')->group(function ()
 	Route::get('/orders/{id}', 'OrderController@show')->name('admin.orders.show');
 	Route::put('/orders/{id}', 'OrderController@update')->name('admin.orders.update');
 	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete');
+
+	Route::get('/banners', 'BannerController@index')->name('admin.banners.index');
+	Route::get('/banners/create', 'BannerController@create')->name('admin.banners.create');
+	Route::post('/banners', 'BannerController@store')->name('admin.banners.store');
+	Route::get('/banners/edit/{id}', 'BannerController@edit')->name('admin.banners.edit');
+	Route::put('/banners/{id}', 'BannerController@update')->name('admin.banners.update');
+	Route::delete('/banners/{id}', 'BannerController@destroy')->name('admin.banners.delete');
 });
 
 
