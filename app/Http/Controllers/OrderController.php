@@ -139,9 +139,13 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
-        //
+        $order = Order::findOrFail($request->id);
+        $order->status = $request->status;
+        $order->save();
+        $request->session()->flash('alert-success', 'Cập nhật đơn hàng thành công');
+        return redirect(url('admin/orders/edit/'.$order->id));
     }
 
     /**
