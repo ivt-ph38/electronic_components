@@ -103,13 +103,44 @@ class ProductController extends Controller
          return view('home.products.show',compact('menus', 'res','product','relateds'));
     }
 
-    public function AllProduct()
+    public function listProducts(Request $request)
     {
         $menus = Category::where('parent_id', '=', 0)->get();
-        $res = new Collection;
-        $products = Product::all();
-        $products = Product::paginate(12);
-        return view('home.products.all',compact('products','menus', 'res'));
+
+        $query = Product::where('id', '<>', 0);
+        $filter = [];
+
+        if ($request->orderby) {
+            if ($request->orderby == 'price-asc') {
+                $query->orderBy('price', 'asc');
+                $filter['orderby'] = 'price-asc';
+            }
+            elseif ($request->orderby == 'price-desc') {
+                $query->orderBy('price', 'desc');
+                $filter['orderby'] = 'price-desc';
+            }
+            else {
+                $query->orderBy('id', 'desc');
+            }
+        }
+        else {
+            $query->orderBy('id', 'desc');
+        }
+
+        if ($request->groupby) {
+            if ($request->groupby == 'on_sale') {
+                $query->where('discount', '<>' , null);
+                $filter['groupby'] = 'on_sale';
+            }
+            if ($request->groupby == 'available') {
+                $query->where('status', 1);
+                $filter['groupby'] = 'available';
+            }
+        }
+        //$products = $query->get();
+        $products = $query->paginate(16);
+
+        return view('home.products.all',compact('products','menus', 'filter'));
     }
 
     /**
