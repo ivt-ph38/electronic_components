@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\product;
+use App\Banner;
 use Illuminate\Support\Collection;
 use Helper;
 
@@ -19,6 +20,7 @@ class HomeController extends Controller
     public function index()
     {
     	$menus = Category::where('parent_id', '=', 0)->get();
+        $banners = Banner::All();
         $res = new Collection;
         foreach ($menus as $category) {
             $categories = new Collection;
@@ -27,7 +29,7 @@ class HomeController extends Controller
             $category->setAttribute('top_products', $products);
             $res->push($category);   
         }
-        return view('pages.home',compact('menus', 'res'));
+        return view('pages.home',compact('menus', 'res', 'banners'));
     }
 
     public function listProductsByCategory(Request $request)

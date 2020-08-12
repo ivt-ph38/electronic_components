@@ -4,27 +4,25 @@
                 <div class="col-sm-12">
                     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#slider-carousel" data-slide-to="1"></li>
-                            <li data-target="#slider-carousel" data-slide-to="2"></li>
+                            <?php $step = 0; ?>
+                            @foreach ($banners as $banner)
+                            <li data-target="#slider-carousel" data-slide-to="{{$step}}" 
+                            @if ($step == 0) class="active" @endif
+                            ></li>
+                            <?php $step++; ?>
+                            @endforeach
                         </ol>
                         
                         <div class="carousel-inner">
-                            <div class="item active">
+                            <?php $step = 0; ?>
+                            @foreach ($banners as $banner)
+                            <div class="item @if ($step == 0) active @endif">
                                 <div class="col-sm-12">
-                                    <img src="{{ URL::asset('images/banner.png') }}" class="img-responsive" alt="" />
+                                    <a href="{{$banner->link}}" target="_blank"><img src="{{ url($banner->path) }}" class="img-responsive" alt="{{$banner->name}}" /></a>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="col-sm-12">
-                                    <img src="images/banner.png" class="img-responsive" alt="" />
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-12">
-                                    <img src="images/banner.png" class="img-responsive" alt="" />
-                                </div>
-                            </div>
+                            <?php $step++; ?>
+                            @endforeach
                         </div>
                         
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
