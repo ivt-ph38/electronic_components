@@ -67,15 +67,7 @@
 
 				<td>
 
-					@php
-
-					$path = $_SERVER['SERVER_NAME'].'/images/';
-
-					$image = str_replace($path, $_SERVER['SERVER_NAME'].'/thumbs/', $product->image);
-
-					@endphp
-
-					<img src="{{ $image }}" class="table-img" alt="{{ $product->name }}">
+					<img src="{{url($product->image)}}" class="table-img" alt="{{ $product->name }}">
 
 				</td>
 

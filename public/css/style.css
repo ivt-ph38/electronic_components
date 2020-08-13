@@ -25,5 +25,39 @@ img {
     padding: .25rem;
 }
 
-.divider {border: 1px solid #ccc;}
-img {width:100%;}
+#custom_carousel .item {
+    color:#000;
+}
+#custom_carousel .controls{
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding:0;
+    margin:0;
+    white-space: nowrap;
+    text-align: center;
+    position: relative;
+    
+}
+#custom_carousel .controls li {
+    display: table-cell;
+    max-width:90px
+}
+#custom_carousel .controls li {
+    
+    border: 3px solid #FE980F;
+}
+#custom_carousel .controls a small {
+    overflow:hidden;
+    display:block;
+    font-size:10px;
+    margin-top:5px;
+    font-weight:bold
+}
+
+.pad a {
+    padding: 0 !important;
+}
+
+.detail-images {
+    margin: 0px 15px;
+}

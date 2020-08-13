@@ -28,11 +28,11 @@
 				<td>{{ $contact->email }}</td>
 				<td>{{ $contact->phone }}</td>
 				<td class="actions">
-					<a href="{{-- {{ route('admin.contacts.show', [$contact->id]) }} --}}" class="btn btn-info" title="{{ __('Chi Tiết') }}"><i class="far fa-eye"></i></a>
- 				<form action="{{-- {{ route('admin.products.delete', [$product->id]) }} --}}" method="POST" role="form">		
+					<a href="{{ route('admin.contacts.show', [$contact->id]) }}" class="btn btn-info" title="{{ __('Chi Tiết') }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+ 				<form action="{{ route('admin.contacts.delete', [$contact->id]) }}" method="POST" role="form">	
  					 @method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa Sản phẩm')"></i></button>
+ 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa Liên Hệ này')"></i></button>
 				</form>
 				</td>
 			</tr>

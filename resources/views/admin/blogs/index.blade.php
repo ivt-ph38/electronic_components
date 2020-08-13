@@ -61,21 +61,13 @@
 
 				<td>
 
-					@php
-
-					$path = $_SERVER['SERVER_NAME'].'/images/';
-
-					$image = str_replace($path, $_SERVER['SERVER_NAME'].'/thumbs/', $blog->image);
-
-					@endphp
-
-					<img src="{{ $image }}" class="table-img" alt="{{ $blog->title }}">
+					<img src="{{url($blog->image)}}" class="table-img" alt="{{ $blog->name }}">
 
 				</td>
 
 				<td class="actions">	
 
-					<a href="{{ route('admin.blogs.edit', [$blog->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="far fa-edit">Chỉnh Sửa</i></a>
+					<a href="{{ route('admin.blogs.edit', [$blog->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
 					{{-- @php
 
@@ -87,7 +79,7 @@
 
  --}}			<form action="{{ route('admin.blogs.delete', [$blog->id]) }}" method="POST" role="form">								  @method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fad fa-trash" onclick="return confirm('Bạn có chắc muốn xóa tin tức này.')">Xoá</i></button>
+ 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa tin tức này.')"></i></button>
 				</form>
 
 				</td>

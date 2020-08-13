@@ -30,7 +30,7 @@
 				<div class="row">
 					@foreach ($product->images as $image)							
 						<div class="col-lg-4">
-							<img class="img-thumbnail" src="{{$image->path}}">
+							<img class="img-thumbnail" src="{{url($image->path)}}">
 							<a onclick="return confirm('Bạn có muốn xóa ảnh này?')" style="position: absolute; z-index: 99; top:0; right: 0" class="btn btn-danger" href="{{url('/admin/product-images/delete/'.$image->id)}}">Xóa ảnh</a>
 						</div>
 					@endforeach
