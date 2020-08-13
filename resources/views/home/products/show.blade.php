@@ -62,7 +62,9 @@
           <hr class="mt-0 mb-0">
         </div>
       </div>
-
+      <div class="row">
+        @include('home.products.comments', ['product' => $product])
+      </div>
       <div class="row">
         <div class="col-lg-12 mt-5">
           <h2 class="text-uppercase h4">Sản Phẩm Liên Quan</h2>
@@ -102,4 +104,8 @@
                         </div>
                         @endforeach
       </div>
+@endsection
+
+@section('js_file')
+  <script type="text/javascript" src="{{ URL::asset('js/comments.js') }}"></script>
 @endsection

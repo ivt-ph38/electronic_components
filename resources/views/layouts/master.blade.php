@@ -56,7 +56,8 @@
     <script src="{{ URL::asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
     <script src="{{ URL::asset('js/typeahead.bundle.min.js') }}"></script>
-    <script type="text/javascript">@yield('js')</script>  
+    <script type="text/javascript">@yield('js')</script> 
+    @yield('js_file') 
 
     <!--/Search-->
     <script type="text/javascript">

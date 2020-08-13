@@ -147,3 +147,7 @@ Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');
 });
+
+//comments
+Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::get('/api/comments/get-comments', 'CommentController@getComments');
