@@ -31,3 +31,21 @@
 	<h4>{{ $products->links() }}</h4>
 
 @endsection
+
+@section('js')
+
+	$( document ).ready(function() {
+		function filter () {
+			var orderby = $( "#orderby" ).val();
+			var groupby = $( "#groupby" ).val();
+			location.href = "{{url('/products/')}}" + '/' + groupby + '/' +orderby;
+		}
+
+    	$( "#groupby" ).change(function() {
+    		filter();
+		});
+		$( "#orderby" ).change(function() {
+    		filter();
+		});
+	});
+@endsection

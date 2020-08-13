@@ -23,6 +23,8 @@
 
 	<a href="{{ route('admin.configurations.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-cogs" aria-hidden="true"></i>{{ __(' Cấu Hình') }}</a>	
 
+  <a href="{{ route('admin.banners.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-cogs" aria-hidden="true"></i>{{ __(' Banner') }}</a>
+
 	<a href="" type="button" data-toggle="modal" data-target="#myModal" class="list-group-item list-group-item-action"><i class="fas fa-box-open"></i>{{ __(' Quản Lý File') }}</a>
 	
 	<!-- Modal -->
