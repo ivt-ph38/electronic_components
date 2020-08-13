@@ -70,7 +70,8 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact = Contact::find($id);
+        return view('admin.contacts.show',compact('contact'));
     }
 
     /**
@@ -104,6 +105,9 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->delete();
+        return redirect(route('admin.contacts.index'))->with('success', 'Liên hệ đã được gửi đi, chúng tôi sẽ liên lạc lại trong thời gian sớm nhất.');
+
     }
 }

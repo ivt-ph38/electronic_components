@@ -50,8 +50,14 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->slug = $request->slug;
         $blog->description = $request->description;
-        $blog->image = $request->image;
         $blog->content = $request->content;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $newName = md5(microtime(true)).$image->getClientOriginalName();
+            $image->move(public_path('images/blogs/'), $newName);
+            $path = '/images/blogs/'.$newName;
+            $blog->image = $path;
+        }        
         $blog->save();
 
         return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được lưu.');

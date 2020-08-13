@@ -2,7 +2,7 @@
                                 <div class="single-products">
                                         <div class="productinfo text-center">
 
-                                            <a href="{{ route('product.show', [$product->id])}}"><img src="{{ $product->image }}" alt="{{$product->name}}" /></a>
+                                            <a href="{{ route('product.show', [$product->id])}}"><img src="{{url($product->image)}}" alt="{{$product->name}}" /></a>
 
                                             <p>{{$product->name}}</p>
                                             <h5>

@@ -2,15 +2,37 @@
 @section('content')
       <p class="breadcrumbs"><a href="{{ route('welcome') }}">Trang Chủ</a> /<a href="{{ route('categories.products', [$product->category_id]) }}">{{ $product->category->name }}</a>/ {{ $product->name }}</p>
       <div class="row">
-      <div class="col-lg-5">
-          <div id="carouselExampleIndicators" class="carousel slide product-carousel" data-ride="carousel">
-            <div class="carousel-inner border">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="{{ $product->image }}" alt="">
-              </div>
+        <div class="col-lg-5">
+   <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="{{url($product->image)}}" class="img-responsive">          
             </div>
-
-          </div>
+            @foreach ($product->images as $key => $image) 
+            <div class="item">
+                <img src="{{url($image->path)}}" class="img-responsive">
+            </div>
+            @endforeach 
+        <!-- End Item -->
+        </div>
+        <!-- End Carousel Inner -->
+        <div class="controls">
+            <ul class="nav detail-images">
+                @foreach ($product->images as $key => $image)
+                <li data-target="#custom_carousel" class="<?php if($key==0){echo "active";} ?> pad" data-slide-to="<?php echo $key; ?>"><a href="#"><img src="{{url($image->path)}}"></a></li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <script>
+      $(document).ready(function(ev){
+    $('#custom_carousel').on('slide.bs.carousel', function (evt) {
+      $('#custom_carousel .controls li.active').removeClass('active');
+      $('#custom_carousel .controls li:eq('+$(evt.relatedTarget).index()+')').addClass('active');
+    })
+});
+    </script>
         </div>
         <div class="col-lg-7"> 
             <h4>{{ $product->name }}</h4>
