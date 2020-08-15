@@ -54,7 +54,7 @@ class LoginController extends Controller
     // Kiểm tra dữ liệu nhập vào
     $rules = [
         'email' =>'required|email',
-        'password' => 'required|min:6'
+        'password' => 'required|min:6',
     ];
     $messages = [
         'email.required' => 'Email là trường bắt buộc',
@@ -72,11 +72,14 @@ class LoginController extends Controller
         // Nếu dữ liệu hợp lệ sẽ kiểm tra trong csdl
         $email = $request->input('email');
         $password = $request->input('password');
- 
-        if( Auth::attempt(['email' => $email, 'password' =>$password])) {
+        if( Auth::attempt(['email' => $email, 'password' =>$password, 'role' => 'admin'])) {
             // Kiểm tra đúng email và mật khẩu sẽ chuyển trang
             return redirect(route('admin.products.index'))->with('success', 'Thành Công.');
-        } else {
+        }
+        elseif (Auth::attempt(['email' => $email, 'password' =>$password, 'role' => 'user'])) {
+            return redirect(route('welcome'))->with('success', 'Thành Công.');
+        }
+         else {
             // Kiểm tra không đúng sẽ hiển thị thông báo lỗi
             Session::flash('error', 'Email hoặc mật khẩu không đúng!');
             return redirect('login');
@@ -84,3 +87,11 @@ class LoginController extends Controller
     }
 }
 }
+// @if (Auth::check())
+// <div>
+// Bạn đang đăng nhập với quyền 
+// @if( Auth::user()->role == 'admin')
+//     {{ "admin" }}
+// @elseif( Auth::user()->role == 'user')
+//     {{ "user" }}
+// @endif

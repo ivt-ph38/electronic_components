@@ -135,8 +135,21 @@ Route::prefix('admin')->group(function ()
 	Route::put('/banners/{id}', 'BannerController@update')->name('admin.banners.update')->middleware('auth');
 	Route::delete('/banners/{id}', 'BannerController@destroy')->name('admin.banners.delete')->middleware('auth');
 
+	Route::get('/users','UserController@index')->name('admin.users.index')->middleware('auth');
+	Route::get('/users/edit/{id}','UserController@edit')->name('admin.users.edit')->middleware('auth');
+	Route::put('/users/{id}','UserController@update')->name('admin.users.update')->middleware('auth');
+	Route::delete('/users/{id}','UserController@destroy')->name('admin.users.delete')->middleware('auth');
+
+	Route::get('/posts','PostController@index')->name('admin.posts.index')->middleware('auth');
+	Route::get('/posts/create','PostController@create')->name('admin.posts.create')->middleware('auth');
+	Route::post('/posts','PostController@store')->name('admin.posts.store')->middleware('auth');
+	Route::get('/posts/edit/{id}','PostController@edit')->name('admin.posts.edit')->middleware('auth');
+	Route::put('/posts/{id}','PostController@update')->name('admin.posts.update')->middleware('auth');
+	Route::delete('/posts/{id}','PostController@destroy')->name('admin.posts.delete')->middleware('auth');
+
 	Route::get('/comments', 'CommentController@index')->name('admin.comments.index')->middleware('auth');
 	Route::delete('/comments/{id}', 'CommentController@destroy')->name('admin.comments.delete')->middleware('auth');
+
 });
 
 
@@ -146,6 +159,9 @@ Route::get('/product/{id}','ProductController@show')->name('product.show');
 Route::get('/products/{id}','ProductController@show')->name('product.show');
 Route::get('/blogs','BlogController@show')->name('blog.show');
 Route::get('/blog/{id}','BlogController@ShowBlogById')->name('blog.show.by.id');
+
+Route::get('/post/{id}','PostController@show')->name('post.show');
+
 Route::prefix('api')->group(function ()
 {
 	Route::get('/products/search/{key}', 'HomeController@searchByName');

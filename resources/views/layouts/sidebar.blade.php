@@ -13,5 +13,12 @@
                                 </ul>
                             </div>
                         </div><!--/brands_products-->
+
+                        <div class="post-left">
+                            <h2>Khác</h2>
+                            @foreach($leftposts as $leftpost)
+                            <h4 class="panel-title"><a href="{{route('post.show', [$leftpost->slug])}}">{{$leftpost->title}}</a></h4>
+                            @endforeach
+                        </div>
                     
                     </div>

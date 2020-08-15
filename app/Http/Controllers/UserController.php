@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -55,9 +57,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit',compact('user'));
     }
 
     /**
@@ -67,9 +70,15 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $user->save();
+        return redirect(route('admin.users.index'))->with('success', 'Cập Nhật Thành Viên Thành Công');
     }
 
     /**
@@ -78,8 +87,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+         $user = User::find($id);
+         $user->delete();
+         return redirect(route('admin.users.index'))->with('success', 'Xoá Thành Viên Thành Công');
     }
 }
