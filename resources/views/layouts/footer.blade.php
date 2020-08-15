@@ -4,25 +4,21 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Service</h2>
+                            <h2>Giới Thiệu</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Online Help</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Order Status</a></li>
-                                <li><a href="#">Change Location</a></li>
-                                <li><a href="#">FAQ’s</a></li>
+                                @foreach($bottomposts as $bottompost)
+                                <li><a href="{{route('post.show', [$bottompost->slug])}}">{{$bottompost->title}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="single-widget">
-                            <h2>Quock Shop</h2>
+                            <h2>Chính Sách</h2>
                             <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
+                                @foreach($bottompost1s as $bottompost1)
+                                <li><a href="{{route('post.show', [$bottompost1->slug])}}">{{$bottompost1->title}}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

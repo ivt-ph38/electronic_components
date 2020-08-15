@@ -54,20 +54,20 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'address' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string', 'max:10'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ],
         
                     [
-            'name.required' => 'Họ và tên là trường bắt buộc',
+            'name.required' => 'Vui lòng nhập Họ và Tên',
             'name.max' => 'Họ và tên không quá 255 ký tự',
-            'email.required' => 'Email là trường bắt buộc',
+            'email.required' => 'Vui lòng nhập Email',
             'email.email' => 'Email không đúng định dạng',
             'email.max' => 'Email không quá 255 ký tự',
             'email.unique' => 'Email đã tồn tại',
             'password.required' => 'Mật khẩu là trường bắt buộc',
             'password.min' => 'Mật khẩu phải chứa ít nhất 8 ký tự',
             'password.confirmed' => 'Xác nhận mật khẩu không đúng',
+            'address.required' => 'Vui lòng nhập địa chỉ'
 
 
         ]
@@ -113,7 +113,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
-            'role' => '3',
+            'role' => 'user',
             'password' => bcrypt($data['password']),
         ]);
     }

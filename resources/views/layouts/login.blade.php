@@ -15,8 +15,22 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/login.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
+	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/line-awesome.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/line-awesome.min.css') }}" rel="stylesheet">
 </head>
 <body>
+@if (Auth::check())
+<div>
+Bạn đang đăng nhập với quyền 
+@if( Auth::user()->role == 'admin')
+	{{ "admin" }}
+@elseif( Auth::user()->role == 'user')
+	{{ "user" }}
+@endif
+</div>
+<div class="pull-right" style="margin-top: 3px;"><a class="btn btn-primary" href="/{{ url('/logout') }}">Đăng xuất</a></div>
+@endif
 	@yield('content')
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="vendor/animsition/js/animsition.min.js"></script>

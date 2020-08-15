@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Configuration;
+use App\Post;
 use Config;
 use View;
 
@@ -35,5 +36,17 @@ class AppServiceProvider extends ServiceProvider
             Config::set($configuration->name, $configuration->value);
 
         }
+
+        $leftposts = Post::where('left', 1)->orderBy('id', 'DESC')->get();
+
+        View::share('leftposts', $leftposts);
+
+        $bottomposts = Post::where('bottom', 1)->orderBy('id', 'DESC')->get();
+
+        View::share('bottomposts', $bottomposts);
+
+        $bottompost1s = Post::where('left', 1)->orderBy('id', 'DESC')->get();
+
+        View::share('bottompost1s', $bottompost1s);
     }
 }
