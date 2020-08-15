@@ -16,6 +16,11 @@ class Comment extends Model
     	return $this->belongsTo('App\User', 'user_id');
     }
 
+   public function product()
+    {
+        return $this->belongsTo('App\Product', 'product_id');
+    }
+
     public function childs()
     {
     	return $this->hasMany('App\Comment', 'parent_id', 'id')->orderBy('id', 'desc');

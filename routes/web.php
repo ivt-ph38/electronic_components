@@ -146,6 +146,10 @@ Route::prefix('admin')->group(function ()
 	Route::get('/posts/edit/{id}','PostController@edit')->name('admin.posts.edit')->middleware('auth');
 	Route::put('/posts/{id}','PostController@update')->name('admin.posts.update')->middleware('auth');
 	Route::delete('/posts/{id}','PostController@destroy')->name('admin.posts.delete')->middleware('auth');
+
+	Route::get('/comments', 'CommentController@index')->name('admin.comments.index')->middleware('auth');
+	Route::delete('/comments/{id}', 'CommentController@destroy')->name('admin.comments.delete')->middleware('auth');
+
 });
 
 
@@ -164,5 +168,5 @@ Route::prefix('api')->group(function ()
 });
 
 //comments
-Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments', 'CommentController@store')->name('comments.store')->middleware('CheckLogin');;
 Route::get('/api/comments/get-comments', 'CommentController@getComments');
