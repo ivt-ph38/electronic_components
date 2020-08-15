@@ -149,5 +149,5 @@ Route::prefix('api')->group(function ()
 });
 
 //comments
-Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments', 'CommentController@store')->name('comments.store')->middleware('CheckLogin');;
 Route::get('/api/comments/get-comments', 'CommentController@getComments');

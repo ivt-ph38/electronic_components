@@ -6,6 +6,7 @@ use App\Comment;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\CommentCreateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -37,7 +38,8 @@ class CommentController extends Controller
      */
     public function store(CommentCreateRequest $request)
     {
-        $request->request->add(['user_id' => 1]);
+        $user_id = Auth::id();
+        $request->request->add(['user_id' => $user_id]);
         $data = $request->except('_token');
         Comment::create($data);
         return redirect(url('/products/'.$request->product_id.'/#comments-box'));
