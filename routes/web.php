@@ -134,6 +134,9 @@ Route::prefix('admin')->group(function ()
 	Route::get('/banners/edit/{id}', 'BannerController@edit')->name('admin.banners.edit')->middleware('auth');
 	Route::put('/banners/{id}', 'BannerController@update')->name('admin.banners.update')->middleware('auth');
 	Route::delete('/banners/{id}', 'BannerController@destroy')->name('admin.banners.delete')->middleware('auth');
+
+	Route::get('/comments', 'CommentController@index')->name('admin.comments.index')->middleware('auth');
+	Route::delete('/comments/{id}', 'CommentController@destroy')->name('admin.comments.delete')->middleware('auth');
 });
 
 

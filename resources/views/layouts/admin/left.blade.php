@@ -19,7 +19,8 @@
 
 	<a href="{{ route('admin.blogs.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-newspaper-o" aria-hidden="true"></i>{{ __(' Tin Tức') }}</a>
 
-  <a href="{{ route('admin.contacts.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-address-card-o" aria-hidden="true"></i>{{ __(' Liên Hệ') }}</a>  
+  <a href="{{ route('admin.contacts.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-address-card-o" aria-hidden="true"></i>{{ __(' Liên Hệ') }}</a>
+  <a href="{{ url('/admin/comments') }}" class="list-group-item list-group-item-action"><i class="fa fa-address-card-o" aria-hidden="true"></i>{{ __(' Bình luận') }}</a>    
 
 	<a href="{{ route('admin.configurations.index') }}" class="list-group-item list-group-item-action"><i class="fa fa-cogs" aria-hidden="true"></i>{{ __(' Cấu Hình') }}</a>	
 
