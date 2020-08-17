@@ -6,14 +6,14 @@
 	<h2 class="title text-left">Sản Phẩm</h2>
 
 	<div class="row filter">
-		<div class="col-sm-3"><i class="fa fa-filter" aria-hidden="true"></i> Hiện thị: 
+		<div class="col-lg-3 col-md-4 col-xs-6"><i class="fa fa-filter" aria-hidden="true"></i> Hiện thị: 
 			<select name="groupby" id="groupby">
 				<option value="all">Tất cả</option>
 				<option value="on_sale" <?php if(isset($filter['groupby']) && $filter['groupby'] == 'on_sale')  {echo 'selected';} ?> >Giảm giá</option>
 				<option value="available" <?php if(isset($filter['groupby']) && $filter['groupby'] == 'available')  {echo 'selected';} ?>>Còn hàng</option>
 			</select>
 		</div>
-		<div class="col-sm-3 pull-right">Sắp xếp: 
+		<div class="col-lg-3 col-md-4 col-xs-6 pull-right">Sắp xếp: 
 			<select name="orderby" id="orderby">
 				<option value="new">Mới nhất</option>
 				<option value="price-asc" <?php if(isset($filter['orderby']) && $filter['orderby'] == 'price-asc')  {echo 'selected';} ?>>Giá thấp</option>
@@ -23,7 +23,7 @@
 	</div>
 
 	@foreach ($products as $product)                        
-	    <div class="col-sm-3">
+	    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 			@include('layouts.product', ['product' => $product])
 		</div>
 	@endforeach                  
