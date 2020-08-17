@@ -40,8 +40,6 @@ class CommentController extends Controller
      */
     public function store(CommentCreateRequest $request)
     {
-        $user_id = Auth::id();
-        $request->request->add(['user_id' => $user_id]);
         $data = $request->except('_token');
         Comment::create($data);
         return redirect(url('/products/'.$request->product_id.'/#comments-box'));

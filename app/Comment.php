@@ -8,13 +8,8 @@ use App\User;
 class Comment extends Model
 {
     protected $fillable = [
-    	'content', 'parent_id', 'user_id', 'product_id'
+    	'content', 'parent_id', 'product_id', 'name', 'email'
     ];
-
-    public function user()
-    {
-    	return $this->belongsTo('App\User', 'user_id');
-    }
 
    public function product()
     {
