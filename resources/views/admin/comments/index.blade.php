@@ -20,7 +20,7 @@
 		<thead>
 			<tr class="bg-success text-white">
 				<th>{{ __('ID') }}</th>
-				<th>{{ __('Tên User') }}</th>
+				<th>{{ __('Tên') }}</th>
 				<th>{{ __('Nội dung') }}</th>
 				<th>{{ __('Sản phẩm') }}</th>
 				<th>{{ __('Hành Động') }}</th>
@@ -30,7 +30,7 @@
 			@forelse ($comments as $comment)
 			<tr>
 				<td>{{$comment->id}}</td>
-				<td>{{$comment->user->name}}</td>
+				<td>{{$comment->name}}</td>
 				<td>{{$comment->content}}</td>
 				<td><a href="{{url('/products/'.$comment->product->id.'#comments')}}">{{$comment->product->name}}</a></th>
 				<td>
