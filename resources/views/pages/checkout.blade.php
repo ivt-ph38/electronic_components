@@ -13,14 +13,14 @@
 		<div class="card-body border-top border-primary">
 		@csrf		
 			<div class="form-group">
-				<label for="phone">{{ __('Số điện thoại') }}</label>
+				<label for="phone">{{ __('Số điện thoại') }}: <span class="text-danger">*</span></label>
 				<input type="text" name="phone" value="{{ old('phone') }}" class="form-control" id="" placeholder="Nhập số điện thoại của bạn">
 				@if ($errors->has('phone'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('phone')}}</small>
 			    @endif
 			</div>
 			<div class="form-group">
-				<label for="name">{{ __('Họ tên') }}</label>
+				<label for="name">{{ __('Họ tên') }}: <span class="text-danger">*</span></label>
 				<input type="text" name="name" value="{{ old('name') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
 				@if ($errors->has('name'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('name')}}</small>
@@ -31,7 +31,7 @@
 	<div class="col-lg-6">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
-				<label for="email">{{ __('Email') }}</label>
+				<label for="email">{{ __('Email') }}: <span class="text-danger">*</span></label>
 				<input type="email" name="email" value="{{ old('email') }}" class="form-control" id="price" placeholder="Nhập địa chỉ email của bạn">
 				@if ($errors->has('email'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('email')}}</small>
@@ -45,7 +45,7 @@
 		<div class="card-body border-top border-primary">
 		@csrf		
 			<div class="form-group">
-				<label for="address">{{ __('Địa chỉ') }}</label>
+				<label for="address">{{ __('Địa chỉ') }}: <span class="text-danger">*</span></label>
 				<input type="text" name="address" value="{{ old('address') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
 				@if ($errors->has('address'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('address')}}</small>
