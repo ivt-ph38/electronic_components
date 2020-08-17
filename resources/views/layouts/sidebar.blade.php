@@ -1,4 +1,4 @@
-                    <div class="left-sidebar">
+                    <div class="left-sidebar hidden-xs">
                         <h2>DANH MỤC SẢN PHẨM</h2>
                         
                         @include('layouts.menu')

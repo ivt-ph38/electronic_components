@@ -1,17 +1,17 @@
         <div class="header-middle"><!--header-middle-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-1">
-                        <div class="logo pull-left">
-                            <a href="{{ route('welcome') }}"><img src="images/logo.png" alt="" /></a>
+                    <div class="col-lg-1 col-md-1 col-sm-2 hidden-xs">
+                        <div class="logo">
+                            <a href="{{ route('welcome') }}"><img src="{{url('/images/logo.png')}}" alt="" /></a>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-lg-8 col-md-7 col-sm-5 col-xs-6">
                         <div class="search_box">
                             <input id='search' name="search" type="text" placeholder="Tìm kiếm sản phẩm trên HTSHOP..."/>
                         </div>
                     </div> 
-                    <div class="col-sm-3">
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> GIỎ HÀNG (<span id="cart_count">{{Cart::count()}}</span>)</a></li>
@@ -23,7 +23,7 @@
             </div>
         </div><!--/header-middle-->
     
-        <div class="header-bottom sticky-top"><!--header-bottom-->
+        <div class="header-bottom"><!--header-bottom-->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">

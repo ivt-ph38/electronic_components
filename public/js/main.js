@@ -29,16 +29,16 @@ $(document).ready(function(){
 	});
 });
 
-	//menu    
-    window.onscroll = function() {myFunction()};
+	// //menu    
+ //    window.onscroll = function() {myFunction()};
 
-    var navbar = document.getElementsByClassName("header-middle")[0];
-    var sticky = navbar.offsetTop+15;
+ //    var navbar = document.getElementsByClassName("header-middle")[0];
+ //    var sticky = navbar.offsetTop+15;
 
-    function myFunction() {
-    	if (window.pageYOffset >= sticky) {
-        	 navbar.classList.add("sticky")
-        } else {
-        	navbar.classList.remove("sticky");
-        }
-    }
+ //    function myFunction() {
+ //    	if (window.pageYOffset >= sticky) {
+ //        	 navbar.classList.add("sticky")
+ //        } else {
+ //        	navbar.classList.remove("sticky");
+ //        }
+ //    }
