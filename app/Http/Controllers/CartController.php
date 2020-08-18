@@ -47,9 +47,15 @@ class CartController extends Controller
     public function update(Request $request)
     {
         $rowId = $request->rowId;
+        $product = Product::find($request->id);
         $qty = $request->qty;
-        Cart::update($rowId, $qty);
         $item = Cart::get($rowId);
+        $product = Product::find($item->id);
+        if ($qty > $product->quantity) {
+            $qty = $product->quantity;
+            $data['message'] = 'Bạn chỉ có thể đặt mua tối đa '. $qty. ' đối với sản phẩm này. Nếu bạn muốn mua nhiều hơn thì bạn có thể liên hệ trực tiếp với SHOP';
+        }
+        Cart::update($rowId, $qty);
         $data['item'] = $item;
         $data['subTotal'] = number_format($item->total, 0, ',', ',');
         $data['total'] = Cart::total(0, 0, ',');

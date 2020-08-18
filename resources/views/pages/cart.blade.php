@@ -103,6 +103,11 @@
 		   		$('#progress-bar').attr('style', 'width: '+ (total / 500000 * 100) +'%');
 		   		$('#help-text').text(help_text);
 		   		
+		   		//nếu số lượng đặt mua lớn hơn số lượng trong kho
+		   		if (typeof data.message !== 'undefined') {
+		   			$('#'+data.item.rowId).val(data.item.qty);
+				 	alert(data.message);
+				}
 	        },
 	        error: function (error) {
 		       	alert("Hệ thống đang bảo trì");
