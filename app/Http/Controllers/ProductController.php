@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('id','DESC')->get();
         return view('admin.products.index', compact('products'));
     }
 
@@ -176,18 +176,16 @@ class ProductController extends Controller
         $product->discount  =   $request->discount;
         $product->status    =   $request->status;
         $product->category_id   =   $request->category_id;
-
-        if (!is_null($request->image)) {
-
+        if ($request->has('image')) {
             $image = $request->file('image');
             $newName = md5(microtime(true)).$image->getClientOriginalName();
             $image->move(public_path('images/products/'), $newName);
             $path = '/images/products/'.$newName;
             $product->image = $path;
         }
-
         $product->save();
-        if (!is_null($request->product_images[0])) {
+        
+        if ($request->has('product_images')) {
             $images = $request->file('product_images');
             foreach ($images as $item) {
                 $newName = md5(microtime(true)).$item->getClientOriginalName();
@@ -198,8 +196,7 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                 ]);
             }
-        }        
-
+        }
         return redirect(route('admin.products.index'))->with('success', 'Sản phẩm cập nhật thành công.');
     }
 
@@ -217,7 +214,7 @@ class ProductController extends Controller
         return view('admin.products.copy',compact('product','categories'));
     }
 
-    public function clone(ProductUpdateRequest $request)
+    public function clone(ProductUpdateRequest $request, $id)
     {
     
         $product = new Product;
@@ -230,7 +227,6 @@ class ProductController extends Controller
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
         $product->status    =   $request->status;
-        $product->image     =   $request->image;
         $product->category_id   =   $request->category_id;
         $product->save();
 
@@ -277,4 +273,12 @@ class ProductController extends Controller
         return redirect(route('admin.products.edit', ['id' => $product_id]))->with('success', 'Xóa ảnh thành công');
 
     }
+
+    public function search(Request $request)
+    {
+
+            $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->orderBy('id','DESC')->take(20)->get();
+            return response()->json($products); 
+      
+    }    
 }

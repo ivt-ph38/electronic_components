@@ -80,4 +80,5 @@ class HomeController extends Controller
         $products = Product::where('name', 'like', '%' . $request->key . '%')->get();
         return response()->json($products); 
     }
+
 }

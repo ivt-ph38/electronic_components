@@ -6,10 +6,11 @@
 <section class="content-header mb-3 border-bottom border-primary">
 
 	<h1>
-
 		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Sản Phẩm') }}
-
 	</h1>
+	                            <div class="form-group">
+                                <input type="text" class="form-controller" id="search" name="search"></input>
+                            </div>
 
 </section>
 
@@ -24,6 +25,7 @@
 <script src="{{asset('js/jquery.priceformat.min.js')}}"></script>
 
 <div class="table-responsive">
+
 	
 	<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Thêm Sản Phẩm') }}</a>	
 
@@ -32,8 +34,6 @@
 		<thead>
 
 			<tr class="bg-success text-white">
-
-				<th><input type="checkbox" id="select_all" /></th>
 
 				<th>{{ __('ID') }}</th>
 
@@ -54,145 +54,79 @@
 		</thead>
 
 		<tbody>
-
 			@foreach($products as $product)
-
 			<tr>
-
-				<td><input type="checkbox" class="checkbox" name="check[]" value="{{ $product->id }}" class="checkbox-table"></td>
-
 				<td>{{ $product->id }}</td>
-
 				<td>{{ $product->name }}</td>
-
 				<td>
 
 					<img src="{{url($product->image)}}" class="table-img" alt="{{ $product->name }}">
-
 				</td>
-
 				<td>
-
-					{{ $product->price }}
-
-					<script type="text/javascript">
-
-					$('#price{{ $product->id }}').priceFormat({
-
-					prefix: '',
-
-					suffix: ' VND',
-
-					centsLimit: 0,
-
-					thousandsSeparator: '.'
-
-				});
-
-				</script>
-
-			{{-- 		{{ __($product->price) }} VND --}}
-
+					{{ number_format($product->price, 0, '', ',') }}  VND
 					<hr>
-
 					{{ $product->discount }}
-
 				</td>
-
 				<td class="text-center">
-
 					@if ($product->status == 1)
-
 					{{ __('Còn hàng') }}
-
 					@else
-
 					{{ __('Hết hàng') }}
-
 					@endif
-
 				</td>
-
 				<td>
-
-					@if ($product->category_id && !empty($product->category->id))	
-					<a href="" target="_blank" class="btn btn-info">{{ $product->category->name }}</a>	
+					@if (!empty($product->category_id))	
+					<a href="{{route('admin.categories.index')}}" target="_blank" class="btn btn-info">{{ $product->category->name }}</a>	
 					@else
 						{{ __('Không có danh mục') }}
 					@endif
-
 				</td>
 
 				<td class="actions">	
-
 					<a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-					
-				
-
-					{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }}
-
- --}}			<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">										@method('DELETE')
+				<form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form">			@method('DELETE')
  					 @csrf
- 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa Sản phẩm')"></i></button>
-			{{-- {{ Form::button('<i class="far fa-times-circle"></i>', ['type' => 'submit', 'class' => 'btn btn-danger','name' => 'delete', 'value' => $product->id, 'onclick' => "return confirm('$messagedel')"]) }} --}}
- 	
-				</form>
-					
+ 					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn Muốn Xóa Sản Phẩm');"></i></button>
+				</form>				
 					<a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="{{ __('Nhân Bản Sản Phẩm') }}"><i class="fa fa-files-o" aria-hidden="true"></i></a>
-
 				</td>
-
 			</tr>
-
 			@endforeach
-
 		</tbody>
-
-		<script type="text/javascript">
-
-			//select all checkboxes
-
-			$("#select_all").change(function(){  //"select all" change
-
-				$(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
-
-			});
-
-			//".checkbox" change
-
-			$('.checkbox').change(function(){
-
-				//uncheck "select all", if one of the listed checkbox item is unchecked
-
-				if(false == $(this).prop("checked")){ //if this item is unchecked
-
-				$("#select_all").prop('checked', false); //change "select all" checked status to false
-
-			}
-
-			//check "select all" if all checkbox items are checked
-
-			if ($('.checkbox:checked').length == $('.checkbox').length ){
-
-				$("#select_all").prop('checked', true);
-
-			}
-
-		});
-
-		</script>
-
 	</table>
-
 </div>
+        <script type="text/javascript">
+            $('#search').on('keyup',function(){
+                $value = $(this).val();
+                $.ajax({
+                    type: 'get',
+                    url: '{{route('live_search.action')}}',
+                    data: {
+                        'search': $value
+                    },
+                    success:function(data){
+                    	var html = '';
+						$.each(data,function(index, product){
+                    		console.log(product);
+                    		html += '<tr>';
+                    		html+= '<td>'+ product.id +'</td>';
+							html+= '<td>'+ product.name +'</td>';
+							html+= '<td><img src="'+ '{{url('/')}}' + product.image +'" class="table-img" alt="'+ product.name +'"></td>';
+							html+= '<td> {{ number_format($product->price, 0, '', ',') }} VNĐ <hr> @if (!empty('+ product.discount +')) '+ product.discount +' @else 0 @endif </td>';
+							html+= '<td> @if ('+ product.status == 1 +') Còn Hàng @else Hết Hàng @endif </td>';
+							html+= '<td> @if (!empty('+ product.category_id +')) '+ product.name +' @else {"Không Có Danh Mục"} @endif </td>';
+							html+= '<td><a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="Chỉnh Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a> <form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form"> @method('DELETE') @csrf <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm("Bạn có chắc muốn xóa Sản phẩm");"></i></button></form>  <a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="Nhân Bản Sản Phẩm"><i class="fa fa-files-o" aria-hidden="true"></i></a> </td>';
+							html += '<tr>';
+						});
+                        $('tbody').html(html);
+                    }
+                });
+            })
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        </script>
 
 <hr>
 
 <a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Thêm Sản Phẩm') }}</a>
-
-{{-- {{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }}
-
-{{ Form::close() }} --}}
 
 @endsection
