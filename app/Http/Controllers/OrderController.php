@@ -6,6 +6,8 @@ use App\Order;
 use App\OrderDetail;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
+use App\User;
 use App\Http\Requests\OrderCreateRequest;
 use Session;
 use Cart;
@@ -86,8 +88,14 @@ class OrderController extends Controller
         $data = $request->except('_token');
         $order = Order::create($data);
         foreach (Cart::content() as $item) {
-            $data['price'] = $item->price;
+            $product = Product::find($item->id);
+            if ($item->qty > $product->quantity) {
+                $item->qty = $product->quantity;
+                $order->total = (int)Cart::total(0, 0, '');
+                $order->save();
+            }
             $data['quantity'] = $item->qty;
+            $data['price'] = $item->price;
             $data['product_id'] = $item->id;
             $data['order_id'] = $order->id;
             $data['discount'] = $item->options->discount;
@@ -97,11 +105,19 @@ class OrderController extends Controller
     
             $email = $order->email;
             
+        //gửi mail cho khách hàng
         Mail::send('admin.orders.send_mail', compact('order'), function($message) use($order){
             $message->to( $order->email, 'THSHOP')->subject('THSHOP phản hồi: Đặt hàng thành công');
         });
 
-
+        //gửi mail cho admin
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            Mail::send('admin.orders.send_mail', compact('order'), function($message) use($admin){
+                $message->to( $admin->email, 'THSHOP')->subject('Đặt hàng');
+            });
+        }
+       
         $menus = Category::where('parent_id', '=', 0)->get();
         $request->session()->flash('success', 'Đặt hàng thành công! Vui lòng kiểm tra email!');
         return redirect(url('/order/'.$order->code)); 

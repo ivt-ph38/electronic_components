@@ -61,7 +61,9 @@
 					</div>
 					<?php if ((int)Cart::total(0, 0, '') > 500000) {  ?>
 						<span class="btn btn-success">* Freeship</span>
-					<?php } ?> 
+					<?php } else {?> 
+						<label for="message"><b>* Phí ship: {{number_format($shipfee, 0, '', ',')}} <u class="text-danger">đ</u></b></label>
+					<?php } ?>
 			<button type="submit" class="btn btn-danger pull-right" style="border-radius: 0">Đặt hàng</button>							
 			</div>
 	</div>
