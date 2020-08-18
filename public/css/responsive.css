@@ -163,13 +163,13 @@
 }
 
 .mainmenu ul li{
-	background: rgba(0, 0, 0, 0.5);
+	width: auto;
+	float: left;
     padding-top: 15px;
 	padding-bottom: 0;
 }
 
 .mainmenu ul li:last-child{
-	padding-bottom: 15px;
 }
 
 .mainmenu ul li  a{

@@ -1,7 +1,7 @@
-    <section id="slider"><!--slider-->
+    <section id="slider" class="hidden-sm hidden-xs"><!--slider-->
         <div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 hidden-xs hidden-sm">
                     <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             <?php $step = 0; ?>
