@@ -1727,6 +1727,7 @@ h2.title {
 }
 
 h2.title a {
+  margin-right: 16px;
   font-size: 14px;
   float: right;
   text-decoration: underline;
@@ -2786,4 +2787,12 @@ input[type=number] {
   font-size: 26px;
   line-height: 30px;
   font-weight: 800;
+}
+
+.logo {
+  height: 35px;
+}
+.logo img {
+  height: 35px;
+  width: 110px;
 }
