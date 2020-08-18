@@ -238,14 +238,13 @@ a#scrollUp i{
 }
 
 .mainmenu ul li:first-child{
-  padding-left: 0px;
 }
 
 .mainmenu ul li a {
 	color: #fff;
 	font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 	font-size: 17px;
-	font-weight: 300;
+	font-weight: 450;
 	padding: 0;
 	padding-bottom: 10px;
   padding-top:5px;
