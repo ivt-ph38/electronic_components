@@ -8,17 +8,11 @@
 	<h1>
 		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Sản Phẩm') }}
 	</h1>
-	                            <div class="form-group">
-                                <input type="text" class="form-controller" id="search" name="search"></input>
-                            </div>
+	               <div class="form-group">
+                         <input type="text" class="form-controller" id="search" name="search"></input>
+                    </div>
 
 </section>
-
-{{-- {{ Form::open(['route' => ['admin.products.destroy'], 'method' => 'post']) }}
-
-<a class="btn btn-success" href="{{ route('admin.products.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}</a>
-
-{{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }} --}}
 
 <hr>
 
@@ -59,7 +53,6 @@
 				<td>{{ $product->id }}</td>
 				<td>{{ $product->name }}</td>
 				<td>
-
 					<img src="{{url($product->image)}}" class="table-img" alt="{{ $product->name }}">
 				</td>
 				<td>
@@ -112,11 +105,33 @@
                     		html+= '<td>'+ product.id +'</td>';
 							html+= '<td>'+ product.name +'</td>';
 							html+= '<td><img src="'+ '{{url('/')}}' + product.image +'" class="table-img" alt="'+ product.name +'"></td>';
-							html+= '<td> {{ number_format($product->price, 0, '', ',') }} VNĐ <hr> @if (!empty('+ product.discount +')) '+ product.discount +' @else 0 @endif </td>';
-							html+= '<td> @if ('+ product.status == 1 +') Còn Hàng @else Hết Hàng @endif </td>';
-							html+= '<td> @if (!empty('+ product.category_id +')) '+ product.name +' @else {"Không Có Danh Mục"} @endif </td>';
-							html+= '<td><a href="{{ route('admin.products.edit', [$product->id]) }}" class="btn btn-secondary" title="Chỉnh Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a> <form action="{{ route('admin.products.delete', [$product->id]) }}" method="POST" role="form"> @method('DELETE') @csrf <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm("Bạn có chắc muốn xóa Sản phẩm");"></i></button></form>  <a href="{{ route('admin.products.clone', [$product->id]) }}" class="btn btn-secondary" title="Nhân Bản Sản Phẩm"><i class="fa fa-files-o" aria-hidden="true"></i></a> </td>';
-							html += '<tr>';
+							html+= '<td> '+ Intl.NumberFormat().format(product.price).toString().replace('.', ',') +' VNĐ <hr> ';
+							if (parseInt(product.discount) > 0) {
+								html+= product.discount +' % ';
+							}
+							html+= '</td>';
+							html+= '<td> ';
+							if (product.status == 1) {
+								html+= 'Còn hàng';
+							}
+							else {
+								html+= 'Hết hàng';
+							}
+							html+= '</td>';
+							html+= '<td>';
+							if(product.category_id === "") {
+								html+= 'Không Có Danh Mục';
+							}
+							else {
+								html+= '<a href="'+'{{url('/')}}'+'/admin/categories" target="_blank" class="btn btn-info">'+ product.category_name +'</a>';
+							}
+							html+= '</td>';
+							html+= '<td>';
+							html+= '<a href="'+'{{url('/')}}'+'/admin/product/edit/'+product.id+'" class="btn btn-secondary" title="Chỉnh Sửa"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+							html+= '<form action="'+'{{url('/')}}'+'/admin/product/'+product.id+'" method="POST" role="form"> @method('DELETE') @csrf <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm("Bạn có chắc muốn xóa Sản phẩm");"></i></button></form>';
+							html+= '<a href="'+'{{url('/')}}'+'/admin/copy/product/'+product.id+'" class="btn btn-secondary" title="Nhân Bản Sản Phẩm"><i class="fa fa-files-o" aria-hidden="true"></i></a>';
+							html+= '</td>';
+							html+= '</tr>';
 						});
                         $('tbody').html(html);
                     }

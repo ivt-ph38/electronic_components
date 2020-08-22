@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header mb-3">
 	<h1>
-		<i class="fas fa-plus-circle"></i> {{ __('Thêm Sản Phẩm') }}
+		<i class="fa fa-plus"></i> {{ __('Thêm Sản Phẩm') }}
 	</h1>
 </section>
 @include('layouts.admin.validation')
@@ -50,11 +50,11 @@
 
 				</select>
 			</div>			
-			<div class="form-group">
+{{-- 			<div class="form-group">
 				<input type="hidden" name="status" value="0">
 				<input type="checkbox" name="status" value="1">
 				<label for="">{{ __('Còn hàng ') }}</label>
-			</div>			
+			</div>	 --}}		
 		</div>		
 	</div>
 	<div class="col-lg-12">

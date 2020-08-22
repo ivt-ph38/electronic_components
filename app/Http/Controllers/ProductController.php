@@ -53,7 +53,12 @@ class ProductController extends Controller
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
+        if ($product->quantity >= 1) {
+            $product->status = 1;
+        }
+        else {
+            $product->status = 0;
+        }
         $product->category_id   =   $request->category_id;
         if ($request->has('image')) {
             $image = $request->file('image');
@@ -138,7 +143,7 @@ class ProductController extends Controller
             }
         }
         //$products = $query->get();
-        $products = $query->paginate(16);
+        $products = $query->paginate(12);
 
         return view('home.products.all',compact('products','menus', 'filter'));
     }
@@ -174,7 +179,12 @@ class ProductController extends Controller
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
+        if ($product->quantity >= 1) {
+            $product->status = 1;
+        }
+        else {
+            $product->status = 0;
+        }
         $product->category_id   =   $request->category_id;
         if ($request->has('image')) {
             $image = $request->file('image');
@@ -277,7 +287,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
 
-            $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->orderBy('id','DESC')->take(20)->get();
+            $products = Product::join('categories','categories.id','=','products.category_id')->where('products.name', 'LIKE', '%' . $request->search . '%')->orderBy('products.id','DESC')->select('products.*', 'categories.name as category_name')->take(20)->get();
             return response()->json($products); 
       
     }    

@@ -19,7 +19,8 @@
 				</div>
 				<div class="form-group">
 					<label for="">{{ __('Giá Trị') }}</label>
-					<input type="text" name="value" value="{{ $configuration->value }}" class="form-control" id="" placeholder="Input field">
+					<textarea name="value" id="inputValue" class="form-control" rows="3" required="required">{{ $configuration->value }}
+					</textarea>
 				</div>
 				<button type="submit" class="btn btn-primary">Đồng ý</button>	
 			</div>

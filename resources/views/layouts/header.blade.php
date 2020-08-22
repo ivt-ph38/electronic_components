@@ -23,7 +23,7 @@
                                 </form>
                             </li>
                             @else
-                            <li><a href="{{route('login')}}"><i class="fa fa-lock"></i> TÀI KHOẢN</a></li>
+                            <li><a href="{{route('login')}}"><i class="fa fa-lock"></i> ĐĂNG NHẬP</a></li>
                             @endif
                             </ul>
                         </div>

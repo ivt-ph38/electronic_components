@@ -65,3 +65,7 @@ img {
 .post-left h4 {
     color: #696763;
 }
+
+.card-text {
+    height: 100px;
+}

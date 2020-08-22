@@ -30,38 +30,38 @@
 					</span>
 					<div class="form-group">
 						<label for="">Họ Tên</label>
-						<input type="text" name="name" class="form-control" id="" placeholder="Họ Tên">
+						<input type="text" name="name" class="form-control" id="" placeholder="* Họ Tên">
 					</div>
 					@if($errors->has('name'))
-						<p>{{ $errors->first('name') }}</p>
+						<p class="note">{{ $errors->first('name') }}</p>
 					@endif						
 					<div class="form-group">
 						<label for="">Email</label>
-						<input type="text" name="email" class="form-control" id="" placeholder="Email">
+						<input type="text" name="email" class="form-control" id="" placeholder="* Email">
 					</div>
 					@if($errors->has('email'))
-						<p>{{ $errors->first('email') }}</p>
+						<p class="note">{{ $errors->first('email') }}</p>
 					@endif						
 					<div class="form-group">
 						<label for="">Mật Khẩu</label>
-						<input type="password" name="password" class="form-control" id="" placeholder="Mật Khẩu">
+						<input type="password" name="password" class="form-control" id="" placeholder="* Mật Khẩu">
 					</div>
 					@if($errors->has('password'))
-						<p>{{ $errors->first('password') }}</p>
+						<p class="note">{{ $errors->first('password') }}</p>
 					@endif
 					<div class="form-group">
 						<label for="">Xác Nhận Mật Khẩu</label>
-						<input class="form-control" placeholder="Xác nhận mật khẩu" name="password_confirmation" type="password">
+						<input class="form-control" placeholder="* Xác nhận mật khẩu" name="password_confirmation" type="password">
 					</div>
 					@if($errors->has('password'))
-						<p>{{ $errors->first('password') }}</p>
+						<p class="note">{{ $errors->first('password') }}</p>
 					@endif													
 					<div class="form-group">
 						<label for="">Địa Chỉ</label>
-						<input type="text" name="address" class="form-control" id="" placeholder="Địa Chỉ">
+						<input type="text" name="address" class="form-control" id="" placeholder="* Địa Chỉ">
 					</div>
 					@if($errors->has('address'))
-						<p>{{ $errors->first('address') }}</p>
+						<p class="note">{{ $errors->first('address') }}</p>
 					@endif						
 					<button type="submit" class="btn btn-primary">Đăng Ký</button>
 					<div class="text-center p-t-45 p-b-4">

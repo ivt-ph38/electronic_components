@@ -14,7 +14,13 @@
 			<tr>
 				<td>{{ $configuration->display }}</td>
 				<td>
+					@if($configuration->id == 5 ||
+						$configuration->id == 6
+						)
+					{!! $configuration->value !!}
+					@else
 					{{ $configuration->value }}
+					@endif
 				</td>
 				<td class="actions">
 					<a href="{{ route('admin.configurations.edit', [$configuration->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>

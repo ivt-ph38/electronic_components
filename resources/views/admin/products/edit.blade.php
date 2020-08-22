@@ -59,19 +59,14 @@
 					@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => $product->category_id, 'diff' => null])
 				</select>	
 			</div>			
-			</div>				
-			<div class="form-group">
-				<input type="hidden" name="status" value="0">
-				<input type="checkbox" name="status" value="1">
-				<label for="status" name="status">{{ __('Còn hàng ') }}</label>
-			</div>			
+			</div>		
 		</div>		
 	</div>
 	<div class="col-lg-12">
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<input class="form-control summernote" name="detail" value="{{ $product->detail }}"></input>
+						<textarea class="form-control summernote" name="detail">{{ $product->detail }}</textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Đồng ý</button>				
 			</div>

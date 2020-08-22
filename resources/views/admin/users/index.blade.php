@@ -31,7 +31,7 @@
 				<td>{{ $user->role }}</td>
 				<td class="actions">
 					<a href="{{ route('admin.users.edit', [$user->id]) }}" class="btn btn-secondary" title="{{ __('Chỉnh Sửa') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-				<form action="{{ route('admin.users.delete', [$user->id]) }}" method="POST" role="form">										@method('DELETE')
+				<form action="{{ route('admin.users.delete', [$user->id]) }}" method="POST" role="form">				 @method('DELETE')
  					 @csrf
  					 <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true" onclick="return confirm('Bạn có chắc muốn xóa Thành Viên Này')"></i></button>
 				</form>
