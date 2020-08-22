@@ -51,7 +51,7 @@
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<textarea class="form-control summernote" name="content" value="{{ $blog->content }}"></textarea>
+						<textarea class="form-control summernote" name="content">{{ $blog->content }}</textarea>
 					</div>
 			<button type="submit" class="btn btn-primary">Đồng ý</button>							
 			</div>

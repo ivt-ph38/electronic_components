@@ -74,7 +74,7 @@ class BlogController extends Controller
         
         $menus = Category::where('parent_id', '=', 0)->get();
         $res = new Collection;
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(3);
         return view('home.blogs.search',compact('menus', 'res','blogs'));
     }
 

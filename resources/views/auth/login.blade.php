@@ -26,7 +26,7 @@
 				<form class="login100-form validate-form" role="form" action="{{ route('login') }}" method="POST">
 					@csrf
 					<span class="login100-form-title p-b-33">
-						<img src="{{asset('images/logo.png')}}" alt="{{$webname}}">
+						<a href="{{route('welcome')}}"><img src="{{asset('images/logo.png')}}" alt="{{$webname}}"></a>
 					</span>
 					<div class="form-group">
 						<label for="">Email</label>
@@ -47,10 +47,6 @@
 					</div>
 
 					<div class="text-center p-t-45 p-b-4">
-						<a href="#" class="txt2 hov1">
-							Quên Mật Khẩu /
-						</a>
-
 						<a href="{{ route('register') }}" class="txt2 hov1">
 							Đăng Ký
 						</a>

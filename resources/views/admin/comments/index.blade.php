@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header mb-3 border-bottom border-primary">
 	<h1>
-		<i class="fas fa-list-alt"></i> {{ __('Danh sách bình luận') }}
+		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh sách bình luận') }}
 	</h1>
 </section>
     <!-- Hiển thị thông báo -->
