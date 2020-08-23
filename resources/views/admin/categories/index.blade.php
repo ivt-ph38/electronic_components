@@ -7,17 +7,25 @@
 	</h1>
 </section>
 
-{{-- {{ Form::open(['route' => ['admin.categories.destroy'], 'method' => 'post']) }}
-<a class="btn btn-success" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
-{{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }} --}}
 <hr>
 <div class="table-responsive">
-	<a class="btn btn-success" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>	
+	<a class="btn btn-success" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
+	<hr>	
+    <!-- Hiển thị thông báo -->
+	<div class="flash-message">
+	    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+	      @if(Session::has('alert-' . $msg))
+
+	      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+	      @endif
+	    @endforeach
+	</div> <!-- end .flash-message -->
 	<table class="table table-striped table-bordered mt-3" id="example">
 		<thead>
 			<tr class="bg-success text-white">
 				<th>{{ __('ID') }}</th>
 				<th>{{ __('Tên danh mục') }}</th>
+				<th>Sản phẩm</th>
 				<th colspan="2">{{ __('Hành Động') }}</th>
 			</tr>
 		</thead>
@@ -36,9 +44,6 @@
 
 <hr>
 
-<a class="btn btn-success" onclick="return confirm('Bạn có chắc muốn xóa '.$category->name)" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
-
-{{-- {{ Form::button('<i class="far fa-check-square"></i> Xóa Đã Chọn Hoặc Cập Nhật STT, Giá', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Bạn muốn xóa sản phẩm đã chọn hoặc cập nhật STT, Giá?')"]) }}
-{{ Form::close() }} --}}
+<a class="btn btn-success" href="{{ route('admin.categories.create') }}"><i class="fas fa-plus-circle"></i> {{ __('Thêm danh mục') }}</a>
 
 @endsection

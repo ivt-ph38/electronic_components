@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('parent_id', '=', 0)->get();
+        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -96,15 +96,27 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $category = Category::find($id);
+        $category = Category::find($request->id);
         $categories = new Collection;
         $categories = Helper::getCategories($category, $categories);
+        $i = 0;
         foreach ($categories as $category) {
-            $category->products()->delete();
-            $category->delete();
+            if (count($category->products) != 0) {
+                $i++;
+            }
         }
-        return redirect(route('admin.categories.index'))->with('success', 'Xóa danh mục thành công');    
+        if ($i == 0) {
+            foreach ($categories as $category) {
+                $category->delete();
+            }
+            $request->session()->flash('alert-success', 'Xóa danh mục thành công');
+            return redirect(route('admin.categories.index'));
+        }
+        else {
+            $request->session()->flash('alert-danger', 'Không thể xóa danh mục này');
+            return redirect(route('admin.categories.index'));
+        }
     }
 }
