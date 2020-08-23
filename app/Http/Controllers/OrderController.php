@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(self::PAGE);
+        $orders = Order::orderBy('id', 'desc')->paginate(self::PAGE);
         return view('admin.orders.index',compact('orders'));
     }
 
@@ -94,6 +94,11 @@ class OrderController extends Controller
                 $order->total = (int)Cart::total(0, 0, '');
                 $order->save();
             }
+            $product->quantity = $product->quantity - $item->qty;
+            if ($product->quantity == 0) {
+                $product->status = 0;
+            }
+            $product->save();
             $data['quantity'] = $item->qty;
             $data['price'] = $item->price;
             $data['product_id'] = $item->id;
@@ -104,16 +109,17 @@ class OrderController extends Controller
         Cart::destroy();
     
             $email = $order->email;
-            
+        
         //gửi mail cho khách hàng
-        Mail::send('admin.orders.send_mail', compact('order'), function($message) use($order){
+        $mes = 'Đặt hàng thành công';
+        Mail::send('admin.orders.send_mail', compact('order', 'mes'), function($message) use($order){
             $message->to( $order->email, 'THSHOP')->subject('THSHOP phản hồi: Đặt hàng thành công');
         });
 
         //gửi mail cho admin
         $admins = User::where('role', 'admin')->get();
         foreach ($admins as $admin) {
-            Mail::send('admin.orders.send_mail', compact('order'), function($message) use($admin){
+            Mail::send('admin.orders.send_mail', compact('order', 'mes'), function($message) use($admin){
                 $message->to( $admin->email, 'THSHOP')->subject('Đặt hàng');
             });
         }
@@ -155,9 +161,37 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
-        //
+        $order = Order::find($request->id);
+        if ($order->status == 4 && $request->status != 4) {
+            foreach ($order->details as $item) {
+                $product = Product::find($item->product_id);
+                $product->quantity = $product->quantity - $item->quantity;
+                if ($product->quantity == 0) {
+                    $product->status = 0;
+                }
+                $product->save();
+            }
+        } elseif ($request->status == 4 && $order->status != 4) {
+            foreach ($order->details as $item) {
+                $product = Product::find($item->product_id);
+                $product->quantity = $product->quantity + $item->quantity;
+                $product->status = 1;
+                $product->save();
+            }
+        }
+        $order->status = $request->status;
+        $order->save();
+        if ($request->status == 2) {
+            //gửi mail cho khách hàng
+            $mes = 'Đơn hàng của bạn đang được giao trong vòng 2-3 ngày';
+            Mail::send('admin.orders.send_mail', compact('order', 'mes'), function($message) use($order){
+                $message->to( $order->email, 'THSHOP')->subject('THSHOP phản hồi: Đơn hàng đang được giao');
+            });  
+        }
+
+        return view('admin.orders.edit',compact('order'));
     }
 
     /**

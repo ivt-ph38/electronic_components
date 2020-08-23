@@ -7,6 +7,7 @@
 	<p>Số điện thoại: {{$order->phone}}</p>
 	<p>Email: {{$order->email}}</p>
 	<p>Địa chỉ: {{$order->address}}</p>
+	<p style="color: red">{{$mes}}</p>
 	<table>
 		<thead>
 			<tr>

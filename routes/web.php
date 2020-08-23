@@ -126,7 +126,7 @@ Route::prefix('admin')->group(function ()
 	Route::get('/orders/search', 'OrderController@search')->middleware('auth','clearance');
 	Route::get('/orders/edit/{id}', 'OrderController@edit')->name('admin.orders.edit')->middleware('auth','clearance');
 	Route::get('/orders/{id}', 'OrderController@show')->name('admin.orders.show')->middleware('auth','clearance');
-	Route::put('/orders/{id}', 'OrderController@update')->name('admin.orders.update')->middleware('auth','clearance');
+	Route::post('/orders/{id}', 'OrderController@update')->name('admin.orders.update')->middleware('auth','clearance');
 	Route::delete('/orders/{id}', 'OrderController@destroy')->name('admin.orders.delete')->middleware('auth','clearance');
 
 	Route::get('/banners', 'BannerController@index')->name('admin.banners.index')->middleware('auth','clearance');
