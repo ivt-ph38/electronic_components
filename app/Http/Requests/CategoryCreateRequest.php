@@ -24,7 +24,7 @@ class CategoryCreateRequest extends FormRequest
     public function rules()
     {
         return [
-        'name' => 'required|max:255',
+        'name' => 'unique:categories|required|max:255',
         'parent_id' => 'required|numeric'
         ];
     }
@@ -32,6 +32,7 @@ class CategoryCreateRequest extends FormRequest
     public function messages()
     {
        return [ 
+        'name.unique' => 'Tên danh mục bị trùng',
         'name.required' => 'Vui lòng nhập tên danh mục',
         'name.max' => 'Tên danh mục không được dài quá 255 ký tự.',
         'parent_id.required' => 'Vui lòng chọn danh mục',

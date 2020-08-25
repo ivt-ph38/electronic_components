@@ -20,14 +20,14 @@
 				<label for="">{{ __('Thời gian tạo') }}: <b>{{date_format($order->created_at, 'd/m/Y H:i:s')}}</b></label>
 			</div>
 			<div class="form-group">
-				<form method="POST" action="">
+				<form method="POST" action="{{url('/admin/orders/'.$order->id)}}">
 					@csrf
 					<label for="">{{ __('Trạng thái') }}:
 						<select name="status" id="status" class="btn btn-info">
-							<option value="1" class="btn btn-primary">Mới tạo</option>
-							<option value="2" class="btn btn-warning">Giao hàng</option>
-							<option value="3" class="btn btn-success">Đã giao</option>
-							<option value="4" class="btn btn-danger">Hủy</option>
+							<option value="1" @if ($order->status == 1) selected @endif class="btn btn-primary">Mới tạo</option>
+							<option value="2" @if ($order->status == 2) selected @endif class="btn btn-warning">Giao hàng</option>
+							<option value="3" @if ($order->status == 3) selected @endif class="btn btn-success">Đã giao</option>
+							<option value="4" @if ($order->status == 4) selected @endif class="btn btn-danger">Hủy</option>
 						</select>
 					</label>
 					<button type="sumit" class="btn btn-primary pull-right">Cập nhật</button>
