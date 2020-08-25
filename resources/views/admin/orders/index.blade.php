@@ -35,7 +35,7 @@
 						<option value="1" @if (isset ($status) && $status == 1) selected='selected' @endif>Mới tạo</option>
 						<option value="2" @if (isset ($status) && $status == 2) selected='selected' @endif>Giao hàng</option>
 						<option value="3" @if ( isset ($status) && $status == 3) selected='selected' @endif>Đã giao</option>
-						<option value="3" @if (isset ($status) && $status == 4) selected='selected' @endif>Hủy</option>
+						<option value="4" @if (isset ($status) && $status == 4) selected='selected' @endif>Hủy</option>
 					</select>
 				</th>
 				<th>{{ __('Người đặt hàng') }}</th>
