@@ -209,4 +209,16 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function listOrdersByUserId(Request $request)
+    {
+        if (Auth::user()) {
+            $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+            $menus = Category::where('parent_id', '=', 0)->get();
+            return view('pages.list_orders',compact('menus', 'orders'));
+
+        } else {
+        return redirect(url('/login/')); 
+        }
+    }
 }
