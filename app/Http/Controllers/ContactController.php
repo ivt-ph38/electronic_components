@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactCreateRequest;
 use App\Contact;
 use App\Category;
 use Illuminate\Support\Collection;
@@ -42,7 +43,7 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactCreateRequest $request)
     {
         
         $contact = new Contact;
@@ -107,7 +108,7 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
         $contact->delete();
-        return redirect(route('admin.contacts.index'))->with('success', 'Liên hệ đã được gửi đi, chúng tôi sẽ liên lạc lại trong thời gian sớm nhất.');
+        return redirect(route('admin.contacts.index'))->with('success', 'Xóa liên hệ thành công.');
 
     }
 }

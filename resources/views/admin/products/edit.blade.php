@@ -6,9 +6,11 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
-<form action="{{ route('admin.products.update',$product->id) }}" method="POST" role="form" enctype="multipart/form-data">
+@include('layouts.admin.add_wysiwyg')
+<form action="{{ route('admin.products.update',$product->id) }}" file="true" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 	<div class="col-lg-6">
+		<div class="card bg-light h-100">
 		<div class="card-body border-top border-primary">
 		@method('PUT')	
 		@csrf		
@@ -30,16 +32,18 @@
 				<div class="row">
 					@foreach ($product->images as $image)							
 						<div class="col-lg-4">
-							<img class="img-thumbnail" src="{{url($image->path)}}">
-							<a onclick="return confirm('Bạn có muốn xóa ảnh này?')" style="position: absolute; z-index: 99; top:0; right: 0" class="btn btn-danger" href="{{url('/admin/product-images/delete/'.$image->id)}}">Xóa ảnh</a>
+						<img class="img-thumbnail" src="{{url($image->path)}}">
+						<a onclick="return confirm('Bạn có muốn xóa ảnh này?')" style="position: absolute; z-index: 99; top:0; right: 0" class="btn btn-danger" href="{{url('/admin/product-images/delete/'.$image->id)}}">Xóa ảnh</a>
 						</div>
 					@endforeach
 				</div>	
-				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">						
+				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">		
 			</div>	
+		</div>
 		</div>	
 	</div>
 	<div class="col-lg-6">
+		<div class="card bg-light h-100">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="">{{ __('Giá Sản Phẩm') }}</label>
@@ -60,26 +64,21 @@
 				</select>	
 			</div>			
 			</div>		
+		</div>
 		</div>		
 	</div>
-	<div class="col-lg-12">
+	<div class="col-lg-12 mt-5">
+		<div class="card bg-light h-100">
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<textarea class="form-control summernote" name="detail">{{ $product->detail }}</textarea>
+						<textarea id="editor-ckeditor" rows="10" cols="80" name="detail">{{ $product->detail }}</textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Đồng ý</button>				
 			</div>
+		</div>	
 	</div>	
-</form>
-<script type="text/javascript">
-
-	$(document).ready(function() {
-	$('.summernote').summernote({
-		height: 500,
-	});
-	});
-</script>	
+</form>	
 <script src="{{asset('js/jquery.priceformat.min.js')}}"></script>
 <script type="text/javascript">
 	$('#price').priceFormat({

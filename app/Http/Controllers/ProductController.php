@@ -33,6 +33,7 @@ class ProductController extends Controller
     public function create()
     {
         $images = \File::allFiles(public_path('images'));
+        // $images = Productimage::join('products','products.id','=','product_images.product_id')->select('product_images.*', 'categories.name as category_name')->get();
         $categories = Category::where('parent_id', '=', 0)->get();
         return view('admin.products.create', compact('categories','images'));
     }
@@ -53,6 +54,7 @@ class ProductController extends Controller
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
+        $product->image     =   $request->image;
         if ($product->quantity >= 1) {
             $product->status = 1;
         }
@@ -60,14 +62,16 @@ class ProductController extends Controller
             $product->status = 0;
         }
         $product->category_id   =   $request->category_id;
-        if ($request->has('image')) {
-            $image = $request->file('image');
-            $newName = md5(microtime(true)).$image->getClientOriginalName();
-            $image->move(public_path('images/products/'), $newName);
-            $path = '/images/products/'.$newName;
-            $product->image = $path;
-        }
         $product->save();
+
+        // if ($request->has('image')) {
+        //     $image = $request->file('image');
+        //     $newName = md5(microtime(true)).$image->getClientOriginalName();
+        //     $image->move(public_path('images/products/'), $newName);
+        //     $path = '/images/products/'.$newName;
+        //     $product->image = $path;
+        // }
+        // $product->save();
         
         if ($request->has('product_images')) {
             $images = $request->file('product_images');
@@ -236,21 +240,23 @@ class ProductController extends Controller
         $product->price     =   preg_replace('/\D/', '', $request->price);
         $product->quantity  =   $request->quantity;
         $product->discount  =   $request->discount;
-        $product->status    =   $request->status;
+        if ($product->quantity >= 1) {
+            $product->status = 1;
+        }
+        else {
+            $product->status = 0;
+        }
         $product->category_id   =   $request->category_id;
-        $product->save();
-
-        if (!is_null($request->image)) {
-
+        if ($request->has('image')) {
             $image = $request->file('image');
             $newName = md5(microtime(true)).$image->getClientOriginalName();
             $image->move(public_path('images/products/'), $newName);
             $path = '/images/products/'.$newName;
             $product->image = $path;
         }
-
         $product->save();
-        if (!is_null($request->product_images[0])) {
+        
+        if ($request->has('product_images')) {
             $images = $request->file('product_images');
             foreach ($images as $item) {
                 $newName = md5(microtime(true)).$item->getClientOriginalName();
@@ -261,7 +267,9 @@ class ProductController extends Controller
                     'product_id' => $product->id,
                 ]);
             }
-        }            
+        }    
+        $product->save();
+          
 
         return redirect(route('admin.products.index'))->with('success', 'Sao chép sản phẩm thành công.');
     }
@@ -292,3 +300,4 @@ class ProductController extends Controller
       
     }    
 }
+    // $images = Productimage::join('products','products.id','=','product_images.product_id')->select('product_images.*', 'categories.name as category_name')->get();

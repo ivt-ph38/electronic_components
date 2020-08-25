@@ -2,7 +2,7 @@
 @section('content')
 <section class="content-header mb-3">
 	<h1>
-		<i class="fas fa-plus-circle"></i> {{ __('Sửa danh mục') }}
+		<i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Sửa danh mục') }}
 	</h1>
 </section>
 @include('layouts.admin.validation')

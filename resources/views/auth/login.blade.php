@@ -50,6 +50,10 @@
 						<a href="{{ route('register') }}" class="txt2 hov1">
 							Đăng Ký
 						</a>
+						/
+						<a href="{{ route('password.request') }}" class="txt2 hov1">
+							Quên Mật Khẩu
+						</a>
 					</div>
 				</form>
 			</div>

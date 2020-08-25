@@ -3,7 +3,7 @@
 @section('content')
 <section class="content-header mb-3 border-bottom border-primary">
 	<h1>
-		<i class="fas fa-list-alt"></i> {{ __('Danh Sách danh mục') }}
+		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách danh mục') }}
 	</h1>
 </section>
 

@@ -6,9 +6,11 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
+@include('layouts.admin.add_wysiwyg')
 <form action="{{ route('admin.products.store') }}" file="true" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 	<div class="col-lg-6">
+	<div class="card bg-light h-100">	
 		<div class="card-body border-top border-primary">
 		@csrf		
 			<div class="form-group">
@@ -21,15 +23,40 @@
 			</div>
 			<div class="form-group">
 				<label for="">{{ __('Ảnh đại diện') }}</label>
-				<input type="file" name="image" value="" class="form-control">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image-gallery" name="image">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModalava">Chọn Ảnh</button>
+						</div>
+					</div>
+					<div class="modal fade" id="exampleModalava" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog mw-100 w-75" role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<iframe width="100%" height="550" frameborder="0" src="/filemanager/dialog.php?type=1&field_id=image-gallery&akey=xaqogz6cCYn8PS"> </iframe>
+								</div>
+							</div>
+						</div>
+					</div>			
 			</div>					
 			<div class="form-group">
 				<label for="">{{ __('Hình ảnh chi tiết') }}</label>
-				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">						
-			</div>						
+				<input type="file" class="form-control" placeholder="Chọn Từ Thư Viện" aria-label="Chọn Từ Thư Viện" aria-describedby="basic-addon2" id="image1-gallery" name="product_images[]" multiple="multiple">
+			</div>
+			<div class="modal" id="myModal">
+				<div class="modal-dialog mw-100 w-75">
+				    <div class="modal-content">
+				      <div class="modal-body">
+				         <iframe class="filemanager" src="{{asset('filemanager/dialog.php?type=0')}}"></iframe>
+				    	</div> 
+				   	</div>
+				</div>
+			</div> 									
 		</div>
+	</div>	
 	</div>
 	<div class="col-lg-6">
+		<div class="card bg-light h-100">
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="">{{ __('Giá Sản Phẩm') }}</label>
@@ -49,33 +76,24 @@
 					@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => 0, 'diff' => null])
 
 				</select>
-			</div>			
-{{-- 			<div class="form-group">
-				<input type="hidden" name="status" value="0">
-				<input type="checkbox" name="status" value="1">
-				<label for="">{{ __('Còn hàng ') }}</label>
-			</div>	 --}}		
+			</div>				
+		</div>
 		</div>		
 	</div>
-	<div class="col-lg-12">
+	<div class="col-lg-12 mt-5">
+		<div class="card bg-light h-100">
 			<div class="card-body border-top border-success">
-					<div class="form-group">
-						<label for="">Nội dung</label>
-						<textarea class="form-control summernote" name="detail" value="{{ old('detail') }}"></textarea>
-					</div>
+				<div class="form-group">
+					<label for="">Nội dung</label>
+					<textarea id="editor-ckeditor" rows="10" cols="80" name="detail">{{ old('detail') }}</textarea>
+				</div>
 			<button type="submit" class="btn btn-primary">Đồng ý</button>							
 			</div>
-	</div>
-	
+		</div>	
+	</div>	
 </div>
 </form>
-<script type="text/javascript">
-	$(document).ready(function() {
-	$('.summernote').summernote({
-		height: 500,
-	});
-	});
-</script>	
+	
 <script src="{{asset('js/jquery.priceformat.min.js')}}"></script>
 <script type="text/javascript">
 	$('#price').priceFormat({

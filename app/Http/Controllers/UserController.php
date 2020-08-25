@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id','DESC')->get();
         return view('admin.users.index',compact('users'));
     }
 
@@ -92,5 +92,24 @@ class UserController extends Controller
          $user = User::find($id);
          $user->delete();
          return redirect(route('admin.users.index'))->with('success', 'Xoá Thành Viên Thành Công');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $users = User::where('name', 'like', "%$keyword%")
+
+                            ->orWhere('email', 'like', "%$keyword%")
+
+                            ->orWhere('address', 'like', "%$keyword%")
+
+                            ->paginate(20);                            
+    
+        if (count($users)>0) {
+            return view('admin.users.index',compact('users'))->withQuery($keyword);
+        }
+        else {
+            return view('admin.users.index',compact('users'));
+        }
     }
 }

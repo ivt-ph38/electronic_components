@@ -3,23 +3,17 @@
 @section('content')
 
 <section class="content-header mb-3 border-bottom border-primary">
-
 	<h1>
-
 		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Tin Tức') }}
-
 	</h1>
-
 </section>
 
 <hr>
 
-<script src="{{asset('js/jquery.priceformat.min.js')}}"></script>
-
 <div class="table-responsive">
 	
 	<a class="btn btn-success" href="{{ route('admin.blogs.create') }}"><i class="fa fa-plus" aria-hidden="true"></i> {{ __('Thêm Tin Tức') }}</a>	
-
+	
 	<table class="table table-striped table-bordered mt-3" id="example">
 
 		<thead>
@@ -48,9 +42,9 @@
 
 				<td>{{ $blog->title }}</td>
 
-				<td>
+				<td>				
 
-					<img src="{{url($blog->image)}}" class="table-img" alt="{{ $blog->name }}">
+					<img src="{{$blog->image}}" class="table-img" alt="{{ $blog->name }}">
 
 				</td>
 

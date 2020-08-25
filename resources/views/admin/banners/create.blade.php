@@ -9,6 +9,7 @@
 <form action="{{ route('admin.banners.store') }}" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 		<div class="col-lg-12">
+			<div class="card bg-light h-100">
 			<div class="card-body border-top border-primary">
 				@csrf		
 				<div class="form-group">
@@ -24,6 +25,7 @@
 					<input type="file" name="image" value="" class="form-control">
 				</div>
 				<button type="submit" class="btn btn-primary">Đồng ý</button>		
+			</div>
 			</div>
 		</div>
 	</div>

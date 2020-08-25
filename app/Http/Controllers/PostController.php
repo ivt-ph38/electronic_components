@@ -5,6 +5,8 @@ use App\Post;
 use App\Product;
 use App\Category;
 use Illuminate\Support\Collection;
+use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id','DESC')->get();
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -36,12 +38,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
         $post = new Post;
 
         $post->title = $request->title;
-        $post->slug = $request->slug;
+        $post->slug = str_slug($request->title, "-");
         $post->description = $request->description;
         $post->left = $request->left;
         $post->bottom = $request->bottom;
@@ -85,12 +87,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
         $post = Post::find($id);
 
         $post->title = $request->title;
-        $post->slug = $request->slug;
+        $post->slug = str_slug($request->title, "-");;
         $post->description = $request->description;
         $post->left = $request->left;
         $post->bottom = $request->bottom;

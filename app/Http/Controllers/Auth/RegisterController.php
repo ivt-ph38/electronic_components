@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ],
         
-                    [
+        [
             'name.required' => 'Vui lòng nhập Họ và Tên',
             'name.max' => 'Họ và tên không quá 255 ký tự',
             'email.required' => 'Vui lòng nhập Email',
@@ -96,7 +96,6 @@ class RegisterController extends Controller
     } else {   
         // Dữ liệu vào hợp lệ sẽ thực hiện tạo người dùng dưới csdl
         if( $this->create($allRequest)) {
-            // Insert thành công sẽ hiển thị thông báo
             Session::flash('success', 'Đăng ký thành viên thành công!');
             return redirect(route('welcome'));
         } else {
