@@ -13,6 +13,7 @@ use Session;
 use Cart;
 use Illuminate\Support\Str;
 use Mail;
+use Illuminate\Support\Facades\Auth;
 
 session_start();
 
@@ -85,8 +86,12 @@ class OrderController extends Controller
         $request->request->add(['status' => 1]);
         $request->request->add(['total' => (int)Cart::total(0, 0, '')]);
         $request->request->add(['discount' => 0]);
+        if(Auth::user()) {
+            $request->request->add(['user_id' => Auth::user()->id]);
+        }
         $data = $request->except('_token');
         $order = Order::create($data);
+
         foreach (Cart::content() as $item) {
             $product = Product::find($item->id);
             if ($item->qty > $product->quantity) {
@@ -203,5 +208,17 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function listOrdersByUserId(Request $request)
+    {
+        if (Auth::user()) {
+            $orders = Order::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+            $menus = Category::where('parent_id', '=', 0)->get();
+            return view('pages.list_orders',compact('menus', 'orders'));
+
+        } else {
+        return redirect(url('/login/')); 
+        }
     }
 }

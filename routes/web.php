@@ -28,6 +28,7 @@ Route::post('api/cart/update-item', 'CartController@update');
 //Checkout
 Route::get('/checkout', 'OrderController@checkout_form')->name('checkout');
 Route::post('/checkout', 'OrderController@store');
+Route::get('/order/user', 'OrderController@listOrdersByUserId');
 Route::get('/order/{code}', 'OrderController@show');
 
 //Contacts
