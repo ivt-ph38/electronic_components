@@ -1,5 +1,8 @@
 @extends('layouts.admin.admin')
 @section('content')
+<h1>
+	<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Cấu Hình') }}
+</h1>
 <div class="table-responsive">
 	<table class="table table-striped table-bordered" id="example">
 		<thead>

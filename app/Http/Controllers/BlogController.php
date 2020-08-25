@@ -8,6 +8,9 @@ use App\Category;
 use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Requests\BlogCreateRequest;
+use App\Http\Requests\BlogUpdateRequest;
+use Illuminate\Support\Facades\Storage;
+use Session;
 
 
 class BlogController extends Controller
@@ -19,7 +22,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::get();
+        $blogs = Blog::orderBy('id','DESC')->get();
         return view('admin.blogs.index',compact('blogs'));
     }
 
@@ -30,7 +33,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-
+        $images = \File::allFiles(public_path('images'));
         return view('admin.blogs.create');
 
     }
@@ -48,19 +51,19 @@ class BlogController extends Controller
         $blog = new Blog;
 
         $blog->title = $request->title;
-        $blog->slug = $request->slug;
+        $blog->slug = str_slug($request->title, "-");
         $blog->description = $request->description;
         $blog->content = $request->content;
-        if ($request->has('image')) {
-            $image = $request->file('image');
-            $newName = md5(microtime(true)).$image->getClientOriginalName();
-            $image->move(public_path('images/blogs/'), $newName);
-            $path = '/images/blogs/'.$newName;
-            $blog->image = $path;
-        }        
+        // if ($request->has('image')) {
+        //     $image = $request->file('image');
+        //     $newName = md5(microtime(true)).$image->getClientOriginalName();
+        //     $image->move(public_path('images/blogs/'), $newName);
+        //     $path = '/images/blogs/'.$newName;
+        //     $blog->image = $path;
+        // }
+        $blog->image = $request->image;       
         $blog->save();
-
-        return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được lưu.');
+        return redirect(route('admin.blogs.index'))->with('success', 'Thêm Tin Tức thành công');
     }
 
     /**
@@ -105,15 +108,15 @@ class BlogController extends Controller
      * @param  \App\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(BlogCreateRequest $request, $id)
+    public function update(BlogUpdateRequest $request, $id)
     {
         $blog = Blog::find($id);
 
         $blog->title = $request->title;
-        $blog->slug = $request->slug;
+        $blog->slug = str_slug($request->title, "-");;
         $blog->description = $request->description;
-        $blog->image = $request->image;
         $blog->content = $request->content;
+        $blog->image = $request->image;
         $blog->save();
 
         return redirect(route('admin.blogs.index'))->with('success', 'Tin tức đã được chỉnh sửa.');

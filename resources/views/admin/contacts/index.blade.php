@@ -9,7 +9,6 @@
 	<table class="table table-striped table-bordered" id="example">
 		<thead>
 			<tr class="bg-success text-white">
-				<th><input type="checkbox" id="select_all" /></th>
 				<th>{{ __('ID') }}</th>
 				<th>{{ __('Tiêu Đề') }}</th>
 				<th>{{ __('Họ Tên') }}</th>
@@ -21,7 +20,6 @@
 		<tbody>
 			@foreach($contacts as $contact)
 			<tr>
-				<td><input type="checkbox" class="checkbox" name="check[]" value="{{ $contact->id }}" class="checkbox-table"></td>
 				<td>{{ $contact->id }}</td>
 				<td>{{ $contact->title }}</td>
 				<td>{{ $contact->name }}</td>

@@ -25,7 +25,6 @@ class BlogCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|max:255',
             'description' => 'required|max:500',
             'image' => 'required',
             'content' => 'required'
@@ -38,8 +37,8 @@ class BlogCreateRequest extends FormRequest
         return[
             'title.required' => 'Vui lòng nhập tiêu đề',
             'title.max' => 'Tiêu đề tối đa 255 ký tự',
-            'slug.required' => 'Vui lòng nhập đường dẫn',
-            'slug.max' => 'Đường dẫn tối đa 255 ký tự',
+            'description.required' => 'Vui lòng nhập mô tả',
+            'description.max' => 'Mô tả tối đa 500 ký tự',
             'image.required' => 'Vui lòng chọn hình đại diện',
             'content.required' => 'Vui lòng nhập nội dung'
 

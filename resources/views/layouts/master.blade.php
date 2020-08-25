@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Trang chủ | TH SHOP</title>
-    <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/bootstrap.mex.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/prettyPhoto.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/price-range.css') }}" rel="stylesheet">

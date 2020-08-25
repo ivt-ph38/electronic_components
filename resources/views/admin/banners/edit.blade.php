@@ -2,13 +2,14 @@
 @section('content')
 <section class="content-header mb-3">
 	<h1>
-		<i class="fas fa-plus-circle"></i> {{ __('Sửa banner') }}
+		<i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Sửa banner') }}
 	</h1>
 </section>
 @include('layouts.admin.validation')
 <form action="{{ url('/admin/banners/'.$banner->id) }}" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 		<div class="col-lg-12">
+			<div class="card bg-light h-100">
 			<div class="card-body border-top border-primary">
 				@method('PUT')
 				@csrf		
@@ -23,9 +24,10 @@
 				<div class="form-group">
 					<label for="">{{ __('Hình ảnh') }}</label>
 					<input type="file" name="image" value="" class="form-control">
-					<img class="img-thumbnail" width="500" src="{{url($banner->path)}}">
+					<img class="img-thumbnail mt-2" width="500" src="{{url($banner->path)}}">
 				</div>
 				<button type="submit" class="btn btn-primary">Đồng ý</button>		
+			</div>
 			</div>
 		</div>
 	</div>

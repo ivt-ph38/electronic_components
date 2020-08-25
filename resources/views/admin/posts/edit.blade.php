@@ -2,13 +2,14 @@
 @section('content')
 <section class="content-header mb-3">
 	<h1>
-		<i class="fas fa-plus-circle"></i> {{ __('Chỉnh Sửa Bài Viết '.$post->title) }}
+		<i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Chỉnh Sửa Bài Viết "'.$post->title.'"') }}
 	</h1>
 </section>
 @include('layouts.admin.validation')
 <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" role="form">
 <div class="row">
 	<div class="col-lg-6">
+
 		<div class="card-body border-top border-primary">
 		@method('PUT')
 		@csrf		
@@ -57,12 +58,4 @@
 	
 </div>
 </form>
-<script type="text/javascript">
-
-	$(document).ready(function() {
-	$('.summernote').summernote({
-		height: 500,
-	});
-	});
-</script>	
 @endsection

@@ -40,8 +40,14 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@postLogi
 
 Route::get('register', 'Auth\RegisterController@getRegister')->name('register');
 Route::post('register', 'Auth\RegisterController@postRegister');
-
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+//Reset password
+
+Route::get('account/forget-password', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('account/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('account/forget-password/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('account/forget-password', 'Auth\ResetPasswordController@reset');
 
 /* -------------------------------------------------------------------------- */
 
@@ -139,6 +145,7 @@ Route::prefix('admin')->group(function ()
 	Route::get('/users','UserController@index')->name('admin.users.index')->middleware('auth','clearance');
 	Route::get('/users/edit/{id}','UserController@edit')->name('admin.users.edit')->middleware('auth','clearance');
 	Route::put('/users/{id}','UserController@update')->name('admin.users.update')->middleware('auth','clearance');
+	Route::get('/users/search','UserController@search')->name('admin.users.search')->middleware('auth','clearance');
 	Route::delete('/users/{id}','UserController@destroy')->name('admin.users.delete')->middleware('auth','clearance');
 
 	Route::get('/posts','PostController@index')->name('admin.posts.index')->middleware('auth','clearance');

@@ -25,8 +25,6 @@
 
 			<tr class="bg-success text-white">
 
-				<th><input type="checkbox" id="select_all" /></th>
-
 				<th>{{ __('ID') }}</th>
 
 				<th>{{ __('Tiêu Đề') }}</th>
@@ -48,8 +46,6 @@
 			@foreach($posts as $post)
 
 			<tr>
-
-				<td><input type="checkbox" class="checkbox" name="check[]" value="{{ $post->id }}" class="checkbox-table"></td>
 
 				<td>{{ $post->id }}</td>
 

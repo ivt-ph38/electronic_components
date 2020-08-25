@@ -6,7 +6,7 @@
 	</h1>
 </section>
 @include('layouts.admin.validation')
-<form action="{{ route('admin.products.clone',$product->id) }}" method="POST" role="form">
+<form action="{{ route('admin.products.clone',$product->id) }}" file="true" method="POST" role="form" enctype="multipart/form-data">
 <div class="row">
 	<div class="col-lg-6">
 		<div class="card-body border-top border-primary">
@@ -29,7 +29,7 @@
 				<input type="file" name="image" value="" class="form-control">
 			</div>					
 			<div class="form-group">
-				<label for="">{{ __('Hình ảnh chi tiết') }}</label>
+				<label for="">{{ __('Hình ảnh chi tiết') }}</label>			
 				<input type="file" name="product_images[]" value="" class="form-control" multiple="multiple">
 			</div>							
 		</div>
@@ -55,11 +55,6 @@
 					<option>{{ __('-- Danh Mục --') }}</option>
 				@include('admin.categories.selectbox_categories', ['categories' => $categories, 'selected' => 0, 'diff' => null])
 				</select>	
-			</div>
-			<div class="form-group">
-				<input type="hidden" name="status" value="0">
-				<input type="checkbox" name="status" value="1">
-				<label for="status" name="status">{{ __('Còn hàng ') }}</label>
 			</div>			
 		</div>		
 	</div>
@@ -67,7 +62,7 @@
 			<div class="card-body border-top border-success">
 					<div class="form-group">
 						<label for="">Nội dung</label>
-						<input class="form-control summernote" name="detail" value="{{ $product->detail }}"></input>
+						<textarea name="detail" class="form-control summernote">{{ $product->detail }}</textarea>
 					</div>
 					<button type="submit" class="btn btn-primary">Đồng ý</button>				
 			</div>

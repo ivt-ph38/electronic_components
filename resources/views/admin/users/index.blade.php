@@ -5,6 +5,12 @@
 		<i class="fa fa-list" aria-hidden="true"></i> {{ __('Danh Sách Thành Viên') }}
 	</h1>
 </section>
+<form class="form-inline" action="{{route('admin.users.search')}}">
+  @csrf		
+  <input class="form-control form-control-sm mr-3 w-50" name="keyword" type="text" placeholder="Nhập tên hoặc email người dùng"
+    aria-label="Search">
+  <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+</form>
 <hr>
 @include('layouts.admin.validation')
 <div class="table-responsive">
