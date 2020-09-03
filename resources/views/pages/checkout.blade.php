@@ -21,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				<label for="name">{{ __('Họ tên') }}: <span class="text-danger">*</span></label>
-				<input type="text" name="name" value="{{ old('name') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
+				<input type="text" name="name" value="{{ old('name')?old('name'):(Auth::user()?Auth::user()->name:'') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
 				@if ($errors->has('name'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('name')}}</small>
 			    @endif
@@ -32,7 +32,7 @@
 		<div class="card-body border-top border-warning">
 			<div class="form-group">
 				<label for="email">{{ __('Email') }}: <span class="text-danger">*</span></label>
-				<input type="email" name="email" value="{{ old('email') }}" class="form-control" id="price" placeholder="Nhập địa chỉ email của bạn">
+				<input type="email" name="email" value="{{ old('email')?old('email'):(Auth::user()?Auth::user()->email:'') }}" class="form-control" id="price" placeholder="Nhập địa chỉ email của bạn">
 				@if ($errors->has('email'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('email')}}</small>
 			    @endif
@@ -46,7 +46,7 @@
 		@csrf		
 			<div class="form-group">
 				<label for="address">{{ __('Địa chỉ') }}: <span class="text-danger">*</span></label>
-				<input type="text" name="address" value="{{ old('address') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
+				<input type="text" name="address" value="{{ old('address')?old('address'):(Auth::user()?Auth::user()->address:'') }}" class="form-control" id="" placeholder="Nhập họ tên của bạn">
 				@if ($errors->has('address'))
 			      <small id="" class="form-text text-muted text-danger">* {{$errors->first('address')}}</small>
 			    @endif
